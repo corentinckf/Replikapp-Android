@@ -168,6 +168,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    public void test(){
+
+    }
+
     public void incCoinAmount(int add){
         coin_amount += add;
         updateCoinAmountInd();

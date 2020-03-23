@@ -44,6 +44,7 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
             @Override
             public void onClick(View v) {
                 Log.i("Loaded : ", "not loaded");
+                Log.i("Loaded : ", "not loaded");
                 if(mRewardedVideoAd.isLoaded()){
                     Log.i("Loaded : ", "loaded");
                     mRewardedVideoAd.show();

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "409534565823",
+    "firebase_url": "https://replikapp-c07cd.firebaseio.com",
+    "project_id": "replikapp-c07cd",
+    "storage_bucket": "replikapp-c07cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409534565823:android:52b0a385685ad76220e50a",
+        "android_client_info": {
+          "package_name": "com.ckfcsteam.replikapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409534565823-tar1keiig928ubbh4fgt3l959dnf9t28.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ckfcsteam.replikapp",
+            "certificate_hash": "079cd89addc754e983042fda7db02181044fd676"
+          }
+        },
+        {
+          "client_id": "409534565823-ktetd8gqj84ldvdhdn7ta40k8vbgj3mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHsndiYSCLyojDFD9jE-OqMS34IwdehgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409534565823-ktetd8gqj84ldvdhdn7ta40k8vbgj3mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Replikapp</string>
+    <string name="registerFromLogin_link"><u>I don\'t have an account !</u></string>
+    <string name="loginFromRegister_link"><u>I already have an account !</u></string>
+    <string name="bibli">Replicas</string>
+    <string name="profil">Profile</string>
+    <string name="store">Market</string>
+    <string name="coin_amount_indicator">0x</string>
+    <string name="buy_coin_title">EARN COINS</string>
+    <string name="buy_coin_desc">Watch ads :</string>
+    <string name="receive_coin">RECEIVE</string>
+    <string name="buy_coin_amount">150 Coins</string>
+    <string name="buy_game">BUY A GAME</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Replikapp</string>
+    <string name="registerFromLogin_link"><u>Je n\'ai pas de compte !</u></string>
+    <string name="loginFromRegister_link"><u>J\'ai déjà un compte !</u></string>
+    <string name="bibli">Répliques</string>
+    <string name="profil">Profil</string>
+    <string name="store">Boutique</string>
+    <string name="coin_amount_indicator">0x</string>
+    <string name="buy_coin_title">GAGNER DES COINS</string>
+    <string name="buy_coin_desc">Visionner une publicité :</string>
+    <string name="buy_coin_amount">150 Coins</string>
+    <string name="receive_coin">RECEVOIR</string>
+    <string name="buy_game">ACHETER UN JEU</string>
+</resources>

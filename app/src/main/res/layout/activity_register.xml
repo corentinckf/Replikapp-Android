@@ -7,22 +7,110 @@
     tools:context=".activities.RegisterActivity">
 
     <TextView
-        android:id="@+id/register_indicator"
+        android:id="@+id/textRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGISTER"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/textRErr"
+        android:text="@string/textRegister"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="@font/lemon"
+        android:textSize="40dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="-3"
+        android:shadowDy="-3"
+        android:shadowRadius="3"/>
     <TextView
+        android:id="@+id/textRErr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginFromRegister_link"
-        android:text="@string/loginFromRegister_link"
+        app:layout_constraintBottom_toTopOf="@id/llReg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/lemon"
+        android:text="@string/textRErr"
+        android:textColor="@color/colorError"
+        android:textSize="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/llReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mailRegTField"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/addressMail"
+            android:inputType="textPersonName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mailRegTEField"
+                android:inputType="textPersonName"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passRegTField"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            app:endIconMode="password_toggle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passRegTEField"
+                android:inputType="textPassword"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/regToLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/register_indicator" />
+        app:layout_constraintTop_toBottomOf="@id/llReg"
+        android:layout_marginTop="10dp"
+        android:text="@string/regToLog"
+        android:textColor="@color/lightBlue"
+        android:fontFamily="@font/lemon"
+        android:textSize="10dp"
+        />
+
+    <Button
+        android:id="@+id/regBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/regToLog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="@string/regBtn"
+        android:fontFamily="@font/lemon"
+        android:backgroundTint="@color/lightBlue"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

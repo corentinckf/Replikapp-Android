@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Replikapp</string>
-    <string name="registerFromLogin_link"><u>Je n\'ai pas de compte !</u></string>
-    <string name="loginFromRegister_link"><u>J\'ai déjà un compte !</u></string>
-    <string name="bibli">Répliques</string>
-    <string name="profil">Profil</string>
-    <string name="store">Boutique</string>
+
+    <!-- Global-->
+    <string name="error">Erreur !</string>
+
+    <!-- Splash Screen-->
+    <string name="Replikapp">ReplikApp</string>
+
+
+    <!-- Login Screen-->
+    <string name="textLogin">LOGIN</string>
+    <string name="addressMail">Adresse Mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="logToReg">Pas encore de compte ?</string>
+    <string name="logBtn">CONNEXION</string>
+    <string name="mail_empty">Veuillez entrer un E-mail !</string>
+    <string name="pw_empty">Veuillez entrer un Mot de passe !</string>
+    <string name="login_fail">Aucun utilisateur trouvé !</string>
+
+    <!-- Register Screen-->
+    <string name="textRegister">REGISTER</string>
+    <string name="textRErr"></string>
+    <string name="username">Nom Utilisateur</string>
+    <string name="regToLog">Déjà un compte ?</string>
+    <string name="regBtn">ENREGISTRER</string>
+    <string name="passwordConf">Confirmation</string>
+    <string name="short_pw">Veuillez entrer un mot de passe à 8 caractères !</string>
+    <string name="reg_fail">Erreur ! Veuillez ré-essayer dans un instant !</string>
+
+    <!-- Reset Password Sreen -->
+    <string name="textRPassword">RECUPERER SON MOT DE PASSE</string>
+    <string name="resetBtn">RECUPERER</string>
+    <string name="cancelRPBtn">ANNULER</string>
+    <string name="email_sent">E-mail sent !</string>
+
+
+    <!-- Main informations -->
     <string name="coin_amount_indicator">0x</string>
-    <string name="buy_coin_title">GAGNER DES COINS</string>
-    <string name="buy_coin_desc">Visionner une publicité :</string>
-    <string name="buy_coin_amount">150 Coins</string>
-    <string name="receive_coin">RECEVOIR</string>
-    <string name="buy_game">ACHETER UN JEU</string>
+    <string name="usernameInfo">Nektsu</string>
+    <string name="addressMailInfo">Mail Address</string>
+
+    <!-- fragment Bibli -->
+    <string name="bibli">Répliques</string>
+    <string name="textJeux">Jeux</string>
+    <string name="textTetris">Tetris</string>
+    <string name="textSpaceI">Space Invaders</string>
+    <string name="textPacMan">Pac Man</string>
+
+    <!-- fragment Profil -->
+    <string name="profil">Profil</string>
+
+    <!-- fragment Shop -->
+    <string name="store">Boutique</string>
+    <string name="textBuyCoins">ACHETER COINS</string>
+    <string name="buy_coin_amount">150 coins</string>
+    <string name="textBuy">ACHETER JEUX</string>
+    <string name="textGame">GAME</string>
+
 </resources>

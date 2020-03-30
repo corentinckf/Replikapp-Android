@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +19,10 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.google.android.material.card.MaterialCardView;
 
 public class StoreFragment extends Fragment implements RewardedVideoAdListener{
-    private Button launchAd_button;
+    private MaterialCardView freeCoin;
     private RewardedVideoAd mRewardedVideoAd;
     private View rootView;
     private MainActivity mainActivity;
@@ -31,7 +33,6 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_store, container, false);
         MobileAds.initialize(getContext(), "ca-app-pub-6113200648741812/4193990483");
-        // Use an activity context to get the rewarded video instance.
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getContext());
         mRewardedVideoAd.setRewardedVideoAdListener(this);
 
@@ -39,14 +40,12 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
 
         loadRewardedVideoAd();
 
-        launchAd_button = rootView.findViewById(R.id.launch_ad);
-        launchAd_button.setOnClickListener(new View.OnClickListener() {
+        freeCoin = rootView.findViewById(R.id.freeCoin);
+        freeCoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Loaded : ", "not loaded");
-                Log.i("Loaded : ", "not loaded");
+                Toast.makeText(mainActivity.getBaseContext(), R.string.error, Toast.LENGTH_LONG).show();
                 if(mRewardedVideoAd.isLoaded()){
-                    Log.i("Loaded : ", "loaded");
                     mRewardedVideoAd.show();
                 }
             }

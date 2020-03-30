@@ -53,16 +53,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //////////////////////////////////////////////////////////////////////
-        //Attention à bien appeller ces deux fonctions avant setContentView()
-        /*On passe cette activité en mode plein écran*/
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-
-        /* On enlève l'affichage du titre de l'activité */
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-        //////////////////////////////////////////////////////////////////////
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance(); // Initialisation de L'Auth Firebase
@@ -119,7 +109,7 @@ public class MainActivity extends AppCompatActivity{
 
         super.onStart();
 
-        if(auth.getCurrentUser() !=  null){ // Si pas d'utilisateur lié à l'Auth
+        if(auth.getCurrentUser() ==  null){ // Si pas d'utilisateur lié à l'Auth
             Intent login_activity_intent = new Intent(this, LoginActivity.class); // Création d'une instance de l'activité login
             startActivity(login_activity_intent); //On lance l'activité LoginActivity pour auth l'utilisateur
             finish();

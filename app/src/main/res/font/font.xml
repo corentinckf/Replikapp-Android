@@ -10,4 +10,16 @@
         android:fontWeight="800"
         android:font="@font/pixel" />
 
+    <!-- Font Family Kremlin-->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/kremlin"/>
+
+    <!-- Font Family San Fransisco Regular-->
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/sfr"/>
+
 </font-family>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,43 +7,67 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/store_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/buy_coin_title"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:gravity="center"
-                android:textSize="20sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginLeft="2dp"
-                android:gravity="left"
-                android:text="@string/buy_coin_desc"/>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/coin_card"
-                android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/store_constraintL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/store_main_linearL"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/cardview_shadow_end_color">
+                app:layout_constraintLeft_toLeftOf="@id/store_constraintL"
+                app:layout_constraintRight_toRightOf="@id/store_constraintL"
+                app:layout_constraintTop_toTopOf="@id/store_constraintL"
+                app:layout_constraintBottom_toBottomOf="@id/store_constraintL"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/coin_icon"
-                        android:layout_gravity="center"/>
+
+                    >
+                    <TextView
+                        android:id="@+id/store_earn_coin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/textBuyCoins"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pixel"
+                        android:gravity="center"
+                        android:textSize="40sp"
+                        android:shadowColor="@color/white"
+                        android:shadowDx="-10"
+                        android:shadowDy="-10"
+                        android:shadowRadius="5"
+                        android:background="@drawable/store_bannes_icon"
+                        />
+
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/freeCoin"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    app:cardElevation="12dp"
+                    app:cardCornerRadius="50dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/freecoin_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -53,32 +76,211 @@
                             android:fontFamily="@font/pixel"
                             android:textColor="@android:color/black"
                             android:layout_gravity="center"
+                            android:textStyle="bold"
+                            />
 
-                            android:textStyle="bold"/>
-                    <Button
-                        android:id="@+id/launch_ad"
-                        android:layout_width="wrap_content"
+                    </LinearLayout>
+
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:id="@+id/store_buy"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/receive_coin"
-                        style="@style/Widget.MaterialComponents.Button"
+                        android:text="@string/textBuy"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/pixel"
+                        android:gravity="center"
+                        android:textSize="40sp"
+                        android:shadowColor="@color/white"
+                        android:shadowDx="-5"
+                        android:shadowDy="-5"
+                        android:shadowRadius="5"
+                        android:background="@drawable/store_bannes_icon"
                         />
+
                 </LinearLayout>
 
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
+                    android:columnCount="2"
+                    android:rowCount="2"
+                    android:alignmentMode="alignMargins"
+                    android:columnOrderPreserved="false"
+                    android:padding="15dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/item_buy1"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="16dp"
+                        app:cardElevation="12dp"
+                        app:cardCornerRadius="50dp"
+                        android:backgroundTint="@color/grey"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/ic_splash" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/textGame"
+                                android:fontFamily="@font/pixel"
+                                android:textColor="@android:color/black"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
 
 
-            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/buy_game"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:gravity="center"
-                android:textSize="20sp"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/item_buy2"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="16dp"
+                        app:cardElevation="12dp"
+                        app:cardCornerRadius="50dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/grey"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/ic_splash" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/textGame"
+                                android:fontFamily="@font/pixel"
+                                android:textColor="@android:color/black"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
 
 
-        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/item_buy3"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="16dp"
+                        app:cardElevation="12dp"
+                        app:cardCornerRadius="50dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/grey"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/ic_splash" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/textGame"
+                                android:fontFamily="@font/pixel"
+                                android:textColor="@android:color/black"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/item_buy4"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="16dp"
+                        app:cardElevation="12dp"
+                        app:cardCornerRadius="50dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/grey"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/ic_splash"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/textGame"
+                                android:fontFamily="@font/pixel"
+                                android:textColor="@android:color/black"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </GridLayout>
+
+
+
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </FrameLayout>

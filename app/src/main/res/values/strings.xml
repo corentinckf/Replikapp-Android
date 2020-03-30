@@ -1,14 +1,60 @@
 <resources>
     <string name="app_name">Replikapp</string>
-    <string name="registerFromLogin_link"><u>I don\'t have an account !</u></string>
-    <string name="loginFromRegister_link"><u>I already have an account !</u></string>
-    <string name="bibli">Replicas</string>
-    <string name="profil">Profile</string>
-    <string name="store">Market</string>
+
+    <!-- Global-->
+    <string name="error">Error !</string>
+    <!-- Splash Screen-->
+    <string name="Replikapp">ReplikApp</string>
+
+
+    <!-- Login Screen-->
+    <string name="textLogin">LOGIN</string>
+    <string name="addressMail">Mail Address</string>
+    <string name="password">Password</string>
+    <string name="logToReg">Doesn\'t have an account?</string>
+    <string name="logBtn">LOGIN</string>
+    <string name="mail_empty">Please enter your E-Mail Address !</string>
+    <string name="pw_empty">Please enter your Password !</string>
+    <string name="login_fail">Can\'t find user !</string>
+
+    <!-- Register Screen-->
+    <string name="textRegister">REGISTER</string>
+    <string name="textRErr"></string>
+    <string name="username">Username</string>
+    <string name="regToLog">Do you already have an account?</string>
+    <string name="regBtn">REGISTER</string>
+    <string name="passwordConf">SIGNUP</string>
+    <string name="short_pw">Please enter a Password with at least 8 characters!</string>
+    <string name="reg_fail">Error ! Please retry in a moment !</string>
+
+    <!-- Reset Password Sreen -->
+    <string name="textRPassword">RESET PASSWORD</string>
+    <string name="resetBtn">RESET</string>
+    <string name="cancelRPBtn">CANCEL</string>
+    <string name="email_sent">E-mail sent !</string>
+
+    <!-- Main informations -->
     <string name="coin_amount_indicator">0x</string>
-    <string name="buy_coin_title">EARN COINS</string>
-    <string name="buy_coin_desc">Watch ads :</string>
-    <string name="receive_coin">RECEIVE</string>
-    <string name="buy_coin_amount">150 Coins</string>
-    <string name="buy_game">BUY A GAME</string>
+    <string name="usernameInfo">Nektsu</string>
+    <string name="addressMailInfo">stanislascorre@gmail.com</string>
+
+
+    <!-- fragment Bibli -->
+    <string name="bibli">Replicas</string>
+    <string name="textJeux">Jeux</string>
+    <string name="textTetris">Tetris</string>
+    <string name="textSpaceI">Space Invaders</string>
+    <string name="textPacMan">Pac Man</string>
+
+    <!-- fragment Profil -->
+    <string name="profil">Profile</string>
+
+    <!-- fragment Shop -->
+    <string name="store">Market</string>
+    <string name="textBuyCoins">BUY COINS</string>
+    <string name="buy_coin_amount">150 coins</string>
+    <string name="textBuy">BUY GAMES</string>
+    <string name="textGame">GAME</string>
+
+
 </resources>

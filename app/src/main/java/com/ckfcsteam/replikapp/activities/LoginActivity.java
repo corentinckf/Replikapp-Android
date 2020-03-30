@@ -6,52 +6,86 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     /* Déclaration de variables */
-    private TextView register_link;
+    private TextView logToReg;
 
+    private TextView textErr;
+    private TextView textLogin;
+
+    private TextInputEditText signInMail;
+    private TextInputEditText signInPass;
+    private Button loginBtn;
     private FirebaseAuth auth;
-    private String email;
-    private String password;
-
-    private Button login_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //////////////////////////////////////////////////////////////////////
-        //Attention à bien appeller ces deux fonctions avant setContentView()
-        /*On passe cette activité en mode plein écran*/
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
-
-        /* On enlève l'affichage du titre de l'activité */
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-        //////////////////////////////////////////////////////////////////////
         setContentView(R.layout.activity_login);
 
-        auth = FirebaseAuth.getInstance(); // Initialisation de L'Auth Firebase
+        /* Récupération des ID XML */
+        textErr = findViewById(R.id.textLErr);
+        signInMail = findViewById(R.id.mailLogTEField);
+        signInPass = findViewById(R.id.passLogTEField);
+        loginBtn = findViewById(R.id.loginBtn);
+        auth = FirebaseAuth.getInstance();
 
-        login_button = findViewById(R.id.login_button);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = signInMail.getText().toString();
+                final String pass = signInPass.getText().toString();
+
+                //Si champ Email vide
+                if (TextUtils.isEmpty(email)){
+                    Toast.makeText(getApplicationContext(), R.string.mail_empty, Toast.LENGTH_LONG).show();
+                    textErr.setText(R.string.mail_empty);
+                    return;
+                }
+
+                //Si champ mdp vide
+                if(TextUtils.isEmpty(pass)){
+                    Toast.makeText(getApplicationContext(),R.string.pw_empty, Toast.LENGTH_LONG).show();
+                    textErr.setText(R.string.pw_empty);
+                    return;
+                }
+
+                auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(!task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(),R.string.error, Toast.LENGTH_LONG).show();
+                                textErr.setText(R.string.login_fail);
+                        }else{
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
+            }
+        });
 
         /* DEBUT : Lien qui permet d'aller vers l'activité Register en un click */
-        register_link = findViewById(R.id.registerFromLogin_link);
-        register_link.setOnClickListener(new View.OnClickListener() {
+        logToReg = findViewById(R.id.logToReg);
+        logToReg.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -60,24 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-        /* FIN : Lien qui permet d'aller vers l'activité Register en un click */
 
-        login_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth.signInWithEmailAndPassword("test","123")
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) { // Si la connexion aboutie
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class); // Création d'une instance de l'activité Main
-                                    startActivity(intent); //On lance l'activité MainActivity pour register l'utilisateur
-                                    finish();
-                                } else {} // Sinon on porte un Toast à l'échec
-                            }
-                        });
-            }
-        });
+
 
     }
 

@@ -3,7 +3,7 @@ package com.ckfcsteam.spaceinvaders.gamelib;
 import android.content.Context;
 
 import com.ckfcsteam.papangue.gamelib.GameObject;
-import com.example.spaceinvadersv1.R;
+import com.ckfcsteam.replikapp.R;
 
 public class Projectile extends GameObject {
     /* Attributs specifique aux Invaders */

@@ -9,6 +9,9 @@ import android.os.Handler;
 import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
 
+//TODO Import à  effacer avant de rendre
+import com.ckfcsteam.spaceinvaders.TestActivity;
+
 public class SplashActivity extends AppCompatActivity {
 
     /* Attributs */
@@ -23,7 +26,9 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, TestActivity.class);
+                //TODO Remplacer la ligne ci-dessus par la ligne commeté ci-dessous
+                //Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

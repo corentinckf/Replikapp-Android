@@ -149,6 +149,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         invaders.resize(x/16, x/20);
         // Descente des invaders
         invaders.raid(y/2000);
+        // Detection des invaders détruits
         if(invaders.firstLineCordY() > y){
             for(int i=0; i<projectiles.size(); i++){
                 projectiles.get(i).setDisabled(true);
@@ -157,6 +158,9 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
             avion.setDisabled(true);
 
         }
+
+        // Mouvement horizontal des invaders
+        invaders.moveAllLR(x/1000, x);
 
     }
 

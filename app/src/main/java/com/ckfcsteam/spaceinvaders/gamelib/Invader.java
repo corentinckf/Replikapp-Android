@@ -30,7 +30,7 @@ public class Invader extends GameObject {
      * @return vrai si le bord gauche de l'invader touche le bord droit de l'écran, sinon faux
      */
     public boolean collisionDroite(int screenWidth){
-        return(getCordx() >= screenWidth+getWidth());
+        return(getCordx() >= screenWidth-getWidth());
     }
 
     /**

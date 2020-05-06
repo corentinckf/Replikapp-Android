@@ -134,16 +134,20 @@ public class LineInvaders {
     }
 
     /**
-     * moveLR déplace la ligne horizontalement
+     * moveLineLR déplace la ligne horizontalement
      *
      * Le deplacement se fera à droite ou à gauche
      * en fonction de son sens de deplacement
      *
      * @param n nombre à ajouter ou soustraire aux coordonnées en X
      *          de chaque invaders de la ligne
+     *
+     * @param screenWidth La taille de l'écran
+     *
      */
 
-    public void moveLR(int n){
+    public void moveLineLR(int n, int screenWidth){
+        gereDirectionHorizontal(screenWidth);
 
         for (int i = 0; i < getNbInvaders() ; i++) {
             line.get(i).setCordx(line.get(i).getCordx() + (toRight ? n : -n));

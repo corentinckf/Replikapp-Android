@@ -151,6 +151,24 @@ public class Invaders  {
             return(0);
     }
 
+    /**
+     * moveAllLR déplace toutes les lignes horizontalement
+     *
+     * Cette méthode va appeler la méthode moveAllLR
+     * sur toutes les lignes d'invaders
+     *
+     * @param n nombre à ajouter ou soustraire aux coordonnées en X
+     *          de chaque invaders
+     *
+     * @param screenWidth La taille de l'écran
+     *
+     */
+    public void moveAllLR(int n, int screenWidth){
+        for(int i=0; i< invaders.size(); i++){
+            invaders.get(i).moveLineLR(n, screenWidth);
+        }
+    }
+
     /* Getters && Setters */
     public boolean isToRight() {
         return toRight;

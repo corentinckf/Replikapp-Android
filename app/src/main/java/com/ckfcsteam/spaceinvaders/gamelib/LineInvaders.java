@@ -154,6 +154,7 @@ public class LineInvaders {
         }
     }
 
+
     /*
     // Renvoie les coordonné en X du premier et
     // du dernier élement de la ligne
@@ -168,6 +169,10 @@ public class LineInvaders {
     }*/
 
     /* Getters && Setters */
+
+    public ArrayList<Invader> getLine() {
+        return line;
+    }
 
     // Aligner en y les invaders
     public void setCordY(int y){

@@ -5,38 +5,41 @@ import android.content.Context;
 import com.ckfcsteam.papangue.gamelib.GameObject;
 import com.ckfcsteam.replikapp.R;
 
-public abstract class Projectile extends GameObject {
+public class ProjectileShip extends Projectile {
     /* Attributs specifique aux Invaders */
     // booléeen sur la désactivation de l'affichage
     private boolean disabled;
-    // Direction du projectiles
 
     /*Constructeurs*/
-    public Projectile(Context context, int renderRessource, float x, float y){
-        super(renderRessource, context);
-        setCord(x, y);
+    public ProjectileShip(Context context, float x, float y){
+        super(context, R.drawable.projectile, x, y);
+        //setCord(x, y);
         // Il est afficher par défaut
-        disabled = false;
+        //disabled = false;
 
     }
 
 
     /* Méthodes  specifique aux Invaders */
-    public void setCord(float x, float y){
-        setCordx(x);
-        setCordy(y);
+    // Deplacement du projectiles
+    public void move(float n){
+        setCordy(getCordy()-n);
     }
 
-    // Deplacement du projectiles
-    public abstract void move(float n);
+    /*public void setCord(float x, float y){
+        setCordx(x);
+        setCordy(y);
+    }*/
+
+
 
     /*Getters && Setters*/
 
-    public boolean isDisabled() {
+    /*public boolean isDisabled() {
         return disabled;
     }
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
-    }
+    }*/
 }

@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import com.ckfcsteam.papangue.gamelib.GameObject;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Vector;
 
 public class Invaders  {
     /* Attributs */
@@ -36,6 +38,9 @@ public class Invaders  {
     // booléeen sur la désactivation de l'affichage
     private boolean disabled;
 
+    // Time lors du dernier appel de tirs
+    private long lastShootTime;
+
 
     /* Constructeur*/
     public Invaders(int screenWidth, int screenHeight, Context context){
@@ -46,6 +51,8 @@ public class Invaders  {
         invaders = new ArrayList<>();
         cordsY = new ArrayList<>();
 
+        // On initialise à 0 car il n'y a pas encore de tir
+        lastShootTime = 0;
 
         // Les invaders se déplace vers la droite
         toRight = true;
@@ -65,6 +72,7 @@ public class Invaders  {
             }
         }
         /**/
+        // Nb de ligne maximale supporté par l'écran
         int nbRowMax = screenHeight / ((screenWidth/20) + (screenWidth/32));
         for (int i = 0; i < nbRowMax-nbStart; i++) {
             addInvadersLine();
@@ -167,6 +175,35 @@ public class Invaders  {
         for(int i=0; i< invaders.size(); i++){
             invaders.get(i).moveLineLR(n, screenWidth);
         }
+    }
+
+    /**
+     * FirstLineSoot gére le tirs de la 1ere lignes des invaders
+     *
+     * Chaque invaders de la 1ere ligne à 10% chance de tirer
+     *
+     * @return La liste des projectiles créé
+     */
+    //TODO Verifier que ça marche
+    public ArrayList<ProjectileInvaders> FirstLineShoot(){
+        Random r = new Random();
+        ArrayList<ProjectileInvaders> p = new ArrayList<ProjectileInvaders>();
+        // Nouveau tire possible après 5s
+        if(System.currentTimeMillis()-lastShootTime > 5000){
+            for(Invader i : invaders.get(0).getLine()  ){
+                // Une chance sur 10% pour chaque invaders de tirer
+                if(r.nextInt(100)<50 ){
+                    float x = i.getCordx()+(i.getWidth()/2);
+                    float y = i.getCordy()+i.getHeight();
+                    p.add(new ProjectileInvaders(context,x, y));
+                }
+            }
+            // Màj du time pour le dernier tire
+            lastShootTime = System.currentTimeMillis();
+        }
+
+
+        return(p);
     }
 
     /* Getters && Setters */

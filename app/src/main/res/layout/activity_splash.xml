@@ -7,6 +7,15 @@
     tools:context=".activities.SplashActivity"
     android:background="@color/lightBlue"
     >
+    <!-- VUE SPLASHSCREEN-->
+
+    <!-- Composée d'une balise LinearLayout qui comprend le logo et le nom de l'app
+
+        Image affichée avec une balise ImageView
+        Texte affiché avec une balise TextView
+
+    -->
+
     <LinearLayout
         android:id="@+id/llsplash"
         android:layout_width="wrap_content"
@@ -26,6 +35,7 @@
             />
 
         <TextView
+            android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/ic_splash"

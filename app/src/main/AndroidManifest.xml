@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ckfcsteam.replikapp">
 
+    <!-- Paramètres de l'application -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,15 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ResetPasswordActivity"></activity>
-        <!-- activity android:name=".activities.ResetPasswordActivity" / -->
-        <activity android:name=".fragments.BibliFragment" />
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:configChanges="orientation|screenSize" />
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|screenSize" />
+
+        <!-- Activité au lancement de l'app -->
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="orientation|screenSize">
@@ -29,13 +23,27 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6113200648741812~6124065544" />
-
+        <!-- Activités principales de l'application, avec les paramètres d'orientation par défaut -->
         <activity
             android:name=".activities.LoginActivity"
             android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".activities.ResetPasswordActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize" />
+
+        <!-- Pubs -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6113200648741812~6124065544" />
     </application>
 
 </manifest>

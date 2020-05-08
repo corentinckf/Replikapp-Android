@@ -1,5 +1,6 @@
 package com.ckfcsteam.replikapp.activities;
 
+// Importations de bibliothèques
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,47 +17,99 @@ import android.widget.Toast;
 
 import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    /* Déclaration de variables */
+    /* DEBUT : Déclaration de variables */
+    private static final int RC_SIGN_IN = 100;
+    GoogleSignInClient mGoogleSignInClient;
+
     private TextView logToReg;
 
     private TextView textErr;
-    private TextView textLogin;
+    private TextView textResetPass;
 
     private TextInputEditText signInMail;
     private TextInputEditText signInPass;
     private Button loginBtn;
+    private SignInButton signInGoogleBtn;
     private FirebaseAuth auth;
+    /*FIN : Déclaration de variables */
+
+    /* DEBUT : Méthode onCreate */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /* Récupération des ID XML */
+
+        /* DEBUT : Récupération des ID XML */
         textErr = findViewById(R.id.textLErr);
         signInMail = findViewById(R.id.mailLogTEField);
         signInPass = findViewById(R.id.passLogTEField);
+        textResetPass = findViewById(R.id.resetPass);
         loginBtn = findViewById(R.id.loginBtn);
+        logToReg = findViewById(R.id.logToReg);
+        signInGoogleBtn = findViewById(R.id.signInGoogle);
+
+
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
         auth = FirebaseAuth.getInstance();
+        /* FIN : Récupération des ID XML */
+
+
+
+        /* DEBUT : Ecouteur sur le bouton de connexion*/
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        /* Le bouton 'loginBtn' vérifie que l'utilisateur entre les informations correctement avant de terminer l'opération:
+         * Il vérifie :
+         *       - Si le champ texte d'adresse mail est non vide,
+         *       - Si le champ texte mot de passe est non vide.
+         *
+         * Puis effectue la connexion grâce à la méthode proposée par FireBase pour l'authentification.
+         * Celle-ci vérifie que la tâche éffectuée est complète.
+         *       - Si oui, renvoie sur l'activité Main(hub),
+         *       - Si non, message d'erreur.*/
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = signInMail.getText().toString();
-                final String pass = signInPass.getText().toString();
+                    @Override
+                    public void onClick(View v) {
+                        final String email = signInMail.getText().toString();
+                        final String pass = signInPass.getText().toString();
 
-                //Si champ Email vide
-                if (TextUtils.isEmpty(email)){
+                        //Si champ Email vide
+                        if (TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(), R.string.mail_empty, Toast.LENGTH_LONG).show();
                     textErr.setText(R.string.mail_empty);
+                    signInMail.setError("Error");
                     return;
                 }
 
@@ -67,12 +120,13 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+                //Si tout est ok
                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),R.string.error, Toast.LENGTH_LONG).show();
-                                textErr.setText(R.string.login_fail);
+                            Toast.makeText(getApplicationContext(),R.string.error, Toast.LENGTH_LONG).show();
+                            textErr.setText(R.string.login_fail);
                         }else{
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
@@ -82,9 +136,14 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+        /* FIN : D'écoute sur le bouton de connexion */
 
         /* DEBUT : Lien qui permet d'aller vers l'activité Register en un click */
-        logToReg = findViewById(R.id.logToReg);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        /* Création d'une instance de l'activité register puis on lance l'activité RegisterActivity pour l'inscription utilisateur */
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
         logToReg.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -95,9 +154,85 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /* FIN : Lien qui envoie vers l'inscription utilisateur. */
 
+        /* DEBUT : Lien qui permet d'aller vers l'activité Register en un click */
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        /* Création d'une instance de l'activité Reset password puis on lance l'activité ResetPasswordActivity pour la récupération du mdp utilisateur */
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        textResetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        /* FIN : Lien qui envoie l'utilisateur vers l'activité récupération du mdp. */
+
+        signInGoogleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
 
     }
+    /* FIN Méthode onCreate */
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                // ...
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = auth.getCurrentUser();
+                            Toast.makeText(LoginActivity.this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, R.string.googleErr, Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
+                        }
+
+                        // ...
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //Affichage d'erreur
+                Toast.makeText(LoginActivity.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
 
 }

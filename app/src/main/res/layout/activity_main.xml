@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- VUE HUB/MAINSCREEN -->
+    <!-- Divisée en trois parties:
+            - Deux toolbars (une en haut et une en bas)
+            - Un FragmentLayout.
+
+        Le premier toolbar contient les informations principales de l'utilisateur(argent de jeu, pseudo)
+        la seconde toolbar contient les différentes parties/onglets de notre hub
+        qui changera l'affichage contenu dans le fragmentLayout
+
+        Les différents onglets sont:
+            - la "bibliothèque" de jeux, qui contiendra les jeux
+            - le "profil" de l'utilisateur
+            - la "boutique" ou l'utilisateur pourra récupérer de l'argent de jeu ou acheter des jeux
+    -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -134,8 +148,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

@@ -13,14 +13,16 @@
     <string name="password">Password</string>
     <string name="logToReg">Doesn\'t have an account?</string>
     <string name="logBtn">LOGIN</string>
+    <string name="resetPass">Forgot your Password ?</string>
     <string name="mail_empty">Please enter your E-Mail Address !</string>
     <string name="pw_empty">Please enter your Password !</string>
     <string name="login_fail">Can\'t find user !</string>
+    <string name="signInG">Sign-In with Google</string>
+    <string name="googleErr">An Error with Google Sign-In has Occured</string>
 
     <!-- Register Screen-->
     <string name="textRegister">REGISTER</string>
     <string name="textRErr"></string>
-    <string name="username">Username</string>
     <string name="regToLog">Do you already have an account?</string>
     <string name="regBtn">REGISTER</string>
     <string name="passwordConf">SIGNUP</string>
@@ -35,8 +37,7 @@
 
     <!-- Main informations -->
     <string name="coin_amount_indicator">0x</string>
-    <string name="usernameInfo">Nektsu</string>
-    <string name="addressMailInfo">stanislascorre@gmail.com</string>
+
 
 
     <!-- fragment Bibli -->
@@ -56,5 +57,12 @@
     <string name="textBuy">BUY GAMES</string>
     <string name="textGame">GAME</string>
 
+    <!-- Edit Profil Screen -->
+    <string name="textCreateProfil">Création de profil</string>
+    <string name="maleCB"> Male </string>
+    <string name="femCB"> Female </string>
+    <string name="username"> Username </string>
+    <string name="location"> Location </string>
+    <string name="phoneNum"> Phone Number </string>
 
 </resources>

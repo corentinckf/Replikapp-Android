@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
+    <!-- VUE LOGINSCREEN -->
+    <!-- Composée d'un TextView principal pour indiquer à l'utilisateur le but de la vue.
+         Puis une autre balise TextView pour afficher des erreurs eventuelles
+
+         Enfin, deux LinearLayout. Le premier contient :
+            deux balises TextField et TextEditField proposées par Google material:
+                - Une pour le mail,
+                - Une pour le mot de passe.
+
+          Le second LinearLayout contient :
+                - Une balise TextView qui redirige vers l'acivité ResetPassword
+                - Un Bouton permettant la connexion de l'utilisateur
+                - Une balise TextView qui redirige vers l'activité RegisterPassword
+    -->
     <TextView
         android:id="@+id/textLogin"
         android:layout_width="wrap_content"
@@ -53,6 +67,9 @@
             android:layout_marginBottom="10dp"
             android:hint="@string/addressMail"
             android:inputType="textPersonName"
+            app:errorEnabled="true"
+            app:boxStrokeColor="@color/lightBlue"
+            app:hintTextColor="@color/lightBlue"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -61,6 +78,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                app:errorEnabled="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -71,6 +89,8 @@
             android:inputType="textPassword"
             android:hint="@string/password"
             app:endIconMode="password_toggle"
+            app:boxStrokeColor="@color/lightBlue"
+            app:hintTextColor="@color/lightBlue"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -83,35 +103,85 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/logToReg"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/llBtn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llLogin"
-        android:layout_marginTop="10dp"
-        android:text="@string/logToReg"
-        android:textColor="@color/lightBlue"
-        android:fontFamily="@font/lemon"
-        android:textSize="10dp"
-        />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/logToReg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/logBtn"
-        android:fontFamily="@font/lemon"
-        android:backgroundTint="@color/lightBlue"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"/>
+        <TextView
+            android:id="@+id/resetPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llLogin"
+            android:layout_marginTop="10dp"
+            android:text="@string/resetPass"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/lemon"
+            android:textSize="10dp"
+            />
+
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/logBtn"
+            android:fontFamily="@font/lemon"
+            android:backgroundTint="@color/lightBlue"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"/>
+
+
+        <TextView
+            android:id="@+id/logToReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/logToReg"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/lemon"
+            android:textSize="10dp"
+            />
+        <TextView
+            android:id="@+id/textSignInG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/signInG"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/lemon"
+            android:textSize="10dp"
+            />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/signInGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            ></com.google.android.gms.common.SignInButton>
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- VUE STORE FRAGMENT -->
+    <!-- Composée d'un ScrollView pour permettre le scroll vertical, et contenant:
+            - Un background de LinearLayout avec un TextView
+            - Un GridLayout affichant des CardView de jeux disponible à l'achat
+
+    -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,7 +35,7 @@
                     android:layout_height="wrap_content"
                     >
                     <TextView
-                        android:id="@+id/bibli_Games"
+                        android:id="@+id/store_buy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/textGame"
@@ -42,6 +48,7 @@
                         android:shadowDx="-5"
                         android:shadowDy="-5"
                         android:shadowRadius="5"
+                        android:background="@drawable/store_bannes_icon"
                         />
 
                 </LinearLayout>
@@ -54,6 +61,7 @@
                     android:rowCount="2"
                     android:alignmentMode="alignMargins"
                     android:columnOrderPreserved="false"
+                    android:gravity="center_horizontal|center_vertical"
                     android:padding="15dp">
 
                     <com.google.android.material.card.MaterialCardView
@@ -203,9 +211,8 @@
 
                         </LinearLayout>
 
-
-
                     </com.google.android.material.card.MaterialCardView>
+
 
                 </GridLayout>
 

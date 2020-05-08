@@ -10,19 +10,21 @@
 
 
     <!-- Login Screen-->
-    <string name="textLogin">LOGIN</string>
+    <string name="textLogin">CONNEXION</string>
     <string name="addressMail">Adresse Mail</string>
     <string name="password">Mot de passe</string>
     <string name="logToReg">Pas encore de compte ?</string>
     <string name="logBtn">CONNEXION</string>
+    <string name="resetPass">Mot de passe Oublié ?</string>
     <string name="mail_empty">Veuillez entrer un E-mail !</string>
     <string name="pw_empty">Veuillez entrer un Mot de passe !</string>
     <string name="login_fail">Aucun utilisateur trouvé !</string>
+    <string name="signInG">Connectez-vous avec Google</string>
+    <string name="googleErr">Une erreur s\'est produite lors de l\'authentification Google</string>
 
     <!-- Register Screen-->
-    <string name="textRegister">REGISTER</string>
+    <string name="textRegister">S\'INSCRIRE</string>
     <string name="textRErr"></string>
-    <string name="username">Nom Utilisateur</string>
     <string name="regToLog">Déjà un compte ?</string>
     <string name="regBtn">ENREGISTRER</string>
     <string name="passwordConf">Confirmation</string>
@@ -38,8 +40,7 @@
 
     <!-- Main informations -->
     <string name="coin_amount_indicator">0x</string>
-    <string name="usernameInfo">Nektsu</string>
-    <string name="addressMailInfo">Mail Address</string>
+
 
     <!-- fragment Bibli -->
     <string name="bibli">Répliques</string>
@@ -57,5 +58,13 @@
     <string name="buy_coin_amount">150 coins</string>
     <string name="textBuy">ACHETER JEUX</string>
     <string name="textGame">GAME</string>
+
+    <!-- Edit Profil Screen-->
+    <string name="textCreateProfil">Création de profil</string>
+    <string name="maleCB"> Masculin </string>
+    <string name="femCB"> Féminin </string>
+    <string name="username"> Pseudonyme </string>
+    <string name="location"> Pays </string>
+    <string name="phoneNum"> N° de téléphone </string>
 
 </resources>

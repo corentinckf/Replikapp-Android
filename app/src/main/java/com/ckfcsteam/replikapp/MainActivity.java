@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity{
 
         coind_amount_ind = findViewById(R.id.coin_text);
 
+        /* Mise en place des différents fragments dans chaque cas */
+
         bottomBar_item1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,13 +111,14 @@ public class MainActivity extends AppCompatActivity{
 
         super.onStart();
 
-        if(auth.getCurrentUser() ==  null){ // Si pas d'utilisateur lié à l'Auth
+       if(auth.getCurrentUser() ==  null){ // Si pas d'utilisateur lié à l'Auth
             Intent login_activity_intent = new Intent(this, LoginActivity.class); // Création d'une instance de l'activité login
             startActivity(login_activity_intent); //On lance l'activité LoginActivity pour auth l'utilisateur
             finish();
         }else{} // Sinon on reste sur MainActivity
     }
 
+    // Mise en place graphique des fragments
     public void updateBottomBarItemsUI(Boolean item1_selected, Boolean item2_selected, Boolean item3_selected){
         if(item1_selected){
             bottomBar_item1.setBackgroundColor(Color.LTGRAY);
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-
+    /* méthode d'affichage des fragment */
     private void showFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.page, fragment);
@@ -158,15 +161,13 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    public void test(){
-
-    }
-
+    // Méthode d'incrémentation des pièces du joueur
     public void incCoinAmount(int add){
         coin_amount += add;
         updateCoinAmountInd();
     }
 
+    // Méthode d'affichage des pièces
     public void updateCoinAmountInd(){
         coind_amount_ind.setText(coin_amount + "x");
     }

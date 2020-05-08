@@ -1,5 +1,6 @@
 package com.ckfcsteam.replikapp.activities;
 
+// Importation des bibliothèques
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,11 +15,17 @@ public class SplashActivity extends AppCompatActivity {
     /* Attributs */
     Handler handler;
 
+    /* DEBUT : Méthode onCreate pour le SplashSreen/Ecran de lancement de l'app */
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /* Instance Handler qui va permettre de lancer une activité pendant un temps imparti (ici, 3 secondes).*/
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        /* Lancement du splashscreen pour */
+
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -29,4 +36,5 @@ public class SplashActivity extends AppCompatActivity {
             }
         },3000);
     }
+    /*FIN : méthode onCreate */
 }

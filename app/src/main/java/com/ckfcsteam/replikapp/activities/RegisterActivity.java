@@ -1,5 +1,6 @@
 package com.ckfcsteam.replikapp.activities;
 
+// Importations de bibliothèques
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,35 +25,50 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    /* Déclaration de variables */
-
-    private TextView regToLog;
+    /* DEBUT :  Déclaration de variables */
     private TextView textErr;
-    private Button regBtn;
-    private FirebaseAuth auth;
-
     TextInputEditText signUpMail;
     TextInputEditText signUpPass;
-
+    private TextView regToLog;
+    private Button regBtn;
+    private FirebaseAuth auth;
+    /* FIN :  Déclaration de variables */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        /* Récupération des ID XML */
-
+        /* DEBUT : Récupération des ID XML */
+        textErr = findViewById(R.id.textRErr);
         signUpMail = findViewById(R.id.mailRegTEField);
         signUpPass = findViewById(R.id.passRegTEField);
-        auth = FirebaseAuth.getInstance();
+        regToLog = findViewById(R.id.regToLog);
         regBtn = findViewById(R.id.regBtn);
-        textErr = findViewById(R.id.textRErr);
+        auth = FirebaseAuth.getInstance();
+
+        /* FIN : Récupération des ID XML */
 
 
-        /* Ecouteur du bouton d'inscription*/
+        /* DEBUT : Ecouteur du bouton d'inscription*/
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        /* Le bouton 'regBtn' vérifie que l'utilisateur entre les informations correctement avant de terminer l'opération:
+         * Il vérifie :
+         *       - Si le champ texte d'adresse mail est non vide,
+         *       - Si le champ texte mot de passe est non vide,
+         *       - Si le mot de passe contient au moins huit caractères.
+         *
+         * Puis effectue l'inscription grâce à la méthode proposée par FireBase pour l'inscription.
+         * Celle-ci vérifie que la tâche éffectuée est complète.
+         *       - Si oui, renvoie sur l'activité Login(connexion),
+         *       - Si non, message d'erreur.*/
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
         regBtn.setOnClickListener(new View.OnClickListener() {
 
-            @SuppressLint("SetTextI18n")
+            @SuppressLint("SetTextI18n") // Erreur/Avertissement mis de côté pour permettre les chaînes de caractères dans les Toast
             @Override
             public void onClick(View v) {
                 String email = signUpMail.getText().toString();
@@ -65,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(), R.string.mail_empty, Toast.LENGTH_LONG).show();
                     textErr.setText(R.string.mail_empty);
+                    signUpMail.setError("Error");
                     return;
 
                 }
@@ -97,15 +114,20 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        /* FIN :  Ecouteur du bouton d'inscription*/
 
         /* DEBUT : Lien qui permet d'aller vers l'activité Login en un click */
-        regToLog = findViewById(R.id.regToLog);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        /* Création d'une instance de l'activité register puis on lance l'activité RegisterActivity pour register l'utilisateur*/
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
         regToLog.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class); // Création d'une instance de l'activité register
-                startActivity(intent); //On lance l'activité RegisterActivity pour register l'utilisateur
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -113,4 +135,5 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+    /* FIN : Méthode onCreate */
 }

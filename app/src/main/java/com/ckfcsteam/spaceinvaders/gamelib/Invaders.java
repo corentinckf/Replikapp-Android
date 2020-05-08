@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 
 import com.ckfcsteam.papangue.gamelib.GameObject;
+import com.ckfcsteam.replikapp.R;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -182,12 +183,16 @@ public class Invaders  {
      *
      * Chaque invaders de la 1ere ligne à 10% chance de tirer
      *
+     * @param width largeur des projectiles créé
+     *
+     * @param height hauteur des projectiles créé
+     *
      * @return La liste des projectiles créé
      */
     //TODO Verifier que ça marche
-    public ArrayList<ProjectileInvaders> FirstLineShoot(){
+    public ArrayList<Projectile> FirstLineShoot(int width, int height){
         Random r = new Random();
-        ArrayList<ProjectileInvaders> p = new ArrayList<ProjectileInvaders>();
+        ArrayList<Projectile> lp = new ArrayList<Projectile>();
         // Nouveau tire possible après 5s
         if(System.currentTimeMillis()-lastShootTime > 5000){
             for(Invader i : invaders.get(0).getLine()  ){
@@ -195,7 +200,9 @@ public class Invaders  {
                 if(r.nextInt(100)<50 ){
                     float x = i.getCordx()+(i.getWidth()/2);
                     float y = i.getCordy()+i.getHeight();
-                    p.add(new ProjectileInvaders(context,x, y));
+                    Projectile p = new Projectile(context,R.drawable.projectile, x, y);
+                    p.resize(width/70, height/70);
+                    lp.add(p);
                 }
             }
             // Màj du time pour le dernier tire
@@ -203,7 +210,7 @@ public class Invaders  {
         }
 
 
-        return(p);
+        return(lp);
     }
 
     /* Getters && Setters */

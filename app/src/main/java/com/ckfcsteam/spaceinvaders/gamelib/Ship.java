@@ -18,6 +18,19 @@ public class Ship extends GameObject {
 
     /* Méthodes  specifique aux vaisseaux */
 
+    /**
+     * Crée le projectiles lorsque le vaisseau tire
+     * @param context Contexte de l'activité
+     * @return Le projectile tiré par le vaisseau
+     */
+    public Projectile shoot(Context context, int width, int height){
+        float x = getCordx()+(getWidth()/2);
+        float y = getCordy();
+        Projectile p = new Projectile(context,R.drawable.projectile, x, y);
+        p.resize(width, height);
+        return(p);
+    }
+
     // Detecter si une position est sur le vaisseau
     public Boolean checkIfClicked(float touchx, float touchy){
         return(touchx < this.getCordx() + this.getWidth() &&

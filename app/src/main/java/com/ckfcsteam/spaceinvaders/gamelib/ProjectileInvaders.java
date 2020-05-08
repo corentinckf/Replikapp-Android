@@ -1,3 +1,4 @@
+// TODO Classe a suppr
 package com.ckfcsteam.spaceinvaders.gamelib;
 
 import android.content.Context;
@@ -20,9 +21,9 @@ public class ProjectileInvaders extends Projectile {
 
     /* Méthodes  specifique aux Invaders */
     // Deplacement du projectiles
-    public void move(float n){
+    /*public void move(float n){
         setCordy(getCordy()+n);
-    }
+    }*/
     /*
     public void setCord(float x, float y){
         setCordx(x);

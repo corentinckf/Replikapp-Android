@@ -5,7 +5,7 @@ import android.content.Context;
 import com.ckfcsteam.papangue.gamelib.GameObject;
 import com.ckfcsteam.replikapp.R;
 
-public abstract class Projectile extends GameObject {
+public class Projectile extends GameObject {
     /* Attributs specifique aux Invaders */
     // booléeen sur la désactivation de l'affichage
     private boolean disabled;
@@ -28,7 +28,10 @@ public abstract class Projectile extends GameObject {
     }
 
     // Deplacement du projectiles
-    public abstract void move(float n);
+    public void move(float n){
+        if(!isDisabled())
+            setCordy(getCordy()+n);
+    }
 
     /*Getters && Setters*/
 

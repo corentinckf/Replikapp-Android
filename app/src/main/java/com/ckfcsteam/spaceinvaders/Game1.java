@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import com.ckfcsteam.spaceinvaders.gamelib.Invaders;
 import com.ckfcsteam.spaceinvaders.gamelib.ProjectileShip;
 import com.ckfcsteam.spaceinvaders.gamelib.ProjectilesInvaders;
+import com.ckfcsteam.spaceinvaders.gamelib.ProjectilesShip;
 import com.ckfcsteam.spaceinvaders.gamelib.Ship;
 
 import java.util.ArrayList;
@@ -36,8 +37,9 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     // Creation des invaders
     private Invaders invaders;
     // Creation d'un tableau de projectiles
-    private ArrayList<ProjectileShip> projectiles;
-    // Creation des projectiles enemis
+    //private ArrayList<ProjectileShip> projectilesShip;
+    private ProjectilesShip projectilesShip;
+    // Creation des projectiles ennemis
     private ProjectilesInvaders projectilesInvaders;
     // Recuperation de l'emplacement du doigt de l'utilisateur
     private float touch_cordx;
@@ -49,7 +51,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     // Variable pour gérer le délai entre deux session de tirs d'invaders
 
     /* Constructeur */
-    public Game1(Context context) {
+    public Game1(final Context context) {
         super(context);
 
         holder = getHolder();
@@ -60,11 +62,14 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
             @Override
             public boolean onSingleTapUp(MotionEvent event) {
-                System.out.println("up");
+                System.out.println("SingleTap");
                 if(avion.checkIfClicked(event.getX(), event.getY())){
-                    ProjectileShip projectile = new ProjectileShip(getContext(), avion.getMidCordX(),avion.getCordy()+100);
-                    projectile.resize(x/32, x/40);
-                    projectiles.add(projectile);
+                    //ProjectileShip projectile = new ProjectileShip(getContext(), avion.getMidCordX(),avion.getCordy()+100);
+                    //projectile.resize(x/32, x/40);
+                    //projectilesShip.add(projectile);
+                    //projectilesShip.resize(x/32, x/40);
+                    projectilesShip.add(avion.shoot(context, x/32, x/40));
+
                 }
                 return super.onSingleTapUp(event);
             }
@@ -89,7 +94,8 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Creation des objet du jeu
         avion = new Ship(getContext());
         invaders = new Invaders(x,y,getContext());
-        projectiles = new ArrayList<>();
+        //projectilesShip = new ArrayList<>();
+        projectilesShip = new ProjectilesShip(x, y);
         projectilesInvaders = new ProjectilesInvaders(x,y);
 
 
@@ -136,19 +142,25 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     public void update(){
         // Gestion du mouvement des projectiles
         // et suppression de ceux qui sorte de l'écran
-        for(int i=0; i<projectiles.size(); i++){
-            if(projectiles.get(i).getCordy() < projectiles.get(i).getHeight())
-                projectiles.remove(i);
+        /*for(int i = 0; i< projectilesShip.size(); i++){
+            if(projectilesShip.get(i).getCordy() < projectilesShip.get(i).getHeight())
+                projectilesShip.remove(i);
             else{
                 //projectiles.get(i).move(y/30);
-                projectiles.get(i).move(y/100);
-                if(invaders.entringEnCollisioningCarreAll(projectiles.get(i))){
-                    projectiles.remove(i);
+                projectilesShip.get(i).move(y/100);
+                if(invaders.entringEnCollisioningCarreAll(projectilesShip.get(i))){
+                    projectilesShip.remove(i);
                     score ++;
                 }
             }
-        }
+        }*/
+
+        // Mouvement des projectiles alliés
+        projectilesShip.move(y/100);
+
+
         // Maj du score
+        score += projectilesShip.hit(invaders);
         stringOfScore = "Score : " + score;
         // Maj des lignes
         invaders.majLines();
@@ -157,8 +169,8 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         //invaders.raid(y/2000);
         // Detection Game Over
         if(invaders.firstLineCordY() > y){
-            for(int i=0; i<projectiles.size(); i++){
-                projectiles.get(i).setDisabled(true);
+            for(int i = 0; i< projectilesShip.size(); i++){
+                projectilesShip.get(i).setDisabled(true);
             }
             invaders.setDisabled(true);
             avion.setDisabled(true);
@@ -168,12 +180,16 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Mouvement horizontal des invaders
         invaders.moveAllLR(x/1000, x);
 
-        // Gestion des tirs ennemi
-        // TODO Gappel du tir a.addAll(a2)
-        projectilesInvaders.addAll(invaders.FirstLineShoot());
-        projectilesInvaders.resize(x/70, x/70);
+        // Ajout des tirs ennemis, si il y en a
+        projectilesInvaders.addAll(invaders.FirstLineShoot(x, y));
+        //projectilesInvaders.resize(x/70, x/70);
+
+        // Gestion des deplacement des projectiles ennemis
         projectilesInvaders.move(y/1000);//70);
-        projectilesInvaders.annulation(projectiles);
+
+        // Gestion des collisions entre projectiles ennemis
+        projectilesInvaders.annulation(projectilesShip);
+        //projectilesInvaders.annulation(projectiles);
 
 
 
@@ -200,9 +216,10 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Couleur du fond d'écran
         canvas.drawARGB(255,150,150,10);
         // Affichage des projectiles
-        for(int i=0; i<projectiles.size(); i++){
-            projectiles.get(i).display(canvas);
-        }
+        projectilesShip.displayAll(canvas);
+        /*for(int i = 0; i< projectilesShip.size(); i++){
+            projectilesShip.get(i).display(canvas);
+        }*/
         // Affichage du vaisseau
         avion.display(canvas);
         // Affchage des invaders

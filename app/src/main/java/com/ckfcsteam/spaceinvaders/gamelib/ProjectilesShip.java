@@ -1,19 +1,16 @@
 package com.ckfcsteam.spaceinvaders.gamelib;
 
-import android.content.Context;
 import android.graphics.Canvas;
-
-import com.ckfcsteam.replikapp.R;
 
 import java.util.ArrayList;
 
-public class ProjectilesInvaders extends ArrayList<Projectile> {
+public class ProjectilesShip extends ArrayList<Projectile> {
 
     // Dimensions de l'écran
     private int screenWidth;
     private int screenHeight;
 
-    public ProjectilesInvaders(int width, int height){
+    public ProjectilesShip(int width, int height){
         super();
         screenWidth = width;
         screenHeight = height;
@@ -36,43 +33,36 @@ public class ProjectilesInvaders extends ArrayList<Projectile> {
     }
 
     /**
-     * move effectue un deplacement de tous les projectiles ennemi
+     * move effectue un deplacement de tous les projectiles alliés
      *
      * @param n distance à parcourir
      */
     public void move(int n){
         for(Projectile p: this){
-            p.move(n);
+            p.move(-n);
         }
     }
 
     /**
-     * lose verifie si le joueur à perdue à cause d'un tir ennemi
-     * @param s le vaisseau du joueur
-     * @return vrai si le vaisseau est entré en collision avec un projectile ennemi
+     * Compte le nombre d'ennemi touché par les projectiles en jeu
+     * @param invaders liste des ennemie
+     * @return le nombre d'ennemis touchés
      */
-    public boolean lose(Ship s){
-        for(Projectile p: this){
-            if(s.entringEnCollisioningCarre(p))
-                return (true);
-        }
-        return (false);
-    }
-
-    /**
-     * annulation supprime deux projectiles de camp opposé qui entre en collisions
-     * @param lShip projectiles du joueur
-     */
-    public void annulation(ProjectilesShip lShip){
-        for(int i = 0; i<this.size(); i++){
-            for(int j = 0; j<lShip.size(); j++){
-                if(this.get(i).entringEnCollisioningCarre(lShip.get(j))){
-                    this.remove(i);
-                    lShip.remove(j);
-                    break;
-                }
+    public int hit(Invaders invaders){
+        int c = 0;
+        /*for(Projectile p: this){
+            if(invaders.entringEnCollisioningCarreAll(p))
+                remove(p);
+                // Invaders sera supprimer depuis son instance
+                c++;
+        }*/
+        for(int i = 0; i< this.size(); i++){
+            if(invaders.entringEnCollisioningCarreAll(this.get(i))){
+                this.remove(i);
+                c++;
             }
         }
+        return(c);
     }
 
     /**
@@ -82,14 +72,14 @@ public class ProjectilesInvaders extends ArrayList<Projectile> {
      */
     private void maj(){
         for(int i = 0; i<this.size(); i++){
-            if(this.get(i).cordy > screenHeight){
+            if(this.get(i).cordy < 0){
                 this.remove(i);
             }
         }
     }
 
     /**
-     * displayAll affiche tout les projectiles ennemi
+     * displayAll affiche tout les projectiles alliés
      *
      * @param canvas canvas qui va dessiner les projectiles
      */

@@ -56,5 +56,9 @@
     <string name="textBuy">BUY GAMES</string>
     <string name="textGame">GAME</string>
 
+    <!-- Infinity Invaders Game -->
+    <string name="scoreII">Score : </string>
+    <string name="pause">Pause</string>
+
 
 </resources>

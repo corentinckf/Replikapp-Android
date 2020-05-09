@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
-    //TODO Detetcter la collision entre les invaders et les parois
-    // pour changer leur direction horizontale
 
     private SurfaceHolder holder = null;
     private GameThread thread = null;

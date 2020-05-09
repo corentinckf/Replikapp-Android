@@ -5,13 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +19,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -33,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button regBtn;
     private FirebaseAuth auth;
     /* FIN :  Déclaration de variables */
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +111,35 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, R.string.error, Toast.LENGTH_LONG).show();
                                 textErr.setText(R.string.reg_fail);
                             }else{
+                                // Récupération des informations de l'utilisateur qui se connecte
+                                FirebaseUser user = auth.getCurrentUser();
+
+                                // Récupération du mail et de l'id utilisateur
+                                String email = user.getEmail();
+                                String uid = user.getUid();
+
+                                //Lorsque l'utilisateur est connecté, on stocke les informations utilisateur dans la base de données firebase en utilisant HashMap
+                                HashMap<Object,String> hashMap = new HashMap<>();
+
+                                //Transfert de l'information en hasmap
+                                hashMap.put("email",email);
+                                hashMap.put("uid", uid);
+                                // Les informations suivantes seront rajouter grâce à l'édition de profil
+                                hashMap.put("name", "");
+                                hashMap.put("phone", "");
+                                hashMap.put("image", "");
+
+                                // Instance de la base de données firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                                //Chemin de stockage des données utilisateur dans "Users"
+                                DatabaseReference reference = database.getReference("Users");
+
+                                // Ajot des données dans la base de données en Hashmap
+                                reference.child(uid).setValue(hashMap);
+
+
+
                                 startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
                                 finish();
                             }

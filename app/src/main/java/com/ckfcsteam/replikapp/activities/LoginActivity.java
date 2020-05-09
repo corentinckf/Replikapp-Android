@@ -4,13 +4,11 @@ package com.ckfcsteam.replikapp.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +30,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -51,9 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     /*FIN : Déclaration de variables */
 
+
     /* DEBUT : Méthode onCreate */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        /* DEBUT : Ecouteur sur le bouton de connexion*/
+        /* DEBUT : Ecouteur sur le bouton de connexion */
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         /* Le bouton 'loginBtn' vérifie que l'utilisateur entre les informations correctement avant de terminer l'opération:
@@ -211,6 +212,31 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = auth.getCurrentUser();
+
+                            // Récupération du mail et de l'id utilisateur
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+
+                            //Lorsque l'utilisateur est connecté, on stocke les informations utilisateur dans la base de données firebase en utilisant HashMap
+                            HashMap<Object,String> hashMap = new HashMap<>();
+
+                            //Transfert de l'information en hasmap
+                            hashMap.put("email",email);
+                            hashMap.put("uid", uid);
+                            // Les informations suivantes seront rajouter grâce à l'édition de profil
+                            hashMap.put("name", "");
+                            hashMap.put("phone", "");
+                            hashMap.put("image", "");
+
+                            // Instance de la base de données firebase
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                            //Chemin de stockage des données utilisateur dans "Users"
+                            DatabaseReference reference = database.getReference("Users");
+
+                            // Ajot des données dans la base de données en Hashmap
+                            reference.child(uid).setValue(hashMap);
+
                             Toast.makeText(LoginActivity.this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);

@@ -2,11 +2,103 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_margin="25dp"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PROFIL MON FRERE"/>
+        >
+
+        <RelativeLayout
+            android:id="@+id/rLMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rLTop"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/grey">
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/lLAvatarImg"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="100dp">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_marginStart="20dp"
+                    android:background="@color/lightBlue"
+                    android:src="@drawable/ic_add_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="5dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/nameProfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="35dp"
+                        android:fontFamily="@font/lemon"
+                        android:textColor="@color/white"
+                        android:text="name">
+
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/lLAvatarImg"
+                android:layout_marginTop="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="50dp">
+
+                    <TextView
+                        android:id="@+id/mailProfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50dp"
+                        android:text="Email : "
+                        android:fontFamily="@font/lemon"/>
+
+                    <TextView
+                        android:id="@+id/phoneProfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50dp"
+                        android:text="Phone : "
+                        android:fontFamily="@font/lemon"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
 </FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/cell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:paddingLeft="10dp"
+        android:id="@+id/lvl_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/play_button_idle"/>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView
+            android:paddingLeft="10dp"
+            android:id="@+id/lvl_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+            android:text="Niveau 1"/>
+
+        <TextView
+            android:paddingLeft="10dp"
+            android:id="@+id/lvl_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@android:color/white"
+            android:text="Difficulté : Facile"/>
+    </LinearLayout>
+
+</LinearLayout>

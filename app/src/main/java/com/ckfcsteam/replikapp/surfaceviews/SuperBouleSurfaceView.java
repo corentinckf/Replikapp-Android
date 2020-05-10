@@ -10,7 +10,9 @@ import android.text.TextPaint;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
+import com.ckfcsteam.replikapp.R;
 import com.ckfcsteam.replikapp.activities.SuperBouleActivity;
+import com.ckfcsteam.replikapp.activities.SuperBouleMenuActivity;
 import com.ckfcsteam.replikapp.library.Game;
 import com.ckfcsteam.replikapp.library.gamelib.GameButton;
 import com.ckfcsteam.replikapp.library.gamelib.GameObject;
@@ -70,7 +72,7 @@ public class SuperBouleSurfaceView extends Game {
         screen_width = metrics.widthPixels;
 
         /*Création des sprites relatifs au niveau de jeu*/
-        /*ball_sprite = new Sprite(R.drawable.ball,context);
+        ball_sprite = new Sprite(R.drawable.ball,context);
         paddle_sprite = new Sprite(R.drawable.paddle,context);
         green_block_sprite = new Sprite(R.drawable.greenblock,context);
         blue_block_sprite = new Sprite(R.drawable.blueblock, context);
@@ -79,7 +81,6 @@ public class SuperBouleSurfaceView extends Game {
         yellow_sprite = new Sprite(R.drawable.yellowblock, context);
         quit_sprite = new Sprite(R.drawable.quit, context);
         restart_sprite = new Sprite(R.drawable.restart, context);
-        bg_sprite = new Sprite(R.drawable.test, context);*/
 
         /*Récupération des informations relatives au niveau de jeu*/
         this.lvl_id = lvl_id; /*Important pour créer le niveau en fonction de son id*/
@@ -448,7 +449,7 @@ public class SuperBouleSurfaceView extends Game {
                     * On prépare le lancement de l'activité "Menu" en lui passant
                     * les variables contenant l'id du niveau maximum débloqué, et le nombre de briques détruites*/
 
-                    Intent intent = new Intent(getContext(), SuperBouleActivity.class);
+                    Intent intent = new Intent(getContext(), SuperBouleMenuActivity.class);
                     intent.putExtra("block_destroyed",block_destroyed);
                     intent.putExtra("maxLvl_unlocked", maxLvl_unlocked);
                     /*On kill l'activité courante*/

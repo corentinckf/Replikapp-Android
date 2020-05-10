@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SuperBouleMenuActivity">
+
+    <ImageView
+        android:id="@+id/menu_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/menu_bakcground"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/menu_game_logo"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"/>
+        <FrameLayout
+            android:id="@+id/menu_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/menu_quests_button"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/quests_button_idle" />
+
+                <Button
+                    android:layout_margin="20dp"
+                    android:id="@+id/menu_play_button"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/play_button_idle" />
+                <Button
+                    android:id="@+id/menu_quit_button"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/quit_button_idle"/>
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

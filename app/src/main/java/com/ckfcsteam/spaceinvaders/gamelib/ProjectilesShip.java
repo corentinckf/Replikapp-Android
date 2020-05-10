@@ -89,4 +89,15 @@ public class ProjectilesShip extends ArrayList<Projectile> {
         }
         maj();
     }
+
+    /**
+     * Desactive/Active tous les projectiles
+     *
+     * @param b si b est vrai desactive, sinon les actives
+     */
+    public void setDisabled(boolean b){
+        for(Projectile p: this){
+            p.setDisabled(b);
+        }
+    }
 }

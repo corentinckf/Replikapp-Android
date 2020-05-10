@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
 
-    private SurfaceHolder holder = null;
+    private SurfaceHolder holder;
     private GameThread thread = null;
 
     /* Attributs global du jeu */
@@ -45,6 +45,8 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     // Score de la partie
     private int score;
     private String stringOfScore;
+    // Etat du jeu
+    private boolean disable;
 
     // Variable pour gérer le délai entre deux session de tirs d'invaders
 
@@ -54,6 +56,10 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
         holder = getHolder();
         holder.addCallback(this);
+
+        // Le jeu n'est pas encore chargé
+        score = -1;
+        disable = false;
 
         // Gestion des clic simple
         mGestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
@@ -85,6 +91,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Initialisation du score
         score = 0;
         stringOfScore = "Score : " + score;
+        disable = false;
         // Recuperation des dimensions de l'écran
         x = getWidth();
         y = getHeight();
@@ -273,6 +280,33 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         return true;
     }
 
+    /* Méthodes externes*/
+
+
+
+    /*Getters & Setters*/
+
+    /**
+     * Desactive/Active tous les projectiles
+     *
+     * @param b si b est vrai desactive, sinon les actives
+     */
+    public void setDisabled(boolean b){
+        disable = b;
+        projectilesShip.setDisabled(true);
+        projectilesInvaders.setDisabled(true);
+        invaders.setDisabled(true);
+        avion.setDisabled(true);
+
+    }
+
+    public boolean isDisable() {
+        return disable;
+    }
+
+    public int getScore() {
+        return score;
+    }
 
     /* Classe GameThread qui gère l'affichage du jeu dans un thread independant */
     public class GameThread extends Thread {

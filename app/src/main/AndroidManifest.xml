@@ -55,7 +55,7 @@
             android:name=".activities.LoginActivity"
             android:configChanges="orientation|screenSize" />
         <!--TODO A effacer-->
-        <activity android:name="com.ckfcsteam.spaceinvaders.TestActivity"/>
+        <activity android:name="com.ckfcsteam.spaceinvaders.GameActivity"/>
     </application>
 
 

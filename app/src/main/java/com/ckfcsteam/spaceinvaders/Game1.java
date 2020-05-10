@@ -47,11 +47,13 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     private String stringOfScore;
     // Etat du jeu
     private boolean disable;
+    // Niveau de la partie
+    private int level;
 
     // Variable pour gérer le délai entre deux session de tirs d'invaders
 
     /* Constructeur */
-    public Game1(final Context context) {
+    public Game1(final Context context, int level) {
         super(context);
 
         holder = getHolder();
@@ -60,6 +62,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Le jeu n'est pas encore chargé
         score = -1;
         disable = false;
+        this.level = level;
 
         // Gestion des clic simple
         mGestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
@@ -90,7 +93,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         System.out.println(getWidth());
         // Initialisation du score
         score = 0;
-        stringOfScore = "Score : " + score;
+        stringOfScore = "Level : " + level;
         disable = false;
         // Recuperation des dimensions de l'écran
         x = getWidth();
@@ -166,7 +169,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
         // Maj du score
         score += projectilesShip.hit(invaders);
-        stringOfScore = "Score : " + score;
+        //stringOfScore = "Score : " + score;
         // Maj des lignes
         invaders.majLines();
         invaders.resize(x/16, x/20);
@@ -293,10 +296,10 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
      */
     public void setDisabled(boolean b){
         disable = b;
-        projectilesShip.setDisabled(true);
-        projectilesInvaders.setDisabled(true);
-        invaders.setDisabled(true);
-        avion.setDisabled(true);
+        projectilesShip.setDisabled(b);
+        projectilesInvaders.setDisabled(b);
+        invaders.setDisabled(b);
+        avion.setDisabled(b);
 
     }
 

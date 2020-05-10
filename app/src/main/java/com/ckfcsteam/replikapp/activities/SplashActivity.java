@@ -10,6 +10,7 @@ import com.ckfcsteam.replikapp.R;
 
 //TODO Import à  effacer avant de rendre
 import com.ckfcsteam.spaceinvaders.GameActivity;
+import com.ckfcsteam.spaceinvaders.Menu2Activity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -25,7 +26,8 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, GameActivity.class);
+                //Intent intent = new Intent(SplashActivity.this, GameActivity.class);
+                Intent intent = new Intent(SplashActivity.this, Menu2Activity.class);
                 //TODO Remplacer la ligne ci-dessus par la ligne commeté ci-dessous
                 //Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);

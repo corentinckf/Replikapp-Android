@@ -10,6 +10,6 @@ public class SpaceMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
-        setContentView(new Game1(getApplicationContext()));
+        setContentView(new Game1(getApplicationContext(),1568));
     }
 }

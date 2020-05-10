@@ -59,6 +59,13 @@
     <!-- Infinity Invaders Game -->
     <string name="scoreII">Score : </string>
     <string name="pause">Pause</string>
+    <string name="background">background</string>
+    <string name="title">title</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="score">score</string>
+    <string name="home">home</string>
 
 
 </resources>

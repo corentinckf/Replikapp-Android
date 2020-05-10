@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/backgroundImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/background"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/menu_bakcground" />
+
+    <ImageView
+        android:id="@+id/titleImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/title"
+        app:layout_constraintBottom_toTopOf="@+id/normalBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImg"
+        app:srcCompat="@drawable/game_logo_ii" />
+
+    <Button
+        android:id="@+id/easyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="easy"
+        android:text="@string/easy"
+        app:layout_constraintBottom_toBottomOf="@+id/normalBtn"
+        app:layout_constraintEnd_toStartOf="@+id/normalBtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/normalBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="normal"
+        android:text="@string/normal"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImg"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <Button
+        android:id="@+id/hardBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="hard"
+        android:text="@string/hard"
+        app:layout_constraintBottom_toBottomOf="@+id/normalBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/normalBtn" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/home"
+        android:onClick="home"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scoreBtn"
+        app:srcCompat="@drawable/home_ii" />
+
+    <ImageButton
+        android:id="@+id/scoreBtn"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/score"
+        android:onClick="score"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/normalBtn"
+        app:layout_constraintVertical_bias="0.75"
+        app:srcCompat="@drawable/trophy_btn_ii" />
+</androidx.constraintlayout.widget.ConstraintLayout>

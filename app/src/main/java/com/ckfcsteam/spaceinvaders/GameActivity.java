@@ -1,5 +1,6 @@
 package com.ckfcsteam.spaceinvaders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView score;
     private MajScoreThread majScoreThread;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +25,16 @@ public class GameActivity extends AppCompatActivity {
         //setContentView(new Game1(getApplicationContext()));
         // Layout du jeu Infinity invaders
         setContentView(R.layout.activity_game_ii);
+        // Recupération du niveau choisie indiqué par l'activité précédente
+        Intent intent = getIntent();
+        // Niveau choisie par le joueur
+        int level = 0;
+        if(intent != null ){
+            level = intent.getIntExtra("level", 0);
+        }
         // Ajout de notre surface view dans le layout
         LinearLayout surface = findViewById(R.id.mySurfaceInv);
-        mySurface = new Game1(getApplicationContext());
+        mySurface = new Game1(getApplicationContext(), level);
         surface.addView(mySurface);
         // Recuperation du text view qui contient le score
         score = findViewById(R.id.nScore);

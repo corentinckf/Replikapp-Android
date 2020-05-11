@@ -9,12 +9,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.ckfcsteam.spaceinvaders.gamelib.Invaders;
-import com.ckfcsteam.spaceinvaders.gamelib.ProjectileShip;
 import com.ckfcsteam.spaceinvaders.gamelib.ProjectilesInvaders;
 import com.ckfcsteam.spaceinvaders.gamelib.ProjectilesShip;
 import com.ckfcsteam.spaceinvaders.gamelib.Ship;
-
-import java.util.ArrayList;
 
 public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
@@ -46,7 +43,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     private int score;
     private String stringOfScore;
     // Etat du jeu
-    private boolean disable;
+    private boolean disabled;
     // Niveau de la partie
     private int level;
 
@@ -61,7 +58,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
         // Le jeu n'est pas encore chargé
         score = -1;
-        disable = false;
+        disabled = false;
         this.level = level;
 
         // Gestion des clic simple
@@ -70,7 +67,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
             @Override
             public boolean onSingleTapUp(MotionEvent event) {
                 System.out.println("SingleTap");
-                if(avion.checkIfClicked(event.getX(), event.getY())){
+                if(!isDisabled() && avion.checkIfClicked(event.getX(), event.getY())){
                     //ProjectileShip projectile = new ProjectileShip(getContext(), avion.getMidCordX(),avion.getCordy()+100);
                     //projectile.resize(x/32, x/40);
                     //projectilesShip.add(projectile);
@@ -94,7 +91,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Initialisation du score
         score = 0;
         stringOfScore = "Level : " + level;
-        disable = false;
+        disabled = false;
         // Recuperation des dimensions de l'écran
         x = getWidth();
         y = getHeight();
@@ -162,38 +159,38 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
                 }
             }
         }*/
+        if(!isDisabled()){
+            // Mouvement des projectiles alliés
+            projectilesShip.move(y/100);
 
-        // Mouvement des projectiles alliés
-        projectilesShip.move(y/100);
+            // Maj du score
+            score += projectilesShip.hit(invaders)*level;
+            //stringOfScore = "Score : " + score;
+            // Maj des lignes
+            invaders.majLines();
+            invaders.resize(x/16, x/20);
+            // Descente des invaders
+            invaders.raid(y/2000);
+            // Detection Game Over
+            if(invaders.firstLineCordY() > y){
+                for(int i = 0; i< projectilesShip.size(); i++){
+                    projectilesShip.get(i).setDisabled(true);
+                }
+                invaders.setDisabled(true);
+                avion.setDisabled(true);
 
-
-        // Maj du score
-        score += projectilesShip.hit(invaders);
-        //stringOfScore = "Score : " + score;
-        // Maj des lignes
-        invaders.majLines();
-        invaders.resize(x/16, x/20);
-        // Descente des invaders
-        //invaders.raid(y/2000);
-        // Detection Game Over
-        if(invaders.firstLineCordY() > y){
-            for(int i = 0; i< projectilesShip.size(); i++){
-                projectilesShip.get(i).setDisabled(true);
             }
-            invaders.setDisabled(true);
-            avion.setDisabled(true);
 
+            // Mouvement horizontal des invaders
+            invaders.moveAllLR(x/1000, x);
+
+            // Ajout des projectiles des nouveaux tirs ennemis, si il y en a
+            projectilesInvaders.addAll(invaders.FirstLineShoot(x, y));
+            //projectilesInvaders.resize(x/70, x/70);
+
+            // Gestion des deplacement des projectiles ennemis
+            projectilesInvaders.move(y/1000);//70);
         }
-
-        // Mouvement horizontal des invaders
-        invaders.moveAllLR(x/1000, x);
-
-        // Ajout des tirs ennemis, si il y en a
-        projectilesInvaders.addAll(invaders.FirstLineShoot(x, y));
-        //projectilesInvaders.resize(x/70, x/70);
-
-        // Gestion des deplacement des projectiles ennemis
-        projectilesInvaders.move(y/1000);//70);
 
         // Gestion des collisions entre projectiles ennemis
         projectilesInvaders.annulation(projectilesShip);
@@ -242,6 +239,8 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
         // Affichage projectiles ennemi
         projectilesInvaders.displayAll(canvas);
+
+
     }
 
     /* Gestion des évenements */
@@ -262,17 +261,17 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
         switch(action) {
             case MotionEvent.ACTION_MOVE:
-                // Mouvements du vaisseau avec les doigt
-                // tout en l'ajustant au centre du vaisseau
-                touch_cordx = event.getX()-avion.getWidth()/2;
-                touch_cordy = event.getY()/*-avion.getHeight()/2*/;
-                if(touch_cordy<=avion.getCordy()+avion.getHeight() && touch_cordy>=avion.getCordy()){
+                if(!isDisabled()){
+                    // Mouvements du vaisseau avec les doigt
+                    // tout en l'ajustant au centre du vaisseau
+                    touch_cordx = event.getX()-avion.getWidth()/2;
+                    touch_cordy = event.getY()/*-avion.getHeight()/2*/;
+                    if(touch_cordy<=avion.getCordy()+avion.getHeight() && touch_cordy>=avion.getCordy()){
 
-                    avion.setCordx(touch_cordx);
-                    //avion.setCordy(touch_cordy);
+                        avion.setCordx(touch_cordx);
+                        //avion.setCordy(touch_cordy);
+                    }
                 }
-
-
                 break;
 
             case MotionEvent.ACTION_UP:
@@ -295,16 +294,16 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
      * @param b si b est vrai desactive, sinon les actives
      */
     public void setDisabled(boolean b){
-        disable = b;
-        projectilesShip.setDisabled(b);
+        disabled = b;
+        /*projectilesShip.setDisabled(b);
         projectilesInvaders.setDisabled(b);
         invaders.setDisabled(b);
-        avion.setDisabled(b);
+        avion.setDisabled(b);*/
 
     }
 
-    public boolean isDisable() {
-        return disable;
+    public boolean isDisabled() {
+        return disabled;
     }
 
     public int getScore() {

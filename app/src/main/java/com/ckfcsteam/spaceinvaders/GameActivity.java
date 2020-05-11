@@ -3,6 +3,7 @@ package com.ckfcsteam.spaceinvaders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,7 +16,10 @@ public class GameActivity extends AppCompatActivity {
     // Attributs
     private Game1 mySurface;
     private TextView score;
+    private ImageButton stateImg;
+    private ImageButton playImg;
     private MajScoreThread majScoreThread;
+
 
 
     @Override
@@ -36,16 +40,28 @@ public class GameActivity extends AppCompatActivity {
         LinearLayout surface = findViewById(R.id.mySurfaceInv);
         mySurface = new Game1(getApplicationContext(), level);
         surface.addView(mySurface);
-        // Recuperation du text view qui contient le score
+        // Recuperation des éléments du layout
         score = findViewById(R.id.nScore);
+        stateImg = findViewById(R.id.stateImg);
+        playImg = findViewById(R.id.playImg);
+
         // Gestion du score
         majScoreThread = new MajScoreThread();
         majScoreThread.start();
     }
 
     public void playPause(View view){
-        System.out.println(mySurface.isDisable());
-        mySurface.setDisabled(!mySurface.isDisable());
+        System.out.println(mySurface.isDisabled());
+        mySurface.setDisabled(!mySurface.isDisabled());
+        if(mySurface.isDisabled()){
+            stateImg.setImageResource(android.R.drawable.ic_media_play);
+            playImg.setVisibility(View.VISIBLE);
+        }else{
+            stateImg.setImageResource(android.R.drawable.ic_media_pause);
+            playImg.setVisibility(View.INVISIBLE);
+            //playImg.setImageResource(0);
+            //playImg.setEnabled(false);
+        }
     }
 
 

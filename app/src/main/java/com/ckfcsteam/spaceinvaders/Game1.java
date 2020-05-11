@@ -1,6 +1,9 @@
 package com.ckfcsteam.spaceinvaders;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.GestureDetector;
@@ -8,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.ckfcsteam.papangue.gamelib.GameObject;
+import com.ckfcsteam.replikapp.R;
 import com.ckfcsteam.spaceinvaders.gamelib.Invaders;
 import com.ckfcsteam.spaceinvaders.gamelib.ProjectilesInvaders;
 import com.ckfcsteam.spaceinvaders.gamelib.ProjectilesShip;
@@ -46,11 +51,15 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
     private boolean disabled;
     // Niveau de la partie
     private int level;
+    // Vrai si la partie est perdu
+    private boolean gameover;
+    // Application
+    private Activity activity;
 
     // Variable pour gérer le délai entre deux session de tirs d'invaders
 
     /* Constructeur */
-    public Game1(final Context context, int level) {
+    public Game1(final Context context, int level, Activity act) {
         super(context);
 
         holder = getHolder();
@@ -60,6 +69,8 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         score = -1;
         disabled = false;
         this.level = level;
+        gameover = false;
+        activity = act;
 
         // Gestion des clic simple
         mGestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
@@ -92,6 +103,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         score = 0;
         stringOfScore = "Level : " + level;
         disabled = false;
+        gameover = false;
         // Recuperation des dimensions de l'écran
         x = getWidth();
         y = getHeight();
@@ -165,39 +177,55 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
             // Maj du score
             score += projectilesShip.hit(invaders)*level;
-            //stringOfScore = "Score : " + score;
+            stringOfScore = "Y : " + (y);
             // Maj des lignes
             invaders.majLines();
             invaders.resize(x/16, x/20);
             // Descente des invaders
-            invaders.raid(y/2000);
+            //invaders.raid(y/2000);
+            // TODO Regler le pb de vitesse peut en toDouble
+            invaders.raid(1/*y/1500*/);
+            System.out.println(y);
+
+            if(level > 1){
+                // Mouvement horizontal des invaders
+                invaders.moveAllLR(x/1000, x);
+
+                if(level > 2){
+                    // Ajout des projectiles des nouveaux tirs ennemis, si il y en a
+                    projectilesInvaders.addAll(invaders.FirstLineShoot(x, y));
+                    //projectilesInvaders.resize(x/70, x/70);
+
+                    // Gestion des deplacement des projectiles ennemis
+                    projectilesInvaders.move(y/1000);//70);
+
+                    // Gestion des collisions entre projectiles ennemis
+                    projectilesInvaders.annulation(projectilesShip);
+                }
+
+            }
+
             // Detection Game Over
-            if(invaders.firstLineCordY() > y){
+            if(invaders.firstLineCordY() > y || projectilesInvaders.hitShip(avion)){
+                gameover = true;
+                setDisabled(true);
+                System.out.println("It's lose man");
+                Intent intent = new Intent(getContext(), Over2Activity.class);
+                intent.putExtra("score", getScore());
+                intent.putExtra("mode", getLevel());
+                activity.startActivity(intent);
+                activity.finish();
+            }
+            /*if(invaders.firstLineCordY() > y){
                 for(int i = 0; i< projectilesShip.size(); i++){
                     projectilesShip.get(i).setDisabled(true);
                 }
                 invaders.setDisabled(true);
                 avion.setDisabled(true);
 
-            }
-
-            // Mouvement horizontal des invaders
-            invaders.moveAllLR(x/1000, x);
-
-            // Ajout des projectiles des nouveaux tirs ennemis, si il y en a
-            projectilesInvaders.addAll(invaders.FirstLineShoot(x, y));
-            //projectilesInvaders.resize(x/70, x/70);
-
-            // Gestion des deplacement des projectiles ennemis
-            projectilesInvaders.move(y/1000);//70);
+            }*/
         }
-
-        // Gestion des collisions entre projectiles ennemis
-        projectilesInvaders.annulation(projectilesShip);
         //projectilesInvaders.annulation(projectiles);
-
-
-
     }
 
     @Override
@@ -240,6 +268,16 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Affichage projectiles ennemi
         projectilesInvaders.displayAll(canvas);
 
+        // Affichage du gameover
+        if(gameover ||true){
+
+            /*GameObject gameOver = new GameObject(R.drawable.gameover_ii, getContext());
+            gameOver.resize(x/2, y/4);
+            gameOver.setCordx((x/2)-gameOver.getWidth());
+            gameOver.setCordy((y/2)-gameOver.getHeight());
+
+            gameOver.display(canvas);*/
+        }
 
     }
 
@@ -300,6 +338,14 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         invaders.setDisabled(b);
         avion.setDisabled(b);*/
 
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public boolean isGameover() {
+        return gameover;
     }
 
     public boolean isDisabled() {

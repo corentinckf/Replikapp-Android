@@ -68,5 +68,6 @@
     <string name="hard">Difficile</string>
     <string name="score">score</string>
     <string name="home">Acceuil</string>
-    <string name="play">play</string>
+    <string name="play">jouer</string>
+    <string name="highScore">Meilleur score : </string>
 </resources>

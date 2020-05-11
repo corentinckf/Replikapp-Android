@@ -67,6 +67,7 @@
     <string name="score">score</string>
     <string name="home">home</string>
     <string name="play">play</string>
+    <string name="highScore">High Score : </string>
 
 
 </resources>

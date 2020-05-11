@@ -38,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
         }
         // Ajout de notre surface view dans le layout
         LinearLayout surface = findViewById(R.id.mySurfaceInv);
-        mySurface = new Game1(getApplicationContext(), level);
+        mySurface = new Game1(getApplicationContext(), level, this);
         surface.addView(mySurface);
         // Recuperation des éléments du layout
         score = findViewById(R.id.nScore);
@@ -62,6 +62,15 @@ public class GameActivity extends AppCompatActivity {
             //playImg.setImageResource(0);
             //playImg.setEnabled(false);
         }
+    }
+
+    private void gameOver(){
+        System.out.println("It's lose man");
+        Intent intent = new Intent(GameActivity.this, Over2Activity.class);
+        intent.putExtra("score", mySurface.getScore());
+        intent.putExtra("mode", mySurface.getLevel());
+        startActivity(intent);
+        finish();
     }
 
 

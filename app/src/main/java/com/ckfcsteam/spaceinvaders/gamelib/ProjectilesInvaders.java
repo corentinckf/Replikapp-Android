@@ -51,7 +51,7 @@ public class ProjectilesInvaders extends ArrayList<Projectile> {
      * @param s le vaisseau du joueur
      * @return vrai si le vaisseau est entré en collision avec un projectile ennemi
      */
-    public boolean lose(Ship s){
+    public boolean hitShip(Ship s){
         for(Projectile p: this){
             if(s.entringEnCollisioningCarre(p))
                 return (true);

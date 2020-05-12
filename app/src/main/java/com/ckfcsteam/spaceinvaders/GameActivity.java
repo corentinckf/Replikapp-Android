@@ -1,6 +1,9 @@
 package com.ckfcsteam.spaceinvaders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -18,7 +21,13 @@ public class GameActivity extends AppCompatActivity {
     private TextView score;
     private ImageButton stateImg;
     private ImageButton playImg;
+    private ImageButton songImg;
     private MajScoreThread majScoreThread;
+    private boolean muted;
+    private final String NAME = "infinity";
+    private final String MUTED = "mute";
+
+    private MediaPlayer mediaPlayer;
 
 
 
@@ -44,12 +53,43 @@ public class GameActivity extends AppCompatActivity {
         score = findViewById(R.id.nScore);
         stateImg = findViewById(R.id.stateImg);
         playImg = findViewById(R.id.playImg);
+        songImg = findViewById(R.id.songImg);
 
         // Gestion du score
         majScoreThread = new MajScoreThread();
         majScoreThread.start();
+
+        // Gestion du son
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song_ii);
+        mediaPlayer.setLooping(true);
+
+        mediaPlayer.start();
+
+        /* Chargement des préférences pour le son */
+        // Charge du fichier de sauvegarde SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(NAME, MODE_PRIVATE);
+        muted = sharedPreferences.getBoolean(MUTED, false);
+
+        if(muted){
+            songImg.setImageResource(android.R.drawable.ic_lock_silent_mode);
+            songImg.setBackgroundColor(Color.RED);
+            mediaPlayer.pause();
+
+        }else{
+            songImg.setImageResource(android.R.drawable.ic_lock_silent_mode_off);
+            songImg.setBackgroundColor(Color.GREEN);
+            //TODO jouer la musique
+
+        }
+
     }
 
+
+
+    /**
+     * Mets le jeu en pause, ou le retire en fontion de sont état actuelle
+     * @param view Le bouton qui a été cliqué
+     */
     public void playPause(View view){
         System.out.println(mySurface.isDisabled());
         mySurface.setDisabled(!mySurface.isDisabled());
@@ -64,20 +104,37 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void gameOver(){
-        System.out.println("It's lose man");
-        Intent intent = new Intent(GameActivity.this, Over2Activity.class);
-        intent.putExtra("score", mySurface.getScore());
-        intent.putExtra("mode", mySurface.getLevel());
-        startActivity(intent);
-        finish();
+    /**
+     * Active/désactive la musique en fontion de l'état actuelle
+     * @param view Le bouton qui a été cliqué
+     */
+    public void songOnOff(View view){
+        muted = !muted;
+        if(muted){
+            songImg.setImageResource(android.R.drawable.ic_lock_silent_mode);
+            songImg.setBackgroundColor(Color.RED);
+            //TODO eteindre la musique
+            mediaPlayer.pause();
+
+        }else{
+            songImg.setImageResource(android.R.drawable.ic_lock_silent_mode_off);
+            songImg.setBackgroundColor(Color.GREEN);
+            //TODO jouer la musique
+            mediaPlayer.start();
+        }
+
+        // Sauvegardes des preférences pour le son
+        SharedPreferences sharedPreferences = getSharedPreferences(NAME, MODE_PRIVATE);
+        sharedPreferences.edit().putBoolean(MUTED, muted).apply();
     }
+
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         majScoreThread.interrupt();
+        mediaPlayer.stop();
     }
 
     private class MajScoreThread extends Thread{

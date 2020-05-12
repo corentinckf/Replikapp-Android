@@ -68,6 +68,10 @@
     <string name="home">home</string>
     <string name="play">play</string>
     <string name="highScore">High Score : </string>
+    <string name="mode">mode</string>
+    <string name="mode2">"Mode : "</string>
+    <string name="nothing">- - -</string>
+    <string name="trophy">trophy</string>
 
 
 </resources>

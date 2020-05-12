@@ -72,7 +72,7 @@ public class Menu2Activity extends AppCompatActivity {
      * @param view le bouton image
      */
     public void score(View view){
-        Intent intent = new Intent(Menu2Activity.this, GameActivity.class);
+        Intent intent = new Intent(Menu2Activity.this, Score2Activity.class);
         startActivity(intent);
         //finish();
     }

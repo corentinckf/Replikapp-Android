@@ -15,7 +15,7 @@ public class Invaders  {
     // Tous les invaders en jeu
     private ArrayList<LineInvaders> invaders;
     // Les cordonnes en Y associé a chaque ligne
-    private ArrayList<Integer> cordsY;
+    private ArrayList<Float> cordsY;
     // Cordonnes de la première ligne
     //private float firstLineCordY;
     // Context de l'application
@@ -61,13 +61,14 @@ public class Invaders  {
         // Ils sont afficher par défaut
         disabled = false;
 
+        // Nombre de ligne à afficher au début de partie
         nbStart = 10;
 
         for(int i=0; i<nbStart; i++){
             if(i==0){
                 invaders.add(new LineInvaders(screenWidth, screenHeight, context,10, i));
                 //cordsY.add( (nbStart-1)*(screenWidth/10)+ nbStart*(screenWidth/16));
-                cordsY.add( (nbStart-1)*(screenWidth/20)+ nbStart*(screenWidth/32));
+                cordsY.add(new Float((nbStart-1)*(screenWidth/20)+ nbStart*(screenWidth/32)));
             }else{
                 addInvadersLine();
             }
@@ -141,9 +142,9 @@ public class Invaders  {
     }
 
     // Gere la descente des invaders
-    public void raid(int n){
+    public void raid(float n){
         for (int i = 0; i < cordsY.size() ; i++) {
-            int value = cordsY.get(i) +n;
+            float value = cordsY.get(i) +n;
             cordsY.set(i, value);
             //cordsY.get(i) = new Integer(cordsY.get(i) + n);
         }
@@ -172,7 +173,7 @@ public class Invaders  {
      * @param screenWidth La taille de l'écran
      *
      */
-    public void moveAllLR(int n, int screenWidth){
+    public void moveAllLR(float n, int screenWidth){
         for(int i=0; i< invaders.size(); i++){
             invaders.get(i).moveLineLR(n, screenWidth);
         }

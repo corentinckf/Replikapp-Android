@@ -40,7 +40,7 @@ public class ProjectilesInvaders extends ArrayList<Projectile> {
      *
      * @param n distance à parcourir
      */
-    public void move(int n){
+    public void move(float n){
         for(Projectile p: this){
             p.move(n);
         }

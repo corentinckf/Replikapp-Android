@@ -26,7 +26,6 @@ public class GameActivity extends AppCompatActivity {
     private boolean muted;
     private final String NAME = "infinity";
     private final String MUTED = "mute";
-
     private MediaPlayer mediaPlayer;
 
 

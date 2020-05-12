@@ -75,7 +75,9 @@ public class LineInvaders {
             //invader.resize(screenWidth/8, screenWidth/10);
             // Placement en x des invader
             //invader.setCordx((screenWidth/16)*(i+1)+(screenWidth/8)*i);
-            invader.setCordx((float)((screenWidth/((nbByLine+2)*3))*(i+1)+(screenWidth/((nbByLine+2)*1.5))*i));
+            //invader.setCordx((float)((screenWidth/((nbByLine+2)*3))*(i+1)+(screenWidth/((nbByLine+2)*1.5))*i));
+            invader.resize(screenWidth/16, screenWidth/20);
+            invader.setCordx((float)((screenWidth/((nbByLine+2)*3))*(i+1)+(screenWidth/((nbByLine+2)*1.5))*(i+1)));
             line.add(invader);
 
         }
@@ -146,7 +148,7 @@ public class LineInvaders {
      *
      */
 
-    public void moveLineLR(int n, int screenWidth){
+    public void moveLineLR(float n, int screenWidth){
         gereDirectionHorizontal(screenWidth);
 
         for (int i = 0; i < getNbInvaders() ; i++) {
@@ -175,7 +177,7 @@ public class LineInvaders {
     }
 
     // Aligner en y les invaders
-    public void setCordY(int y){
+    public void setCordY(float y){
         cordY = y;
         for(int i=0; i<getNbInvaders(); i++){
             line.get(i).setCordy(cordY);

@@ -121,7 +121,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         avion.resize(x/5,x/4);
 
         //Config invaders
-        invaders.resize(x/16, x/20);
+        //TODO invaders.resize(x/16, x/20);
 
 
         // On relance tout à chaque fois que la surfaceview est relancée
@@ -178,18 +178,18 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
             // Maj du score
             score += projectilesShip.hit(invaders)*level;
             stringOfScore = "Y : " + (y);
-            // Maj des lignes
+            // Maj des lignes d'invaders
             invaders.majLines();
-            invaders.resize(x/16, x/20);
+            //TODO invaders.resize(x/16, x/20);
             // Descente des invaders
             //invaders.raid(y/2000);
             // TODO Regler le pb de vitesse peut en toDouble
-            invaders.raid(1/*y/1500*/);
+            invaders.raid((float)y/2000);
             System.out.println(y);
 
             if(level > 1){
                 // Mouvement horizontal des invaders
-                invaders.moveAllLR(x/1000, x);
+                invaders.moveAllLR((float)x/1000, x);
 
                 if(level > 2){
                     // Ajout des projectiles des nouveaux tirs ennemis, si il y en a
@@ -197,7 +197,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
                     //projectilesInvaders.resize(x/70, x/70);
 
                     // Gestion des deplacement des projectiles ennemis
-                    projectilesInvaders.move(y/1000);//70);
+                    projectilesInvaders.move((float)y/500);//70);
 
                     // Gestion des collisions entre projectiles ennemis
                     projectilesInvaders.annulation(projectilesShip);

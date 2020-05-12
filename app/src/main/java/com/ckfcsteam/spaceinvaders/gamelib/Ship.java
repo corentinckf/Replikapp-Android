@@ -22,7 +22,7 @@ public class Ship extends GameObject {
      * @return Le projectile tiré par le vaisseau
      */
     public Projectile shoot(Context context, int width, int height){
-        float x = getCordx()+(getWidth()/2);
+        float x = getMidCordX()-((float)width/2);
         float y = getCordy();
         Projectile p = new Projectile(context,R.drawable.projectile, x, y);
         p.resize(width, height);
@@ -48,8 +48,8 @@ public class Ship extends GameObject {
      *
      * @return la cordonnée en X du milieu du vaisseau
      */
-    public float getMidCordX(){
-        return (getCordx()+(getWidth()/2));
+    private float getMidCordX(){
+        return (getCordx()+((float)getWidth()/2));
     }
 
 }

@@ -67,7 +67,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
 
         // Le jeu n'est pas encore chargé
         score = -1;
-        disabled = false;
+        disabled = true;
         this.level = level;
         gameover = false;
         activity = act;
@@ -102,7 +102,7 @@ public class Game1 extends SurfaceView implements SurfaceHolder.Callback{
         // Initialisation du score
         score = 0;
         stringOfScore = "Level : " + level;
-        disabled = false;
+        disabled = true;
         gameover = false;
         // Recuperation des dimensions de l'écran
         x = getWidth();

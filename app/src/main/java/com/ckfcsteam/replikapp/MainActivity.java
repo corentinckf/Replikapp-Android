@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity{
 
         auth = FirebaseAuth.getInstance(); // Initialisation de L'Auth Firebase
 
+
         /* Liaison des variables au xml */
         bottomBar_item1 = findViewById(R.id.bottomBar_item1);
         bottomBar_item2 = findViewById(R.id.bottomBar_item2);

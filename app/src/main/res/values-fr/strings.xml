@@ -51,6 +51,9 @@
 
     <!-- fragment Profil -->
     <string name="profil">Profil</string>
+    <string name="mailInfo">Email :</string>
+    <string name="phoneInfo">Téléphone :</string>
+    <string name="logoutBtn">Déconnexion</string>
 
     <!-- fragment Shop -->
     <string name="store">Boutique</string>

@@ -49,6 +49,9 @@
 
     <!-- fragment Profil -->
     <string name="profil">Profile</string>
+    <string name="mailInfo">Email :</string>
+    <string name="phoneInfo">Phone :</string>
+    <string name="logoutBtn">Sign Out</string>
 
     <!-- fragment Shop -->
     <string name="store">Market</string>

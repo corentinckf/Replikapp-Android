@@ -26,7 +26,8 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
     private RewardedVideoAd mRewardedVideoAd;
     private View rootView;
     private MainActivity mainActivity;
-    public StoreFragment(){}
+    public StoreFragment(){//Constructeur vide necéssaire
+    }
 
     @Nullable
     @Override

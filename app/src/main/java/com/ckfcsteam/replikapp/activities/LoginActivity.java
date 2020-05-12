@@ -213,29 +213,35 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = auth.getCurrentUser();
 
-                            // Récupération du mail et de l'id utilisateur
-                            String email = user.getEmail();
-                            String uid = user.getUid();
+                            // Si l'utilisateur se connecte pour la première fois avec google
+                            if(task.getResult().getAdditionalUserInfo().isNewUser()){
 
-                            //Lorsque l'utilisateur est connecté, on stocke les informations utilisateur dans la base de données firebase en utilisant HashMap
-                            HashMap<Object,String> hashMap = new HashMap<>();
+                                // Récupération du mail et de l'id utilisateur
+                                String email = user.getEmail();
+                                String uid = user.getUid();
 
-                            //Transfert de l'information en hasmap
-                            hashMap.put("email",email);
-                            hashMap.put("uid", uid);
-                            // Les informations suivantes seront rajouter grâce à l'édition de profil
-                            hashMap.put("name", "");
-                            hashMap.put("phone", "");
-                            hashMap.put("image", "");
+                                //Lorsque l'utilisateur est connecté, on stocke les informations utilisateur dans la base de données firebase en utilisant HashMap
+                                HashMap<Object,String> hashMap = new HashMap<>();
 
-                            // Instance de la base de données firebase
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                //Transfert de l'information en hasmap
+                                hashMap.put("email",email);
+                                hashMap.put("uid", uid);
+                                // Les informations suivantes seront rajouter grâce à l'édition de profil
+                                hashMap.put("name", "");
+                                hashMap.put("phone", "");
+                                hashMap.put("image", "");
 
-                            //Chemin de stockage des données utilisateur dans "Users"
-                            DatabaseReference reference = database.getReference("Users");
+                                // Instance de la base de données firebase
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-                            // Ajot des données dans la base de données en Hashmap
-                            reference.child(uid).setValue(hashMap);
+                                //Chemin de stockage des données utilisateur dans "Users"
+                                DatabaseReference reference = database.getReference("Users");
+
+                                // Ajot des données dans la base de données en Hashmap
+                                reference.child(uid).setValue(hashMap);
+                            }
+
+
 
                             Toast.makeText(LoginActivity.this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

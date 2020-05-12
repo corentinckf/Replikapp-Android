@@ -14,7 +14,8 @@ import com.ckfcsteam.replikapp.R;
 
 public class BibliFragment extends Fragment {
 
-    public BibliFragment(){}
+    public BibliFragment(){
+    }
 
     @Nullable
     @Override

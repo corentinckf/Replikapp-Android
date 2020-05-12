@@ -1,4 +1,4 @@
-package com.ckfcsteam.spaceinvaders;
+package com.ckfcsteam.spaceinvaders.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
 
 public class Over2Activity extends AppCompatActivity {
@@ -18,7 +17,8 @@ public class Over2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_over2);
-        // Recuperation du mode de jeu et du score
+
+        // Recuperation du mode de jeu et du score donnés par l'activité appelante
         Intent intent = getIntent();
         int mode = -1;
         int score = -1;
@@ -26,16 +26,17 @@ public class Over2Activity extends AppCompatActivity {
             mode = intent.getIntExtra("mode", -1);
             score = intent.getIntExtra("score", -1);
         }
+
         // Affichage du score
         TextView scoreView = findViewById(R.id.score);
         scoreView.setText(score+"");
+
         // Charge du fichier de sauvegarde SharedPreferences
         String highScoreKey = "high"+mode;
         SharedPreferences sharedPreferences = getSharedPreferences("infinity", MODE_PRIVATE);
-        // Récupération du meilleur score
+
+        // Récupération du meilleur score et son affichage, si il existe
         int highScore = sharedPreferences.getInt(highScoreKey, -1);
-        //System.out.println(highScoreKey);
-        //scoreView.setText(highScoreKey);
         if(highScore != -1){
             TextView hScoreView = findViewById(R.id.highScore);
             hScoreView.setText(highScore+"");

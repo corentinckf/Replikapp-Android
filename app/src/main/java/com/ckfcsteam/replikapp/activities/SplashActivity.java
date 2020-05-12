@@ -9,8 +9,7 @@ import android.os.Handler;
 import com.ckfcsteam.replikapp.R;
 
 //TODO Import à  effacer avant de rendre
-import com.ckfcsteam.spaceinvaders.GameActivity;
-import com.ckfcsteam.spaceinvaders.Menu2Activity;
+import com.ckfcsteam.spaceinvaders.activities.Menu2Activity;
 
 public class SplashActivity extends AppCompatActivity {
 

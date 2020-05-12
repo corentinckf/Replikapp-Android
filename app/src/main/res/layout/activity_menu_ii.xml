@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="com.ckfcsteam.spaceinvaders.Menu2Activity">
+    tools:context="com.ckfcsteam.spaceinvaders.activities.Menu2Activity">
 
     <ImageView
         android:id="@+id/backgroundImg"

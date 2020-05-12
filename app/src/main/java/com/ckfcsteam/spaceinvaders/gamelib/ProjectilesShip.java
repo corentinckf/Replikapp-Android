@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
+/**
+ * Représente tout les projectiles du vaisseau en jeu
+ */
 public class ProjectilesShip extends ArrayList<Projectile> {
 
     // Dimensions de l'écran
@@ -15,11 +18,6 @@ public class ProjectilesShip extends ArrayList<Projectile> {
         screenWidth = width;
         screenHeight = height;
     }
-
-    /*public void addProjectile(Context context, float x, float y){
-        Projectile p = new Projectile(context, R.drawable.projectile, x, y);
-
-    }*/
 
     /**
      * resize redimensionne tout les projectiles ennemi
@@ -50,12 +48,6 @@ public class ProjectilesShip extends ArrayList<Projectile> {
      */
     public int hit(Invaders invaders){
         int c = 0;
-        /*for(Projectile p: this){
-            if(invaders.entringEnCollisioningCarreAll(p))
-                remove(p);
-                // Invaders sera supprimer depuis son instance
-                c++;
-        }*/
         for(int i = 0; i< this.size(); i++){
             if(invaders.entringEnCollisioningCarreAll(this.get(i))){
                 this.remove(i);
@@ -90,14 +82,4 @@ public class ProjectilesShip extends ArrayList<Projectile> {
         maj();
     }
 
-    /**
-     * Desactive/Active tous les projectiles
-     *
-     * @param b si b est vrai desactive, sinon les actives
-     */
-    public void setDisabled(boolean b){
-        for(Projectile p: this){
-            p.setDisabled(b);
-        }
-    }
 }

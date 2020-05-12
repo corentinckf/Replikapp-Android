@@ -8,122 +8,113 @@ import com.ckfcsteam.replikapp.R;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Vector;
 
+/**
+ * Représente tous les invaders du jeu
+ */
 public class Invaders  {
     /* Attributs */
-    // Tous les invaders en jeu
+    // Tous les invaders en jeu, liste de ligne d'invaders
     private ArrayList<LineInvaders> invaders;
     // Les cordonnes en Y associé a chaque ligne
     private ArrayList<Float> cordsY;
-    // Cordonnes de la première ligne
-    //private float firstLineCordY;
     // Context de l'application
     private Context context;
-
     // Dimensions de l'écran
     private int screenWidth;
     private int screenHeight;
-
-    // Dimensions des invaders
-    //private int width;
-    //private int height;
-
-    // Si vrai les invaders se deplace vers la droite
-    // sinon, vers la gauche
-    private boolean toRight;
-
-    // nombre de ligne au debut
-    private int nbStart;
-
-    // booléeen sur la désactivation de l'affichage
-    private boolean disabled;
-
-    // Time lors du dernier appel de tirs
+    // Temps lors du dernier appel de tirs
     private long lastShootTime;
 
 
     /* Constructeur*/
     public Invaders(int screenWidth, int screenHeight, Context context){
+        // Récupération des infos sur l'application et l'écran
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
         this.context = context;
 
+        // Chaque invaders.get(i) sera lié à cordsY.get(i)
         invaders = new ArrayList<>();
         cordsY = new ArrayList<>();
 
         // On initialise à 0 car il n'y a pas encore de tir
         lastShootTime = 0;
 
-        // Les invaders se déplace vers la droite
-        toRight = true;
-
-        // Ils sont afficher par défaut
-        disabled = false;
-
         // Nombre de ligne à afficher au début de partie
-        nbStart = 10;
+        int nbStart = 10;
 
+        // Création des invaders présent en début de partie
         for(int i=0; i<nbStart; i++){
             if(i==0){
                 invaders.add(new LineInvaders(screenWidth, screenHeight, context,10, i));
                 //cordsY.add( (nbStart-1)*(screenWidth/10)+ nbStart*(screenWidth/16));
-                cordsY.add(new Float((nbStart-1)*(screenWidth/20)+ nbStart*(screenWidth/32)));
+                cordsY.add((float) ((nbStart - 1) * (screenWidth / 20) + nbStart * (screenWidth / 32)));
             }else{
                 addInvadersLine();
             }
         }
-        /**/
+        /* On charge toujours les autres lignes qui seront affché si le joueur perds*/
         // Nb de ligne maximale supporté par l'écran
         int nbRowMax = screenHeight / ((screenWidth/20) + (screenWidth/32));
         for (int i = 0; i < nbRowMax-nbStart; i++) {
             addInvadersLine();
         }
-        /**/
-        //invaders.add(new LineInvaders(screenWidth, screenHeight, context, 0));
-        //cordsY.add( (nbStart-1)*(screenWidth/10)+ nbStart*(screenWidth/16));
+
+        // On applique à chaque ligne d'invaders sa coordonné en y
         applyCordY();
-        //width = invaders.get(0).getWidth();
-        //height = invaders.get(0).getHeight();
 
     }
 
     /* Méthodes */
 
-    // Redimensionner tout les invaders
+    /**
+     * Redimensionne tous les invaders créé
+     * @param width nouvelle largeur
+     * @param height nouvelle hauteur
+     */
     public void resize(int width, int height){
-        //this.width = width;
-        //this.height = height;
         for(int i=0; i<invaders.size(); i++){
             invaders.get(i).resize(width, height);
         }
     }
 
 
-    //Ajouter une ligne d'invader
+    /**
+     * Ajoute une ligne d'invaders dans la file
+     */
     public void addInvadersLine(){
         invaders.add(new LineInvaders(screenWidth, screenHeight, context,10, 0));
-        //cordsY.add(cordsY.get(cordsY.size()-1) - (screenWidth/10+screenWidth/16));
         cordsY.add(cordsY.get(cordsY.size()-1) - (screenWidth/20+screenWidth/32));
-        //resize(width, height);
     }
 
-    // Afficher tout les invaders
+    /**
+     * Affiche tout les invaders
+     * @param canvas canvas qui va dessiner dans le jeu
+     */
     public void displayAll(Canvas canvas){
         for (int i=0; i<invaders.size(); i++){
-            if(invaders.get(i).getCordY() > 0)
+            // hauteur d'un invaders (screenWidth/20)
+            if(invaders.get(i).getCordY()+((float)screenWidth/20) > 0)
                 invaders.get(i).displayLine(canvas);
         }
     }
 
-    // Application des cordY
+    /**
+     * Change les coodonnées de chaque lignes d'invaders,
+     * en fonction de la valeurs qui leurs correspondent dans CordY
+     */
     public void applyCordY(){
         for(int i=0; i<invaders.size(); i++){
             invaders.get(i).setCordY(cordsY.get(i));
         }
     }
 
-    // Collision en mode carre
+    /**
+     * Detecte si un invaders est entré en collision avec un autre objet
+     * @param G2 Un objet du jeu
+     * @return Test si l'objet est entré en collisions avec un invaders
+     */
     public Boolean entringEnCollisioningCarreAll(GameObject G2){
         for (int i = 0; i < invaders.size() ; i++) {
             if(invaders.get(i).entringEnCollisioningCarreLine(G2))
@@ -132,7 +123,9 @@ public class Invaders  {
         return(false);
     }
 
-    // Maj des lignes
+    /**
+     * Supprime les lignes vides
+     */
     public void majLines(){
         if(invaders.get(0).isEmpty()){
             invaders.remove(0);
@@ -141,7 +134,10 @@ public class Invaders  {
         }
     }
 
-    // Gere la descente des invaders
+    /**
+     * Gére la descente des invaders
+     * @param n distance à parcourir
+     */
     public void raid(float n){
         for (int i = 0; i < cordsY.size() ; i++) {
             float value = cordsY.get(i) +n;
@@ -151,7 +147,10 @@ public class Invaders  {
         applyCordY();
     }
 
-    // Renvoie la coordonnée en Y de la première ligne
+    /**
+     * Coordonnés de la premières ligne d'invaders en Y su l'écran
+     * @return Coordonnés de la premières ligne d'invaders en Y
+     */
     public float firstLineCordY(){
         if(cordsY.size()>0)
             return(cordsY.get(0));
@@ -193,41 +192,25 @@ public class Invaders  {
     //TODO Verifier que ça marche
     public ArrayList<Projectile> FirstLineShoot(int width, int height){
         Random r = new Random();
+        // Liste des projectiles tirés durant cettes méthodes
         ArrayList<Projectile> lp = new ArrayList<Projectile>();
         // Nouveau tire possible après 5s
         if(System.currentTimeMillis()-lastShootTime > 5000){
             for(Invader i : invaders.get(0).getLine()  ){
-                // Une chance sur 10% pour chaque invaders de tirer
+                // Une chance sur 50% pour chaque invaders de tirer
                 if(r.nextInt(100)<50 ){
-                    float x = i.getCordx()+(i.getWidth()/2);
+                    float x = i.getCordx()+((float) i.getWidth()/2);
                     float y = i.getCordy()+i.getHeight();
-                    Projectile p = new Projectile(context,R.drawable.projectile, x, y);
-                    p.resize(width/70, height/70);
+                    Projectile p = new Projectile(context,R.drawable.project_inv, x, y);
+                    p.resize(width/70, height/140);
                     lp.add(p);
                 }
             }
-            // Màj du time pour le dernier tire
+            // Màj du temps pour le dernier tire
             lastShootTime = System.currentTimeMillis();
         }
-
-
         return(lp);
     }
 
-    /* Getters && Setters */
-    public boolean isToRight() {
-        return toRight;
-    }
 
-    public void setToRight(boolean toRight) {
-        this.toRight = toRight;
-    }
-
-    public boolean isDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
-    }
 }

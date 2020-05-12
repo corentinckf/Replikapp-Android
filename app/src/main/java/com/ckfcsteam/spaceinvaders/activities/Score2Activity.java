@@ -1,4 +1,4 @@
-package com.ckfcsteam.spaceinvaders;
+package com.ckfcsteam.spaceinvaders.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,15 +16,11 @@ import com.ckfcsteam.replikapp.R;
 import com.ckfcsteam.spaceinvaders.gamelib.HighScore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Score2Activity extends AppCompatActivity {
 
     private ListView listView;
     private ArrayList<HighScore> list;
-    //private TextView modeView;
-    //private TextView highView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +35,21 @@ public class Score2Activity extends AppCompatActivity {
     }
 
     /**
-     * Charge les différents meilleurs score sauvegardé
+     * Charge les différents meilleurs score sauvegardé (1 par niveau du jeu)
      *
-     * @return liste des meilleurs score
+     * @return liste des meilleurs scores
      */
     private ArrayList<HighScore> loadHighScore(){
         ArrayList<HighScore> res = new ArrayList<>();
         for(int mode=1; mode<=3;mode++){
-            // Charge du fichier de sauvegarde SharedPreferences
+            // Chargement du fichier de sauvegarde SharedPreferences
             String highScoreKey = "high"+mode;
             SharedPreferences sharedPreferences = getSharedPreferences("infinity", MODE_PRIVATE);
+
             // Récupération du meilleur score
             int highScore = sharedPreferences.getInt(highScoreKey, -1);
-            // Sauvegarde du meilleurs score, si il a changé
+
+            // Conversion du mode en string
             String modeStr;
             switch (mode){
                 case 1:
@@ -66,15 +64,15 @@ public class Score2Activity extends AppCompatActivity {
                 default:
                     modeStr = getResources().getString(R.string.nothing);
             }
+
+            //Creation et ajout d'un nouveau meilleurs score'
             res.add(new HighScore(modeStr, highScore));
         }
         return (res);
 
     }
 
-    {
 
-    }
     /**
      * Lors du clic sur le bouton home renverra l'utilisateur à l'acceuil
      *
@@ -86,6 +84,9 @@ public class Score2Activity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Adapter pour la listView affichant les différents score
+     */
     private class myAdapter extends BaseAdapter{
         private LayoutInflater inflater;
         public myAdapter(){

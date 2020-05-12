@@ -7,29 +7,21 @@ import com.ckfcsteam.papangue.gamelib.GameObject;
 
 import java.util.ArrayList;
 
+/**
+ * Represente une ligne d'invaders
+ */
 public class LineInvaders {
     /* Attributs */
 
     // Tous les invaders d'une ligne
     private ArrayList<Invader> line;
-
-    // numero de la ligne
-    private int numLine;
-
     // nombre d'invaders par ligne à la creation de la ligne
     private int nbByLine;
-
     // Context de l'application
     private Context context;
-
     // Dimensions de l'écran
     private int screenWidth;
     private int screenHeight;
-
-    // Dimensions des invaders
-    //private int width;
-    //private int height;
-
     // Cordonnes en y de la ligne
     private float cordY;
 
@@ -44,33 +36,36 @@ public class LineInvaders {
         this.screenHeight = screenHeight;
         this.context = context;
         this.nbByLine = nbByLine;
-        this.numLine = numLine;
-
+        // Valeurs par défaut de la coordonnée en Y
         cordY = 0;
 
         line = new ArrayList<Invader>();
+
         // Les invaders se déplace vers la droite
         toRight = true;
+        // Creation d'une nouvelle ligne
         createLine();
-        //width = line.get(0).getWidth();
-        //height = line.get(0).getHeight();
     }
 
     /* Méthodes */
 
-    // Redimensionner tout les invaders
+    /**
+     * Redimensionne tout les invaders de la ligne
+     * @param width nouvelle largeur
+     * @param height nouvelle hauteur
+     */
     public void resize(int width, int height){
-        //this.width = width;
-        //this.height = height;
         for(int i=0; i<line.size(); i++){
             line.get(i).resize(width, height);
         }
     }
 
-    // Ajouter une ligne d'invader
+    /**
+     * Création des invaders de la ligne
+     */
     public void createLine(){
         for(int i=0; i<nbByLine; i++){
-            Invader invader = new Invader(context, numLine, i);
+            Invader invader = new Invader(context);
             // Ajustement de l'image
             //invader.resize(screenWidth/8, screenWidth/10);
             // Placement en x des invader
@@ -83,23 +78,29 @@ public class LineInvaders {
         }
     }
 
-
-
-
-
-    // Nombre d'invaders sur la ligne
+    /**
+     * Obtention du nb d'invaders sur la ligne
+     * @return nb d'invaders sur la ligne
+     */
     public int getNbInvaders(){
         return(line.size());
     }
 
-    // Afficher la ligne d'invaders
+    /**
+     * Affiche la ligne d'invaders
+     * @param canvas canvas qui dessine sur le jeu
+     */
     public void displayLine(Canvas canvas){
         for(int i=0; i<getNbInvaders(); i++){
             line.get(i).display(canvas);
         }
     }
 
-    // Collision en mode carre
+    /**
+     * Detection des collision
+     * @param G2 Objet avec qui on teste la collisions
+     * @return Test si un invaders est entré en collision avec G2
+     */
     public Boolean entringEnCollisioningCarreLine(GameObject G2){
         for (int i = 0; i < getNbInvaders() ; i++) {
             if(line.get(i).entringEnCollisioningCarre(G2)) {
@@ -110,7 +111,10 @@ public class LineInvaders {
         return(false);
     }
 
-    // Verifie si la ligne est vide
+    /**
+     * Verifie si une ligne est vide
+     * @return test si la ligne est vide
+     */
     public boolean isEmpty(){
         return(line.isEmpty());
     }
@@ -147,7 +151,6 @@ public class LineInvaders {
      * @param screenWidth La taille de l'écran
      *
      */
-
     public void moveLineLR(float n, int screenWidth){
         gereDirectionHorizontal(screenWidth);
 
@@ -157,26 +160,20 @@ public class LineInvaders {
     }
 
 
-    /*
-    // Renvoie les coordonné en X du premier et
-    // du dernier élement de la ligne
-    public float minCoordXLine(){
-        return(line.get(0).getCordx());
-    }
-
-    // Renvoie les coordonné en X du premier et
-    // du dernier élement de la ligne
-    public float maxCoordXLine(){
-        return(line.get(getNbInvaders()).getCordx());
-    }*/
-
     /* Getters && Setters */
 
+    /**
+     * Recupere la liste des invaders
+     * @return la liste des invaders
+     */
     public ArrayList<Invader> getLine() {
         return line;
     }
 
-    // Aligner en y les invaders
+    /**
+     * Change les coordonnées en y de la ligne
+     * @param y nouvelle coordonnée en y
+     */
     public void setCordY(float y){
         cordY = y;
         for(int i=0; i<getNbInvaders(); i++){
@@ -184,31 +181,12 @@ public class LineInvaders {
         }
     }
 
+    /**
+     * Obtenir la coordonnées en y
+     * @return la coordonnées en y
+     */
     public float getCordY() {
         return cordY;
     }
 
-    /*public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }*/
-
-    public boolean isToRight() {
-        return toRight;
-    }
-
-    public void setToRight(boolean toRight) {
-        this.toRight = toRight;
-    }
 }

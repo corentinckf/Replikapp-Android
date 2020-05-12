@@ -5,15 +5,13 @@ import android.content.Context;
 import com.ckfcsteam.papangue.gamelib.GameObject;
 import com.ckfcsteam.replikapp.R;
 
+/**
+ * Représente les vaisseaux
+ */
 public class Ship extends GameObject {
-    /* Attributs specifique aux vaisseaux */
-    // booléeen sur la désactivation de l'affichage
-    private boolean disabled;
 
     public Ship(Context context){
         super(R.drawable.ship1, context);
-        // Il est afficher par défaut
-        disabled = false;
     }
 
     /* Méthodes  specifique aux vaisseaux */
@@ -31,7 +29,12 @@ public class Ship extends GameObject {
         return(p);
     }
 
-    // Detecter si une position est sur le vaisseau
+    /**
+     * Detecte si une position est sur le vaisseau
+     * @param touchx position en axe x
+     * @param touchy position en axe y
+     * @return si la position est bien sur le vaisseau
+     */
     public Boolean checkIfClicked(float touchx, float touchy){
         return(touchx < this.getCordx() + this.getWidth() &&
                 touchx > this.getCordx() &&
@@ -39,18 +42,14 @@ public class Ship extends GameObject {
                 touchy > this.getCordy());
     }
 
-    // Renvoie la cordonne en X du milieu du vaisseau
+
+    /**
+     * Renvoie la cordonnée en X du milieu du vaisseau
+     *
+     * @return la cordonnée en X du milieu du vaisseau
+     */
     public float getMidCordX(){
         return (getCordx()+(getWidth()/2));
     }
 
-    /* Getters et setters */
-
-    public boolean isDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
-    }
 }

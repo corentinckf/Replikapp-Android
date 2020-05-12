@@ -7,6 +7,9 @@ import com.ckfcsteam.replikapp.R;
 
 import java.util.ArrayList;
 
+/**
+ * Représente tout les projectiles d'invaders en jeu
+ */
 public class ProjectilesInvaders extends ArrayList<Projectile> {
 
     // Dimensions de l'écran
@@ -19,10 +22,6 @@ public class ProjectilesInvaders extends ArrayList<Projectile> {
         screenHeight = height;
     }
 
-    /*public void addProjectile(Context context, float x, float y){
-        Projectile p = new Projectile(context, R.drawable.projectile, x, y);
-
-    }*/
 
     /**
      * resize redimensionne tout les projectiles ennemi
@@ -100,14 +99,5 @@ public class ProjectilesInvaders extends ArrayList<Projectile> {
         maj();
     }
 
-    /**
-     * Desactive/Active tous les projectiles
-     *
-     * @param b si b est vrai desactive, sinon les actives
-     */
-    public void setDisabled(boolean b){
-        for(Projectile p: this){
-            p.setDisabled(b);
-        }
-    }
+
 }

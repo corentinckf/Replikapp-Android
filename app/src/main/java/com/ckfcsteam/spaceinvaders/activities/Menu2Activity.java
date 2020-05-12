@@ -1,4 +1,4 @@
-package com.ckfcsteam.spaceinvaders;
+package com.ckfcsteam.spaceinvaders.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
-import com.ckfcsteam.replikapp.activities.SplashActivity;
 
 public class Menu2Activity extends AppCompatActivity {
 
@@ -28,7 +27,6 @@ public class Menu2Activity extends AppCompatActivity {
         // On passe le niveau (easy = 1)
         intent.putExtra("level", 1);
         startActivity(intent);
-        //finish();
     }
     /**
      * Lors du clic sur le bouton normal lancera l'activité du jeu en mode normal
@@ -40,7 +38,6 @@ public class Menu2Activity extends AppCompatActivity {
         // On passe le niveau (normal = 2)
         intent.putExtra("level", 2);
         startActivity(intent);
-        //finish();
     }
     /**
      * Lors du clic sur le bouton difficile lancera l'activité du jeu en mode difficile
@@ -52,7 +49,6 @@ public class Menu2Activity extends AppCompatActivity {
         // On passe le niveau (hard = 3)
         intent.putExtra("level", 3);
         startActivity(intent);
-        //finish();
     }
 
     /**
@@ -74,6 +70,5 @@ public class Menu2Activity extends AppCompatActivity {
     public void score(View view){
         Intent intent = new Intent(Menu2Activity.this, Score2Activity.class);
         startActivity(intent);
-        //finish();
     }
 }

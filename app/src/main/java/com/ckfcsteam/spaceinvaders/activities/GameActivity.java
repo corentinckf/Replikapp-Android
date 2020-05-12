@@ -1,4 +1,4 @@
-package com.ckfcsteam.spaceinvaders;
+package com.ckfcsteam.spaceinvaders.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,11 +13,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ckfcsteam.replikapp.R;
+import com.ckfcsteam.spaceinvaders.GameSurfaceView;
 
 
 public class GameActivity extends AppCompatActivity {
     // Attributs
-    private Game1 mySurface;
+    private GameSurfaceView mySurface;
     private TextView score;
     private ImageButton stateImg;
     private ImageButton playImg;
@@ -33,10 +34,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        //setContentView(new Game1(getApplicationContext()));
         // Layout du jeu Infinity invaders
         setContentView(R.layout.activity_game_ii);
+
         // Recupération du niveau choisie indiqué par l'activité précédente
         Intent intent = getIntent();
         // Niveau choisie par le joueur
@@ -44,10 +44,12 @@ public class GameActivity extends AppCompatActivity {
         if(intent != null ){
             level = intent.getIntExtra("level", 0);
         }
+
         // Ajout de notre surface view dans le layout
         LinearLayout surface = findViewById(R.id.mySurfaceInv);
-        mySurface = new Game1(getApplicationContext(), level, this);
+        mySurface = new GameSurfaceView(getApplicationContext(), level, this);
         surface.addView(mySurface);
+
         // Recuperation des éléments du layout
         score = findViewById(R.id.nScore);
         stateImg = findViewById(R.id.stateImg);
@@ -77,13 +79,9 @@ public class GameActivity extends AppCompatActivity {
         }else{
             songImg.setImageResource(android.R.drawable.ic_lock_silent_mode_off);
             songImg.setBackgroundColor(Color.GREEN);
-            //TODO jouer la musique
-
         }
 
     }
-
-
 
     /**
      * Mets le jeu en pause, ou le retire en fontion de sont état actuelle
@@ -98,8 +96,6 @@ public class GameActivity extends AppCompatActivity {
         }else{
             stateImg.setImageResource(android.R.drawable.ic_media_pause);
             playImg.setVisibility(View.INVISIBLE);
-            //playImg.setImageResource(0);
-            //playImg.setEnabled(false);
         }
     }
 
@@ -136,6 +132,9 @@ public class GameActivity extends AppCompatActivity {
         mediaPlayer.stop();
     }
 
+    /**
+     * Thread qui mets à jour le score toutes les 20ms
+     */
     private class MajScoreThread extends Thread{
         @Override
         public void run() {

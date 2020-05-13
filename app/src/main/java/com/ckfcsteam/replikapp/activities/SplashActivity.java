@@ -25,7 +25,6 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //Intent intent = new Intent(SplashActivity.this, GameActivity.class);
                 Intent intent = new Intent(SplashActivity.this, Menu2Activity.class);
                 //TODO Remplacer la ligne ci-dessus par la ligne commeté ci-dessous
                 //Intent intent = new Intent(SplashActivity.this, MainActivity.class);

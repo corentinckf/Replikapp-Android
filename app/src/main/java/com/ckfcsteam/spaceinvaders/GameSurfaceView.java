@@ -97,6 +97,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         projectilesInvaders = new ProjectilesInvaders(screenWidth, screenHeight);
 
          // Config du vaisseau
+        vaisseau.setCordx(((float) screenWidth/2) - ((float)vaisseau.getWidth()/2));
         vaisseau.setCordy(screenHeight - vaisseau.getHeight()-10);
         vaisseau.resize(screenWidth /5, screenWidth /4);
 

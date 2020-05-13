@@ -56,5 +56,25 @@
     <string name="textBuy">BUY GAMES</string>
     <string name="textGame">GAME</string>
 
+    <!-- Infinity Invaders Game -->
+    <string name="scoreII">Score : </string>
+    <string name="pause">Pause</string>
+    <string name="background">background</string>
+    <string name="title">title</string>
+    <string name="easy">Easy</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="score">score</string>
+    <string name="home">home</string>
+    <string name="play">play</string>
+    <string name="highScore">High Score : </string>
+    <string name="mode">mode</string>
+    <string name="mode2">"Mode : "</string>
+    <string name="nothing">- - -</string>
+    <string name="trophy">trophy</string>
+    <string name="song">song</string>
+    <string name="toastInvaders1">Achieve a score of 10 in Easy Mode</string>
+    <string name="toastInvaders2">Achieve a score of 20 in Normal Mode</string>
+
 
 </resources>

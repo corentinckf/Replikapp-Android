@@ -15,13 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/rLTop"
+            <ImageView
+                android:id="@+id/coverProfil"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:scaleType="fitXY"
                 android:background="@color/grey">
 
-            </RelativeLayout>
+            </ImageView>
 
             <LinearLayout
                 android:id="@+id/lLAvatarImg"
@@ -102,10 +103,27 @@
                 android:gravity="center">
 
                 <Button
-                    android:id="@+id/logoutBtn"
+                    android:id="@+id/editProfilBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/resetPassBtn"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/editProfilBtn"
+                    android:fontFamily="@font/lemon"
+                    android:backgroundTint="@color/lightBlue"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2" />
+
+
+                <Button
+                    android:id="@+id/logoutBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/editProfilBtn"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:layout_marginTop="10dp"

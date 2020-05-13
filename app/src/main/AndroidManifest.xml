@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ckfcsteam.replikapp">
 
+    <!-- Permission d'utilisation demandé à l'utilisateur -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
     <!-- Paramètres de l'application -->
     <application
         android:allowBackup="true"

@@ -10,9 +10,13 @@ import android.widget.TextView;
 
 import com.ckfcsteam.replikapp.R;
 
+/**
+ * Activité de l'écran game over d'infinity invaders
+ */
 public class Over2Activity extends AppCompatActivity {
 
-
+    // Nom du fichier de sauvegarde sharedPreferences
+    private final String NAME = "infinity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,7 @@ public class Over2Activity extends AppCompatActivity {
 
         // Charge du fichier de sauvegarde SharedPreferences
         String highScoreKey = "high"+mode;
-        SharedPreferences sharedPreferences = getSharedPreferences("infinity", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(NAME, MODE_PRIVATE);
 
         // Récupération du meilleur score et son affichage, si il existe
         int highScore = sharedPreferences.getInt(highScoreKey, -1);

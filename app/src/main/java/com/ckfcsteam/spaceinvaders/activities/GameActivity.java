@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ckfcsteam.replikapp.R;
 import com.ckfcsteam.spaceinvaders.GameSurfaceView;
 
-
+/**
+ * Activité de l'écran de jeu infinity invaders
+ */
 public class GameActivity extends AppCompatActivity {
     // Attributs
     private GameSurfaceView mySurface;

@@ -73,6 +73,8 @@
     <string name="mode">mode</string>
     <string name="mode2">"Mode : "</string>
     <string name="nothing">- - -</string>
-    <string name="trophy">trophy</string>
-    <string name="song">song</string>
+    <string name="trophy">trophée</string>
+    <string name="song">mousique</string>
+    <string name="toastInvaders1">Atteindre un score de 10 sur le mode Facile</string>
+    <string name="toastInvaders2">Atteindre un score de 20 sur le mode Normal</string>
 </resources>

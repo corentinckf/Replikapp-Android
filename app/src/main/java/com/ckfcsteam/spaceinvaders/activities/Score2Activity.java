@@ -17,10 +17,16 @@ import com.ckfcsteam.spaceinvaders.gamelib.HighScore;
 
 import java.util.ArrayList;
 
+/**
+ * Activité de l'écran présentant les meilleurs score de chaque mode
+ */
 public class Score2Activity extends AppCompatActivity {
 
     private ListView listView;
     private ArrayList<HighScore> list;
+
+    // Nom du fichier de sauvegarde sharedPreferences
+    private final String NAME = "infinity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class Score2Activity extends AppCompatActivity {
         for(int mode=1; mode<=3;mode++){
             // Chargement du fichier de sauvegarde SharedPreferences
             String highScoreKey = "high"+mode;
-            SharedPreferences sharedPreferences = getSharedPreferences("infinity", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(NAME, MODE_PRIVATE);
 
             // Récupération du meilleur score
             int highScore = sharedPreferences.getInt(highScoreKey, -1);
@@ -59,7 +65,7 @@ public class Score2Activity extends AppCompatActivity {
                     modeStr = getResources().getString(R.string.normal);
                     break;
                 case 3:
-                    modeStr = getResources().getString(R.string.easy);
+                    modeStr = getResources().getString(R.string.hard);
                     break;
                 default:
                     modeStr = getResources().getString(R.string.nothing);

@@ -2,8 +2,10 @@ package com.ckfcsteam.spaceinvaders.gamelib;
 
 import android.content.Context;
 
-import com.ckfcsteam.papangue.gamelib.GameObject;
+
 import com.ckfcsteam.replikapp.R;
+import com.ckfcsteam.replikapp.library.gamelib.GameObject;
+import com.ckfcsteam.replikapp.library.gamelib.Sprite;
 
 /**
  * Represente un invader dans le jeu
@@ -11,7 +13,7 @@ import com.ckfcsteam.replikapp.R;
 public class Invader extends GameObject {
 
     public Invader(Context context){
-        super(R.drawable.invader, context);
+        super(new Sprite(R.drawable.invader, context), context);
     }
 
     /**

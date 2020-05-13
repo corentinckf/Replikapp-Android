@@ -1,9 +1,7 @@
 package com.ckfcsteam.spaceinvaders.gamelib;
 
-import android.content.Context;
 import android.graphics.Canvas;
 
-import com.ckfcsteam.replikapp.R;
 
 import java.util.ArrayList;
 

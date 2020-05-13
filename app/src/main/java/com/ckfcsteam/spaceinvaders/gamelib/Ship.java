@@ -2,8 +2,9 @@ package com.ckfcsteam.spaceinvaders.gamelib;
 
 import android.content.Context;
 
-import com.ckfcsteam.papangue.gamelib.GameObject;
 import com.ckfcsteam.replikapp.R;
+import com.ckfcsteam.replikapp.library.gamelib.GameObject;
+import com.ckfcsteam.replikapp.library.gamelib.Sprite;
 
 /**
  * Représente les vaisseaux
@@ -11,7 +12,7 @@ import com.ckfcsteam.replikapp.R;
 public class Ship extends GameObject {
 
     public Ship(Context context){
-        super(R.drawable.ship1, context);
+        super(new Sprite(R.drawable.ship1, context), context);
     }
 
     /* Méthodes  specifique aux vaisseaux */

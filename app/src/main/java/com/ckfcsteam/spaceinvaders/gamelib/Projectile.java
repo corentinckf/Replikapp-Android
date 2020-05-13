@@ -2,8 +2,9 @@ package com.ckfcsteam.spaceinvaders.gamelib;
 
 import android.content.Context;
 
-import com.ckfcsteam.papangue.gamelib.GameObject;
-import com.ckfcsteam.replikapp.R;
+import com.ckfcsteam.replikapp.library.gamelib.GameObject;
+import com.ckfcsteam.replikapp.library.gamelib.Sprite;
+
 
 /**
  * Représente un projectile
@@ -16,7 +17,7 @@ public class Projectile extends GameObject {
 
     /*Constructeurs*/
     public Projectile(Context context, int renderRessource, float x, float y){
-        super(renderRessource, context);
+        super(new Sprite(renderRessource, context), context);
         setCord(x, y);
         // Il est affiché par défaut
         disabled = false;

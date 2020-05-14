@@ -75,6 +75,7 @@
     <string name="song">song</string>
     <string name="toastInvaders1">Achieve a score of 10 in Easy Mode</string>
     <string name="toastInvaders2">Achieve a score of 20 in Normal Mode</string>
+    <string name="newhs">New High Score</string>
 
 
 </resources>

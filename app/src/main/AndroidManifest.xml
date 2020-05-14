@@ -43,7 +43,7 @@
             android:configChanges="orientation|screenSize" />
         <activity android:name=".activities.SuperBouleActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"></activity>
+            tools:ignore="LockedOrientationActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name="com.ckfcsteam.spaceinvaders.activities.GameActivity" />
     </application>

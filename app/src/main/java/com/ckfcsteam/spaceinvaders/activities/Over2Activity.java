@@ -41,20 +41,21 @@ public class Over2Activity extends AppCompatActivity {
 
         // Récupération du meilleur score et son affichage, si il existe
         int highScore = sharedPreferences.getInt(highScoreKey, -1);
-        if(highScore != -1){
-            TextView hScoreView = findViewById(R.id.highScore);
-            hScoreView.setText(highScore+"");
-        }else{
-            TextView hScoreView = findViewById(R.id.highScore);
-            hScoreView.setText("- - -");
+        if(score > highScore){
+            highScore = score;
+            // Sauvegarde du nouveau meilleur score
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(highScoreKey, highScore);
+            editor.apply();
+            // Affichage du nouveau meilleur score
+            TextView hView = findViewById(R.id.highView);
+            hView.setText(getResources().getString(R.string.newhs));
         }
 
-        // Sauvegarde du meilleurs score, si il a changé
-        if(score > highScore){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(highScoreKey, score);
-            editor.apply();
-        }
+        // Affichage du high score
+        TextView hScoreView = findViewById(R.id.highScore);
+        hScoreView.setText(highScore+"");
+
 
     }
 

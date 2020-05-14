@@ -77,4 +77,5 @@
     <string name="song">mousique</string>
     <string name="toastInvaders1">Atteindre un score de 10 sur le mode Facile</string>
     <string name="toastInvaders2">Atteindre un score de 20 sur le mode Normal</string>
+    <string name="newhs">New High Score</string>
 </resources>

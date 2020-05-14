@@ -10,18 +10,10 @@ import com.ckfcsteam.replikapp.library.gamelib.Sprite;
  * Représente un projectile
  */
 public class Projectile extends GameObject {
-    /* Attributs */
-
-    // booléeen sur la désactivation
-    private boolean disabled;
-
     /*Constructeurs*/
     public Projectile(Context context, int renderRessource, float x, float y){
         super(new Sprite(renderRessource, context), context);
         setCord(x, y);
-        // Il est affiché par défaut
-        disabled = false;
-
     }
 
 

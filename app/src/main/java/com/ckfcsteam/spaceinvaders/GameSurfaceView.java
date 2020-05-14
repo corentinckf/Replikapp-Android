@@ -126,6 +126,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             } catch (InterruptedException e) {}
         }
         System.out.println("ReallyFinish00000");
+        // Game over si on sort de l'écran
+        gameOver();
     }
 
     /* Méthodes du jeu */
@@ -166,17 +168,24 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             }
 
-            // Detection Game Over et redirection vers l'activité game over
+            // Detection Game Over
             if(invaders.firstLineCordY() > screenHeight-vaisseau.getHeight() || projectilesInvaders.hitShip(vaisseau)){
-                setDisabled(true);
-                System.out.println("It's lose man");
-                Intent intent = new Intent(getContext(), Over2Activity.class);
-                intent.putExtra("score", getScore());
-                intent.putExtra("mode", getLevel());
-                activity.startActivity(intent);
-                activity.finish();
+                gameOver();
             }
         }
+    }
+
+    /**
+     * Désactive les animations et renvoie vers l'écran du game over
+     */
+    private void gameOver(){
+        setDisabled(true);
+        System.out.println("It's lose man");
+        Intent intent = new Intent(getContext(), Over2Activity.class);
+        intent.putExtra("score", getScore());
+        intent.putExtra("mode", getLevel());
+        activity.startActivity(intent);
+        activity.finish();
     }
 
     @Override

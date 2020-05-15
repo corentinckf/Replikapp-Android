@@ -170,7 +170,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             // Detection Game Over
             if(invaders.firstLineCordY() > screenHeight-vaisseau.getHeight() || projectilesInvaders.hitShip(vaisseau)){
-                gameOver();
+                activity.finish();
             }
         }
     }

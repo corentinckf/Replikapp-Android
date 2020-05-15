@@ -245,7 +245,7 @@ public class LoginActivity extends AppCompatActivity {
                                 hashMap.put("phone", phoneN);
                                 hashMap.put("image", "");
                                 hashMap.put("cover", "");
-                                hashMap.put("coin", "");
+                                hashMap.put("coin", "0");
 
                                 // Instance de la base de données firebase
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();

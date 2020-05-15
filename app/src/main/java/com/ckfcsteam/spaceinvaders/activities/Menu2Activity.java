@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
+import com.ckfcsteam.replikapp.activities.LoginActivity;
 
 /**
  * Activité du menu de infinity invaders
@@ -94,7 +95,7 @@ public class Menu2Activity extends AppCompatActivity {
      * @param view le bouton image
      */
     public void home(View view){
-        Intent intent = new Intent(Menu2Activity.this, MainActivity.class);
+        Intent intent = new Intent(Menu2Activity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

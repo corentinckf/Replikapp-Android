@@ -46,19 +46,6 @@
             android:name=".activities.LoginActivity"
             android:configChanges="orientation|screenSize" />
 
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:configChanges="orientation|screenSize"
-            />
-
-        <activity
-            android:name=".activities.ResetPasswordActivity"
-            android:configChanges="orientation|screenSize" />
-
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|screenSize" />
-
 
 
         <!-- Pubs -->
@@ -66,9 +53,9 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6113200648741812~6124065544" />
 
-        <activity
+        <!--activity
             android:name=".activities.LoginActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize" /-->
         <activity
             android:name=".activities.SuperBouleMenuActivity"
             android:configChanges="orientation|screenSize" />

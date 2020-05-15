@@ -116,7 +116,7 @@
                             <ImageView
                                 android:layout_width="125dp"
                                 android:layout_height="125dp"
-                                android:src="@drawable/game_logo_ii" />
+                                android:src="@drawable/game_logo_sp" />
 
 
                         </LinearLayout>

@@ -8,4 +8,9 @@
     <color name='white'>#ffffff</color>
     <color name="black">#000000</color>
     <color name="grey">#323232</color>
+
+    <!-- Night Mode -->
+    <color name="greyNM">#645F5F</color>
+    <color name="blackNM">#312C2C</color>
+    <color name="lightGreyNM">#938E8E</color>
 </resources>

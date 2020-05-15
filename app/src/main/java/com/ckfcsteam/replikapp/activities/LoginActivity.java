@@ -38,6 +38,7 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity {
 
     /* DEBUT : Déclaration de variables */
+    //Constante pour le bouton de connexion par google
     private static final int RC_SIGN_IN = 100;
     GoogleSignInClient mGoogleSignInClient;
 
@@ -69,10 +70,10 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         logToReg = findViewById(R.id.logToReg);
         signInGoogleBtn = findViewById(R.id.signInGoogle);
+        /* FIN : Récupération des ID XML */
 
 
-
-        // Configure Google Sign In
+        // Configuration du bouton Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -184,6 +185,12 @@ public class LoginActivity extends AppCompatActivity {
     }
     /* FIN Méthode onCreate */
 
+    /**
+     * méthode permettant de vérifier le type de connexion et de récupération des données utilisateurs pour l'insérer dans la base de données de Firebase.
+     * @param requestCode Code de requête qui permettra de vérifier le type de connexion
+     * @param resultCode Le code résultat
+     * @param data Données de l'utilisateur connecté
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -203,17 +210,24 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * méthode permettant de créer les données de l'utilateur dans la base de données firebase.
+     * @param idToken id de l'utilisateur
+     */
     private void firebaseAuthWithGoogle(String idToken) {
+        final String username = getString(R.string.username);
+        final String phoneN = getString(R.string.phoneNum);
+
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Connexion réussie, Mise à jour des infos utilisateur connecté et recupération dans la variable user
                             FirebaseUser user = auth.getCurrentUser();
 
-                            // Si l'utilisateur se connecte pour la première fois avec google
+                            // Si l'utilisateur se connecte pour la première fois
                             if(task.getResult().getAdditionalUserInfo().isNewUser()){
 
                                 // Récupération du mail et de l'id utilisateur
@@ -226,11 +240,12 @@ public class LoginActivity extends AppCompatActivity {
                                 //Transfert de l'information en hasmap
                                 hashMap.put("email",email);
                                 hashMap.put("uid", uid);
-                                // Les informations suivantes seront rajouter grâce à l'édition de profil
-                                hashMap.put("name", "");
-                                hashMap.put("phone", "");
+                                // Les informations suivantes seront rajoutées grâce à l'édition de profil, name et phone ont des valeurs par défaut.
+                                hashMap.put("name", username);
+                                hashMap.put("phone", phoneN);
                                 hashMap.put("image", "");
                                 hashMap.put("cover", "");
+                                hashMap.put("coin", "");
 
                                 // Instance de la base de données firebase
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -238,30 +253,30 @@ public class LoginActivity extends AppCompatActivity {
                                 //Chemin de stockage des données utilisateur dans "Users"
                                 DatabaseReference reference = database.getReference("Users");
 
-                                // Ajot des données dans la base de données en Hashmap
+                                // Ajout des données dans la base de données en Hashmap
                                 reference.child(uid).setValue(hashMap);
                             }
 
 
-
+                            // Redirection vers l'activité principale
                             Toast.makeText(LoginActivity.this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
-                            //updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
+                            // Si cela ne fonctionne pas, affiche un message d'erreur
                             Toast.makeText(LoginActivity.this, R.string.googleErr, Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            textErr.setText(R.string.error);
                         }
 
-                        // ...
                     }
+                    // Si échec lors de l'appui sur le bouton
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 //Affichage d'erreur
                 Toast.makeText(LoginActivity.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show();
+                textErr.setText(R.string.error);
             }
         });
     }

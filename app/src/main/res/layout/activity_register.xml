@@ -21,6 +21,7 @@
 
     -->
 
+    <!-- TextView de reconnaissance de vue -->
     <TextView
         android:id="@+id/textRegister"
         android:layout_width="wrap_content"
@@ -37,6 +38,8 @@
         android:shadowDx="-3"
         android:shadowDy="-3"
         android:shadowRadius="3"/>
+
+    <!-- TextView d'affichage d'erreurs -->
     <TextView
         android:id="@+id/textRErr"
         android:layout_width="wrap_content"
@@ -50,6 +53,7 @@
         android:textColor="@color/colorError"
         android:textSize="10dp"/>
 
+    <!-- LinearLayout comportant les EditText mail et mot de passe -->
     <LinearLayout
         android:id="@+id/llReg"
         android:layout_width="wrap_content"
@@ -105,6 +109,7 @@
 
     </LinearLayout>
 
+    <!-- LinearLayout comportant un TextView de redirection vers l'activité de connexion et un bouton d'inscription -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,10 +24,14 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.card.MaterialCardView;
 
 public class StoreFragment extends Fragment implements RewardedVideoAdListener{
+
+    /* DEBUT : Initialisation des variables */
     private MaterialCardView freeCoin;
     private RewardedVideoAd mRewardedVideoAd;
     private View rootView;
     private MainActivity mainActivity;
+    /* FIN : Initialisation des variables */
+
     public StoreFragment(){//Constructeur vide necéssaire
     }
 
@@ -51,9 +57,12 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
                 }
             }
         });
+
+
         return rootView;
     }
 
+    /* Methodes vide necessaires à l'ajout de pubs google*/
     @Override
     public void onRewardedVideoAdLoaded() {}
 
@@ -63,10 +72,12 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
     @Override
     public void onRewardedVideoStarted() {}
 
+    // Si la pub est lancée ET terminée, l'utilisateur reçoit une récompense
     @Override
     public void onRewardedVideoAdClosed() {
         loadRewardedVideoAd();
     }
+
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
@@ -89,6 +100,9 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
         loadRewardedVideoAd();
     }
 
+    /**
+     * Lancement de la pub s'il appuie sur le bouton associé
+     */
     private void loadRewardedVideoAd() {
         mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
                 new AdRequest.Builder().build());

@@ -87,17 +87,23 @@
 
     <!-- fragment Shop -->
     <string name="store">Market</string>
-    <string name="textBuyCoins">BUY COINS</string>
+    <string name="textBuyCoins">GET COINS</string>
     <string name="buy_coin_amount">150 coins</string>
     <string name="textBuy">BUY GAMES</string>
     <string name="textGame">GAME</string>
 
     <!-- Edit Profil Screen -->
-    <string name="textCreateProfil">Création de profil</string>
-    <string name="maleCB"> Male </string>
-    <string name="femCB"> Female </string>
     <string name="username"> Username </string>
-    <string name="location"> Location </string>
     <string name="phoneNum"> Phone Number </string>
+
+    <!-- ToolBar Menu -->
+    <string name="textNightMode">Night mode</string>
+
+    <!-- Alert Dialog-->
+    <string name="logOutADTitle"> WARNING</string>
+    <string name="logOutADMessage"> Are you sure you want to disconnect ?</string>
+    <string name="logOutADYes"> YES</string>
+    <string name="logOutADNo"> NO</string>
+
 
 </resources>

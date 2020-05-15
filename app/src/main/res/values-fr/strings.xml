@@ -4,7 +4,7 @@
 
     <!-- Global-->
     <string name="error">Erreur !</string>
-    <string name="success">Success !</string>
+    <string name="success">Succès !</string>
 
     <!-- Splash Screen-->
     <string name="Replikapp">ReplikApp</string>
@@ -93,17 +93,23 @@
 
     <!-- fragment Shop -->
     <string name="store">Boutique</string>
-    <string name="textBuyCoins">ACHETER COINS</string>
+    <string name="textBuyCoins">AVOIR COINS</string>
     <string name="buy_coin_amount">150 coins</string>
     <string name="textBuy">ACHETER JEUX</string>
     <string name="textGame">GAME</string>
 
     <!-- Edit Profil Screen-->
-    <string name="textCreateProfil">Création de profil</string>
-    <string name="maleCB"> Masculin </string>
-    <string name="femCB"> Féminin </string>
     <string name="username"> Pseudonyme </string>
-    <string name="location"> Pays </string>
     <string name="phoneNum"> N° de téléphone </string>
+
+    <!-- Toolbar Menu -->
+    <string name="textNightMode">Night mode</string>
+
+    <!-- Alert Dialog -->
+    <string name="logOutADTitle"> ATTENTION</string>
+    <string name="logOutADMessage"> Vous êtes sûr de vouloir vous déconnecter ?</string>
+    <string name="logOutADYes"> OUI</string>
+    <string name="logOutADNo"> NON</string>
+
 
 </resources>

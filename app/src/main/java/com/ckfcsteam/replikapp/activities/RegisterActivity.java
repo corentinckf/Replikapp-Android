@@ -51,7 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
         regToLog = findViewById(R.id.regToLog);
         regBtn = findViewById(R.id.regBtn);
         auth = FirebaseAuth.getInstance();
-
         /* FIN : Récupération des ID XML */
 
 
@@ -79,6 +78,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = signUpMail.getText().toString();
                 String pass = signUpPass.getText().toString();
 
+                final String username = getString(R.string.username);
+                final String phoneN = getString(R.string.phoneNum);
 
                 /* Conditions pour mails et mdp corrects */
 
@@ -102,11 +103,14 @@ public class RegisterActivity extends AppCompatActivity {
                 if(pass.length() < 8){
                     Toast.makeText(getApplicationContext(),R.string.short_pw, Toast.LENGTH_LONG).show();
                     textErr.setText(R.string.short_pw);
+
+                    // Sinon, création du compte
                 }else{
                     auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
+                            // Si la tâche est réussie
                             if(!task.isSuccessful()){
                                 Toast.makeText(RegisterActivity.this, R.string.error, Toast.LENGTH_LONG).show();
                                 textErr.setText(R.string.reg_fail);
@@ -125,10 +129,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 hashMap.put("email",email);
                                 hashMap.put("uid", uid);
                                 // Les informations suivantes seront rajouter grâce à l'édition de profil
-                                hashMap.put("name", "");
-                                hashMap.put("phone", "");
+                                hashMap.put("name", username);
+                                hashMap.put("phone", phoneN);
                                 hashMap.put("image", "");
                                 hashMap.put("cover", "");
+                                hashMap.put("coin", "");
 
                                 // Instance de la base de données firebase
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -136,11 +141,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 //Chemin de stockage des données utilisateur dans "Users"
                                 DatabaseReference reference = database.getReference("Users");
 
-                                // Ajot des données dans la base de données en Hashmap
+                                // Ajout des données dans la base de données en Hashmap
                                 reference.child(uid).setValue(hashMap);
 
 
-
+                                //Redirection vers l'activité de connexion
                                 startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
                                 finish();
                             }

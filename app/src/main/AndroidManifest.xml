@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-
     <!-- Paramètres de l'application -->
     <application
         android:allowBackup="true"
@@ -38,7 +37,8 @@
 
         <activity
             android:name=".activities.RegisterActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            />
 
         <activity
             android:name=".activities.ResetPasswordActivity"
@@ -47,6 +47,8 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize" />
+
+
 
         <!-- Pubs -->
         <meta-data

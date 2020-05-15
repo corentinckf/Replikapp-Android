@@ -61,12 +61,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = textMailR.getText().toString().trim();
 
+                // si vide
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplication(), R.string.mail_empty, Toast.LENGTH_SHORT).show();
                     textErr.setText(R.string.mail_empty);
                     textMailR.setError("Error");
 
                 }
+                // sinon on envoie un mail à l'utilisateur
                 else{
                     auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

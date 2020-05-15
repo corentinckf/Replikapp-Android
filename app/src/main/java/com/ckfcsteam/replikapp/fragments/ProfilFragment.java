@@ -1,5 +1,6 @@
 package com.ckfcsteam.replikapp.fragments;
 
+//Importation des bibliothèques
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -7,6 +8,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,16 +65,17 @@ public class ProfilFragment extends Fragment {
     private DatabaseReference databaseReference;
     private StorageReference storageReference;
 
-    String storagePath = "User_Profile_Cover_Imgs/";
+    String storagePath = "User_Profile_Cover/";
 
     //Dialogue pour l'edition des informations
     private ProgressDialog pd;
 
     private ImageView avatarProfil, coverProfil;
-    private TextView nameProfil, mailProfil, phoneProfil;
+    public TextView nameProfil, mailProfil, phoneProfil;
     private Button logoutBtn, editProfilBtn;
 
-    //Constantes permissions
+
+    //Constantes permissions camera et le stockage
     private static final int CAMERA_REQUEST_CODE = 100;
     private static final int STORAGE_REQUEST_CODE = 200;
     private static final int IMAGE_PICK_GALLERY_REQUEST_CODE = 300;
@@ -91,7 +95,7 @@ public class ProfilFragment extends Fragment {
     /* FIN : Déclaration de variables */
 
 
-    public ProfilFragment() {}
+    public ProfilFragment() { }
 
 
     @Override
@@ -99,6 +103,7 @@ public class ProfilFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
 
 
         // Initialisation de Firebase
@@ -110,7 +115,7 @@ public class ProfilFragment extends Fragment {
 
         //Initialisation des listes des permissions
         cameraPermissions = new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        cameraPermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        storagePermissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         //récupération des ID XML
         avatarProfil = view.findViewById(R.id.avatarProfil);
@@ -123,7 +128,9 @@ public class ProfilFragment extends Fragment {
         pd = new ProgressDialog(getActivity());
 
 
-        /* Nous récupérons les informations de l'utilisateur connecté grâce à l'uil ou le mail (Ici ce sera l'uid).
+
+
+        /* Nous récupérons les informations de l'utilisateur connecté grâce à l'uid ou le mail (Ici ce sera l'uid).
         * Grâce à orderByChild de Query, nous regardons si la clé uid correspond à l'uid de l'utilisateur connecté
         * L'accès aux données sera donc possible et la récupération aussi grâce à getChildren */
 
@@ -132,7 +139,7 @@ public class ProfilFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                // On vérifie les données obtenues
+                //données obtenues
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
 
                     // On récupère les données
@@ -156,7 +163,7 @@ public class ProfilFragment extends Fragment {
                         Picasso.get().load(image).into(avatarProfil);
                     }catch (Exception e){
                         //Si il y a une exception quelconque lors de la récupération de l'image.
-                        Picasso.get().load(R.drawable.coin_icon).into(avatarProfil);
+
                     }
 
                     try {
@@ -186,13 +193,23 @@ public class ProfilFragment extends Fragment {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseAuth.signOut();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.logOutADTitle).setMessage(R.string.logOutADMessage).setPositiveButton(R.string.logOutADYes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        signOut();
+                    }
+                }).setNegativeButton(R.string.logOutADNo, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.create().show();
 
             }
         });
+
 
 
         return view;
@@ -264,12 +281,12 @@ public class ProfilFragment extends Fragment {
                 if(which == 0){
                     //Edit Profil picture
                     pd.setMessage(updateProfilPic);
-                    profileOrCoverImg = "profilePic";   // Choix de l'image de profil
+                    profileOrCoverImg = "image";   // Choix de l'image de profil
                     showImagePicDialog();
                 }else if(which == 1){
                     //Edit Cover picture
                     pd.setMessage(updateCover);
-                    profileOrCoverImg = "coverPic";     // Choix de l'image de couverture
+                    profileOrCoverImg = "cover";     // Choix de l'image de couverture
                     showImagePicDialog();
                 }else if(which == 2){
                     //Edit Name
@@ -305,6 +322,8 @@ public class ProfilFragment extends Fragment {
         linearLayout.setPadding(10,10,10,10);
         // Ajout d'un EditText
         final EditText editText = new EditText(getActivity());
+
+        // ajout d'un texte selon le type de modification
         if(key == "name"){
             editText.setHint(getString(R.string.nameUpdateET));
         }else{
@@ -321,6 +340,7 @@ public class ProfilFragment extends Fragment {
                 //récupération des données de l'editText
                 String value = editText.getText().toString().trim();
 
+                // Si champ vide
                 if(!TextUtils.isEmpty(value)){
                     pd.show();
                     HashMap<String, Object> result = new HashMap<>();
@@ -485,9 +505,9 @@ public class ProfilFragment extends Fragment {
         //affichage de la progression
         pd.show();
 
-        // String du chemin de d'accès à l'image, e.g. Users_Profile_Cover_Imgs/profilePic_uid.extension
+        // String du chemin de d'accès à l'image, e.g. Users_Profile_Cover/profilePic_uid.extension
 
-        String filePathAndName = storagePath+ ""+ profileOrCoverImg + "_" + user.getUid();
+        String filePathAndName = storagePath+""+profileOrCoverImg+"_"+user.getUid();
 
         StorageReference storageReference2 = storageReference.child(filePathAndName);
         storageReference2.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -570,4 +590,28 @@ public class ProfilFragment extends Fragment {
 
 
     }
+
+    /**
+     * Méthode permettant la deconnexion de l'utilisateure et de la redirection vers l'activité de connexion
+     */
+    public void signOut(){
+        firebaseAuth.signOut();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    public void switchColorNMOn(){
+        mailProfil.setTextColor(Color.rgb(255,255,255));
+        phoneProfil.setTextColor(Color.rgb(255,255,255));
+
+    }
+
+    public void switchColorNMOff(){
+        mailProfil.setTextColor(Color.rgb(0,0,0));
+        phoneProfil.setTextColor(Color.rgb(0,0,0));
+
+    }
+
+
 }

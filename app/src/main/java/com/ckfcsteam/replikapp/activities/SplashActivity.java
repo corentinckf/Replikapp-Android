@@ -26,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        // Lance une activité dans un temps imparti (3 secondes) pour renvoyer vers l'activité de connexion
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

@@ -20,7 +20,10 @@
 
 
         <!-- Activité au lancement de l'app -->
-        <activity android:name="com.ckfcsteam.spaceinvaders.activities.Score2Activity"></activity>
+        <activity android:name="com.ckfcsteam.spaceinvaders.activities.Score2Activity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:configChanges="orientation|screenSize" />
         <activity android:name="com.ckfcsteam.spaceinvaders.activities.Over2Activity" />
         <activity android:name="com.ckfcsteam.spaceinvaders.activities.Menu2Activity" />
         <activity android:name=".activities.ResetPasswordActivity" /> <!-- activity android:name=".activities.ResetPasswordActivity" / -->
@@ -58,12 +61,17 @@
             android:configChanges="orientation|screenSize" /-->
         <activity
             android:name=".activities.SuperBouleMenuActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/noTheme"/>
+
         <activity android:name=".activities.SuperBouleActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name="com.ckfcsteam.spaceinvaders.activities.GameActivity" />
+        <activity android:name="com.ckfcsteam.spaceinvaders.activities.GameActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:configChanges="orientation|screenSize"/>
     </application>
 
 </manifest>

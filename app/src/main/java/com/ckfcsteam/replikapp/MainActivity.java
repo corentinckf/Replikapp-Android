@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
 
-    private int coin_amount;
+    public int coin_amount;
     private TextView coind_amount_ind, pseudoText;
     private ImageView logOutIv;
 
@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity{
     private Boolean bottomBar_item2_selectionned = false;
     private Boolean bottomBar_item3_selectionned = false;
 
+    public MainActivity(){
+
+    }
     @Override
     public void onBackPressed() {
         //Désactiver le boutton retour d'android
@@ -101,6 +104,8 @@ public class MainActivity extends AppCompatActivity{
 
 
 
+
+
         /* Liaison des variables au xml */
         bottomBar_item1 = findViewById(R.id.bottomBar_item1);
         bottomBar_item2 = findViewById(R.id.bottomBar_item2);
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity{
         bottomBar_text2 = findViewById(R.id.bottomBar_text2);
         bottomBar_text3 = findViewById(R.id.bottomBar_text3);
 
+        updateBottomBarItemsUI(bottomBar_item1_selectionned,bottomBar_item2_selectionned,bottomBar_item3_selectionned);
 
         coind_amount_ind = findViewById(R.id.coin_text);
         pseudoText = findViewById(R.id.pseudo_text);
@@ -310,8 +316,9 @@ public class MainActivity extends AppCompatActivity{
      * @param add valeur à ajouter au total des jetons de l'utilisateur
      */
     public void incCoinAmount(int add){
+
         coin_amount += add;
-        String coin_res = getString(coin_amount);
+        String coin_res = Integer.toString(coin_amount);
         updateCoinBD(coin_res);
         displayCoinAmount();
 
@@ -354,9 +361,8 @@ public class MainActivity extends AppCompatActivity{
 
                     // On récupère les données
                     String coin = ""+ds.child("coin").getValue();
+                    coin_amount = Integer.parseInt(coin);
                     coind_amount_ind.setText( "x" + coin);
-
-
                 }
             }
 
@@ -371,22 +377,21 @@ public class MainActivity extends AppCompatActivity{
      * Méthode d'affichage du pseudo utilisateur
      */
     private void displayPseudo(){
-        Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
-        query.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
+                query.addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                // On vérifie les données obtenues
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                        // On vérifie les données obtenues
+                        for(DataSnapshot ds : dataSnapshot.getChildren()){
 
-                    // On récupère les données
-                    String name = ""+ds.child("name").getValue();
-                    pseudoText.setText(name);
+                            // On récupère les données
+                            String name = ""+ds.child("name").getValue();
+                            pseudoText.setText(name);
 
-
-                }
-            }
+                        }
+                    }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

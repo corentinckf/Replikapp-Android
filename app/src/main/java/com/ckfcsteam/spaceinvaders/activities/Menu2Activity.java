@@ -95,7 +95,7 @@ public class Menu2Activity extends AppCompatActivity {
      * @param view le bouton image
      */
     public void home(View view){
-        Intent intent = new Intent(Menu2Activity.this, LoginActivity.class);
+        Intent intent = new Intent(Menu2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

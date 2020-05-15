@@ -2,6 +2,7 @@ package com.ckfcsteam.replikapp.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.ckfcsteam.replikapp.MainActivity;
 import com.ckfcsteam.replikapp.R;
 import com.ckfcsteam.replikapp.fragments.LevelSelection;
 import com.ckfcsteam.replikapp.fragments.QuestPanel;
@@ -160,6 +162,8 @@ public class SuperBouleMenuActivity extends AppCompatActivity {
                         editor.putInt("block_destroyed", block_numbers);
                         editor.commit();
                         /*Et on kill l'activité actuelle*/
+                        Intent intent = new Intent(SuperBouleMenuActivity.this, MainActivity.class);
+                        startActivity(intent);
                         finish();
                     }
 

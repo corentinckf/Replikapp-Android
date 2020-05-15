@@ -51,7 +51,7 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
         freeCoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mainActivity.getBaseContext(), R.string.error, Toast.LENGTH_LONG).show();
+
                 if(mRewardedVideoAd.isLoaded()){
                     mRewardedVideoAd.show();
                 }

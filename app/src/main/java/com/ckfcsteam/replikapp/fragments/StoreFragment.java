@@ -23,6 +23,8 @@ import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.card.MaterialCardView;
 
+import org.w3c.dom.Text;
+
 public class StoreFragment extends Fragment implements RewardedVideoAdListener{
 
     /* DEBUT : Initialisation des variables */
@@ -30,6 +32,9 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
     private RewardedVideoAd mRewardedVideoAd;
     private View rootView;
     private MainActivity mainActivity;
+    private TextView store_earn_coin;
+    private String test;
+    private ImageView icStore1;
     /* FIN : Initialisation des variables */
 
     public StoreFragment(){//Constructeur vide necéssaire
@@ -47,6 +52,7 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
 
         loadRewardedVideoAd();
 
+        icStore1 = rootView.findViewById(R.id.icStore1);
         freeCoin = rootView.findViewById(R.id.freeCoin);
         freeCoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +63,15 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
                 }
             }
         });
+
+        store_earn_coin = rootView.findViewById(R.id.store_earn_coin);
+        test =  store_earn_coin.getText().toString();
+        String test1 = getString(R.string.textBuyCoins);
+        if(test == test1){
+            icStore1.setImageResource(R.drawable.comming_soon);
+        }else{
+            icStore1.setImageResource(R.drawable.a_venir);
+        }
 
 
         return rootView;

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity{
     FirebaseDatabase firebaseDatabase;
     FirebaseUser user;
 
-    public int coin_amount;
+    public int coin_amount = 0;
     private TextView coind_amount_ind, pseudoText;
     private ImageView logOutIv;
 

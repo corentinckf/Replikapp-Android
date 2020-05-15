@@ -1,5 +1,7 @@
 package com.ckfcsteam.replikapp.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,9 +34,7 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
     private RewardedVideoAd mRewardedVideoAd;
     private View rootView;
     private MainActivity mainActivity;
-    private TextView store_earn_coin;
-    private String test;
-    private ImageView icStore1;
+    private MaterialCardView vipCV;
     /* FIN : Initialisation des variables */
 
     public StoreFragment(){//Constructeur vide necéssaire
@@ -52,7 +52,6 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
 
         loadRewardedVideoAd();
 
-        icStore1 = rootView.findViewById(R.id.icStore1);
         freeCoin = rootView.findViewById(R.id.freeCoin);
         freeCoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,14 +63,40 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
             }
         });
 
-        store_earn_coin = rootView.findViewById(R.id.store_earn_coin);
-        test =  store_earn_coin.getText().toString();
-        String test1 = getString(R.string.textBuyCoins);
-        if(test == test1){
-            icStore1.setImageResource(R.drawable.comming_soon);
-        }else{
-            icStore1.setImageResource(R.drawable.a_venir);
-        }
+        vipCV = rootView.findViewById(R.id.buy_item);
+
+        vipCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(getString(R.string.titleDialogvip)).setMessage(R.string.messageDialogvip).setPositiveButton(R.string.logOutADYes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if(mainActivity.vip.compareTo("false")== 0){
+                            if(mainActivity.coin_amount >= 100){
+                                mainActivity.decCoinAmount(100);
+                                mainActivity.updateVIPBD("true");
+                                Toast.makeText(mainActivity, getString(R.string.success), Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(mainActivity, getString(R.string.error), Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(mainActivity, getString(R.string.testHaveVIP) , Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }).setNegativeButton(R.string.logOutADNo, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.create().show();
+
+            }
+        });
+
 
 
         return rootView;

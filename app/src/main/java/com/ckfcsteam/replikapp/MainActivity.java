@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity{
     private MaterialToolbar topMaterialTB;
 
     boolean testNM;
+    public String vip;
 
 
 
@@ -225,6 +226,7 @@ public class MainActivity extends AppCompatActivity{
             finish();
         }else{
            // Si c'est le cas, on effectue les différentes opérations
+           getVIPValue();
            displayCoinAmount();
            displayPseudo();
        } // Sinon on reste sur MainActivity
@@ -324,6 +326,15 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    public void decCoinAmount(int add){
+
+        coin_amount -= add;
+        String coin_res = Integer.toString(coin_amount);
+        updateCoinBD(coin_res);
+        displayCoinAmount();
+
+    }
+
     /**
      * Méthode de mise à jour des jetons de l'utilisateur dans la base de données.
      * @param value valeur à mettre dans a base de données firebase
@@ -332,6 +343,23 @@ public class MainActivity extends AppCompatActivity{
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("coin", value);
+        databaseReference.child(user.getUid()).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(MainActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void updateVIPBD(String value) {
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("vip", value);
         databaseReference.child(user.getUid()).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -363,6 +391,29 @@ public class MainActivity extends AppCompatActivity{
                     String coin = ""+ds.child("coin").getValue();
                     coin_amount = Integer.parseInt(coin);
                     coind_amount_ind.setText( "x" + coin);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void getVIPValue(){
+
+        Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
+        query.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                // On vérifie les données obtenues
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+
+                    // On récupère les données
+                   vip = ""+ds.child("vip").getValue();
                 }
             }
 

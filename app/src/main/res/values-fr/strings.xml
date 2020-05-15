@@ -95,11 +95,14 @@
     <string name="store">Boutique</string>
     <string name="textBuyCoins">AVOIR COINS</string>
     <string name="buy_coin_amount">150 coins</string>
-    <string name="textBuy">ACHETER JEUX</string>
+    <string name="textBuy">ACHETER VIP</string>
     <string name="textGame">GAME</string>
+    <string name="testHaveVIP">Vous l\'avez déjà</string>
+    <string name="titleDialogvip"> ACHETER LE VIP ?</string>
+    <string name="messageDialogvip"> Voulez-vous le prendre ?</string>
 
     <!-- Edit Profil Screen-->
-    <string name="username"> Pseudonyme </string>
+    <string name="username"> Pseudo </string>
     <string name="phoneNum"> N° de téléphone </string>
 
     <!-- Toolbar Menu -->

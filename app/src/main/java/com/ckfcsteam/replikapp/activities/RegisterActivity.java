@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 hashMap.put("image", "");
                                 hashMap.put("cover", "");
                                 hashMap.put("coin", "0");
-                                hashMap.put("game", "false");
+                                hashMap.put("vip", "false");
 
 
                                 // Instance de la base de données firebase

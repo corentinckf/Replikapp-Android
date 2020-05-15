@@ -89,8 +89,11 @@
     <string name="store">Market</string>
     <string name="textBuyCoins">GET COINS</string>
     <string name="buy_coin_amount">150 coins</string>
-    <string name="textBuy">BUY GAMES</string>
+    <string name="textBuy">BUY VIP</string>
     <string name="textGame">GAME</string>
+    <string name="testHaveVIP">You already have it</string>
+    <string name="titleDialogvip"> BUY VIP ?</string>
+    <string name="messageDialogvip"> Do you want to buy it ?</string>
 
     <!-- Edit Profil Screen -->
     <string name="username"> Username </string>

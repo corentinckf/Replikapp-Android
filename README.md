@@ -12,7 +12,7 @@ Pour charger ce projet sur Android Studio grâce à VCS, dans la barre menu sup�
 Pour lancer l'application toujours dans Android Studio faites Maj+10, si vous n'avez ni émulateur ni smartphone connecté en mode développeur, suivez les instructions d'Android Studio pour créer un nouvel émulateur.
 
 ## Auteurs
-Brandon CHIEN-KAN-FOON
-Corentin CHIEN-KAN-FOON
-Stanislas CORRE
+  - Brandon CHIEN-KAN-FOON
+  - Corentin CHIEN-KAN-FOON
+  - Stanislas CORRE
 

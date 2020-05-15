@@ -3,6 +3,7 @@
 
     <!-- Global-->
     <string name="error">Error !</string>
+    <string name="success">Success !</string>
     <!-- Splash Screen-->
     <string name="Replikapp">ReplikApp</string>
 
@@ -13,14 +14,16 @@
     <string name="password">Password</string>
     <string name="logToReg">Doesn\'t have an account?</string>
     <string name="logBtn">LOGIN</string>
+    <string name="resetPass">Forgot your Password ?</string>
     <string name="mail_empty">Please enter your E-Mail Address !</string>
     <string name="pw_empty">Please enter your Password !</string>
     <string name="login_fail">Can\'t find user !</string>
+    <string name="signInG">Sign-In with Google</string>
+    <string name="googleErr">An Error with Google Sign-In has Occured</string>
 
     <!-- Register Screen-->
     <string name="textRegister">REGISTER</string>
     <string name="textRErr"></string>
-    <string name="username">Username</string>
     <string name="regToLog">Do you already have an account?</string>
     <string name="regBtn">REGISTER</string>
     <string name="passwordConf">SIGNUP</string>
@@ -35,8 +38,7 @@
 
     <!-- Main informations -->
     <string name="coin_amount_indicator">0x</string>
-    <string name="usernameInfo">Nektsu</string>
-    <string name="addressMailInfo">stanislascorre@gmail.com</string>
+
 
 
     <!-- fragment Bibli -->
@@ -48,13 +50,60 @@
 
     <!-- fragment Profil -->
     <string name="profil">Profile</string>
+    <string name="mailInfo">Email :</string>
+    <string name="phoneInfo">Phone :</string>
+    <string name="editProfilBtn"> Edit Profile</string>
+    <string name="logoutBtn">Sign Out</string>
+
+    <string name="dialogTitle"> Choose Action</string>
+    <string name="editProfilPic"> Edit Profil Picture</string>
+    <string name="editCoverPic"> Edit Cover Picture</string>
+    <string name="editProfileName"> Edit Name</string>
+    <string name="editProfilePhone"> Edit Phone Number</string>
+
+    <string name="messUpdatePic">Updating Profile Picture</string>
+    <string name="messUpdateCover">Updating Cover Picture</string>
+    <string name="messUpdateName">Updating Name</string>
+    <string name="messUpdatePhone">Updating Phone Number</string>
+
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="pickImg">Pick from</string>
+
+    <string name="toastRequestCDenied">Please enable camera and storage permission</string>
+    <string name="toastRequestGDenied">Please enable storage permission</string>
+
+    <string name="updateName">Update Name</string>
+    <string name="updatePhone">Update Phone Number</string>
+
+    <string name="nameUpdateET">Update Name</string>
+    <string name="phoneUpdateET">Update Phone Number</string>
+
+    <string name="updateText">Update</string>
+    <string name="cancelUpdateBtn">Cancel</string>
+
+    <string name="errorETName">Please enable valid name</string>
+    <string name="errorETPhone">Please enable valid phone number</string>
 
     <!-- fragment Shop -->
     <string name="store">Market</string>
-    <string name="textBuyCoins">BUY COINS</string>
+    <string name="textBuyCoins">GET COINS</string>
     <string name="buy_coin_amount">150 coins</string>
     <string name="textBuy">BUY GAMES</string>
     <string name="textGame">GAME</string>
+
+    <!-- Edit Profil Screen -->
+    <string name="username"> Username </string>
+    <string name="phoneNum"> Phone Number </string>
+
+    <!-- ToolBar Menu -->
+    <string name="textNightMode">Night mode</string>
+
+    <!-- Alert Dialog-->
+    <string name="logOutADTitle"> WARNING</string>
+    <string name="logOutADMessage"> Are you sure you want to disconnect ?</string>
+    <string name="logOutADYes"> YES</string>
+    <string name="logOutADNo"> NO</string>
 
     <!-- Infinity Invaders Game -->
     <string name="scoreII">Score : </string>

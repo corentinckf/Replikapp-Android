@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity">
 
+    <!-- VUE REGISTERSCREEN -->
+    <!-- Composée d'un TextView principal pour indiquer à l'utilisateur le but de la vue.
+         Puis une autre balise TextView pour afficher des erreurs eventuelles
+
+         Enfin, deux LinearLayout. Le premier contient :
+            deux balises TextField et TextEditField proposées par Google material:
+                - Une pour le mail,
+                - Une pour le mot de passe.
+
+          Le second LinearLayout contient :
+                - Une balise TextView qui redirige vers l'acivité Login
+                - Un Bouton permettant l'inscription de l'utilisateur
+
+    -->
+
+    <!-- TextView de reconnaissance de vue -->
     <TextView
         android:id="@+id/textRegister"
         android:layout_width="wrap_content"
@@ -22,6 +38,8 @@
         android:shadowDx="-3"
         android:shadowDy="-3"
         android:shadowRadius="3"/>
+
+    <!-- TextView d'affichage d'erreurs -->
     <TextView
         android:id="@+id/textRErr"
         android:layout_width="wrap_content"
@@ -35,6 +53,7 @@
         android:textColor="@color/colorError"
         android:textSize="10dp"/>
 
+    <!-- LinearLayout comportant les EditText mail et mot de passe -->
     <LinearLayout
         android:id="@+id/llReg"
         android:layout_width="wrap_content"
@@ -54,6 +73,9 @@
             android:hint="@string/addressMail"
             android:inputType="textPersonName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:errorEnabled="true"
+            app:boxStrokeColor="@color/lightBlue"
+            app:hintTextColor="@color/lightBlue"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mailRegTEField"
@@ -61,6 +83,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                app:errorEnabled="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -72,6 +95,8 @@
             android:hint="@string/password"
             app:endIconMode="password_toggle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/lightBlue"
+            app:hintTextColor="@color/lightBlue"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passRegTEField"
@@ -83,34 +108,48 @@
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/regToLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llReg"
-        android:layout_marginTop="10dp"
-        android:text="@string/regToLog"
-        android:textColor="@color/lightBlue"
-        android:fontFamily="@font/lemon"
-        android:textSize="10dp"
-        />
 
-    <Button
-        android:id="@+id/regBtn"
-        android:layout_width="wrap_content"
+    <!-- LinearLayout comportant un TextView de redirection vers l'activité de connexion et un bouton d'inscription -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/regToLog"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/regBtn"
-        android:fontFamily="@font/lemon"
-        android:backgroundTint="@color/lightBlue"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llReg">
+
+        <TextView
+            android:id="@+id/regToLog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llReg"
+            android:layout_marginTop="10dp"
+            android:text="@string/regToLog"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/lemon"
+            android:textSize="10dp"
+            />
+
+        <Button
+            android:id="@+id/regBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/regToLog"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/regBtn"
+            android:fontFamily="@font/lemon"
+            android:backgroundTint="@color/lightBlue"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"/>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,49 +2,60 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
+    <!-- VUE HUB/MAINSCREEN -->
+    <!-- Divisée en trois parties:
+            - Deux toolbars (une en haut et une en bas)
+            - Un FragmentLayout.
 
+        Le premier toolbar contient les informations principales de l'utilisateur(argent de jeu, pseudo)
+        la seconde toolbar contient les différentes parties/onglets de notre hub
+        qui changera l'affichage contenu dans le fragmentLayout
 
+        Les différents onglets sont:
+            - la "bibliothèque" de jeux, qui contiendra les jeux
+            - le "profil" de l'utilisateur
+            - la "boutique" ou l'utilisateur pourra récupérer de l'argent de jeu ou acheter des jeux
+    -->
 
-    <LinearLayout
+        <!-- LinearLayout principal -->
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+            <!-- ToolBar(barre d'outils supérieur) proposé par Material Design-->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/hub_topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            app:navigationIcon="@drawable/nav_icon">
+
+            >
+
+            <!-- Affichage du pseudo -->
             <TextView
                 android:id="@+id/pseudo_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pseudo"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:fontFamily="@font/lemon"/>
 
+            <!-- LinearLayout d'affichage des jetons(coin) de l'utilisateur-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right">
+                android:layout_gravity="left">
 
-                <TextView
-                    android:id="@+id/coin_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/coin_amount_indicator"
-                    android:fontFamily="@font/pixel"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:layout_weight="1"/>
+
 
                 <ImageView
                     android:layout_width="25dp"
@@ -54,25 +65,63 @@
                     android:layout_marginRight="2dp"
                     android:src="@drawable/coin_icon"
                     android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/coin_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:fontFamily="@font/pixel"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"/>
+
+
+
             </LinearLayout>
+
+            <!-- LinearLayout comportant un switch de gestion du mode nuit ainsi qu'un ImageView de deconnexion -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right">
+                <Switch
+                    android:id="@+id/switchNM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp" />
+
+                <ImageView
+                    android:id="@+id/logOutIv"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/logout_icon"
+                    android:layout_marginRight="10dp"/>
+            </LinearLayout>
+
         </com.google.android.material.appbar.MaterialToolbar>
 
+            <!-- FrameLayout principale, comporte les informations des activités fragment-->
         <FrameLayout
             android:id="@+id/page"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
+            <!-- ToolBar(barre d'outils inférieur) permettant le changement de fragment proposé par Material Design-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/hub_bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- Premier fragment : bibliothèque de jeu -->
                 <LinearLayout
                     android:id="@+id/bottomBar_item1"
                     android:layout_width="wrap_content"
@@ -96,6 +145,7 @@
                 </LinearLayout>
 
 
+                <!-- Second fragment : profil utilisateur -->
                 <LinearLayout
                     android:id="@+id/bottomBar_item2"
                     android:layout_width="wrap_content"
@@ -116,6 +166,7 @@
                         android:fontFamily="@font/lemon"/>
                 </LinearLayout>
 
+                <!-- Troisième fragment : boutique -->
                 <LinearLayout
                     android:id="@+id/bottomBar_item3"
                     android:layout_width="wrap_content"
@@ -137,8 +188,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

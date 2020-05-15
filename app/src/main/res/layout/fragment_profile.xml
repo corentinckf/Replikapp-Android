@@ -2,11 +2,162 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_margin="25dp"
-        android:layout_width="wrap_content"
+    <!-- VUE FRAGMENT PROFIL-->
+    <!-- RESUME
+            - ScrollView pour permettre le scroll vertical.
+            - RelativeLayout pour la gestion du placement de l'image de couverture
+            - LinearLayout contenant l'image de profil et le textView du pseudo joueur
+            - LinearLayout contenant les informations de l'utilisateur (mail et n° de tél)
+            - LinearLayout contenant les boutons mmodifier et deconnexion
+
+    -->
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PROFIL MON FRERE"/>
+        >
+
+        <!-- Image de couverture -->
+        <RelativeLayout
+            android:id="@+id/rLMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/coverProfil"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                android:background="@color/grey">
+
+            </ImageView>
+
+            <!-- Image de profil et pseudo-->
+            <LinearLayout
+                android:id="@+id/lLAvatarImg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="80dp"
+                >
+
+                <ImageView
+                    android:id="@+id/avatarProfil"
+                    android:layout_marginStart="20dp"
+                    android:background="@color/lightBlue"
+                    android:src="@drawable/ic_add_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="fitXY"
+                    android:padding="5dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nameProfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/lemon"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/mailProfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/lemon"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/phoneProfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10dp"
+                        android:fontFamily="@font/lemon"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <!-- Informations générales de l'utilisateur-->
+            <LinearLayout
+                android:id="@+id/llInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/lLAvatarImg"
+                android:layout_marginTop="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="50dp">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Boutons accessible par l'utilisateur pour modifier ses infos ou se deconnecter-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llInfo"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/editProfilBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/resetPassBtn"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/editProfilBtn"
+                    android:fontFamily="@font/lemon"
+                    android:backgroundTint="@color/lightBlue"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2" />
+
+
+                <Button
+                    android:id="@+id/logoutBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/editProfilBtn"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/logoutBtn"
+                    android:fontFamily="@font/lemon"
+                    android:backgroundTint="@color/colorError"
+                    android:shadowColor="@color/black"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
 </FrameLayout>

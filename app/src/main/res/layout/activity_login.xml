@@ -6,13 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
+    <!-- VUE LOGINSCREEN -->
+
+    <!-- RESUME
+        - TextView de description de l'activité
+        - LinearLayout des editText de Material IO
+        - LinearLayout des TextViews de redirection vers l'oubli du MDP et la création de compte ainsi que des boutons de connexion
+        par mail ou par google.
+
+    -->
+
+
+    <!-- TextView comportant le texte "Connexion"-->
     <TextView
         android:id="@+id/textLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@id/textLErr"
         android:text="@string/textLogin"
         android:textColor="@color/lightBlue"
@@ -22,6 +33,8 @@
         android:shadowDx="-3"
         android:shadowDy="-3"
         android:shadowRadius="3"/>
+
+    <!-- TextView comportant un potentiel message d'erreur-->
     <TextView
         android:id="@+id/textLErr"
         android:layout_width="wrap_content"
@@ -35,6 +48,7 @@
         android:textColor="@color/colorError"
         android:textSize="10dp"/>
 
+    <!--  Linear Layout comportant les editText du mail et du mot de passe -->
     <LinearLayout
         android:id="@+id/llLogin"
         android:layout_width="wrap_content"
@@ -46,13 +60,16 @@
         android:orientation="vertical"
         >
 
+        <!-- editText de material design-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/mailLogTField"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:hint="@string/addressMail"
             android:inputType="textPersonName"
+            app:errorEnabled="true"
+            app:boxStrokeColor="@color/lightBlue"
+            app:hintTextColor="@color/lightBlue"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -60,17 +77,19 @@
                 android:inputType="textPersonName"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                app:errorEnabled="true"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passLogTField"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:inputType="textPassword"
             android:hint="@string/password"
             app:endIconMode="password_toggle"
+            app:boxStrokeColor="@color/lightBlue"
+            app:hintTextColor="@color/lightBlue"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -78,40 +97,102 @@
                 android:inputType="textPassword"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/logToReg"
-        android:layout_width="wrap_content"
+
+    <!--  Linear Layout comportant les textView de redirection d'oubli de MDP et de création de compte -->
+    <LinearLayout
+        android:id="@+id/llBtn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llLogin"
-        android:layout_marginTop="10dp"
-        android:text="@string/logToReg"
-        android:textColor="@color/lightBlue"
-        android:fontFamily="@font/lemon"
-        android:textSize="10dp"
-        />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/logToReg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/logBtn"
-        android:fontFamily="@font/lemon"
-        android:backgroundTint="@color/lightBlue"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/resetPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llLogin"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/resetPass"
+                android:textColor="@color/lightBlue"
+                android:fontFamily="@font/lemon"
+                android:textSize="10dp"
+                />
+            <TextView
+                android:id="@+id/logToReg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/logToReg"
+                android:textColor="@color/lightBlue"
+                android:fontFamily="@font/lemon"
+                android:textSize="10dp"
+                />
+        </LinearLayout>
+
+
+        <!-- Linear Layout comportant les boutons de connexion par mail ou de connexion par google -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                android:text="@string/logBtn"
+                android:fontFamily="@font/lemon"
+                android:backgroundTint="@color/lightBlue"
+                android:shadowColor="@color/black"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"/>
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/signInGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

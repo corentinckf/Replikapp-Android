@@ -148,9 +148,9 @@ public class SuperBouleMenuActivity extends AppCompatActivity {
         /*On crée une boite de dialogue pour confirmer/annuler l'arrêt du jeu*/
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Quitter Arcanoid")
-                .setMessage("Etes-vous sur de vouloir quitter Arcanoid ?")
-                .setPositiveButton("Oui !", new DialogInterface.OnClickListener()
+                .setTitle(R.string.quitSuperBoule)
+                .setMessage(R.string.quitSuperBouleConf)
+                .setPositiveButton(R.string.positiveAnswer, new DialogInterface.OnClickListener()
                 {
                     /*On pose sur le "positiveButton" un listener*/
                     @Override
@@ -168,7 +168,7 @@ public class SuperBouleMenuActivity extends AppCompatActivity {
                     }
 
                 })
-                .setNegativeButton("Non !", null)
+                .setNegativeButton(R.string.negativeAnswer, null)
                 .show();
     }
 

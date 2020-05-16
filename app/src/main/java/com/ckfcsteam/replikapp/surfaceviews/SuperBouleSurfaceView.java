@@ -265,7 +265,7 @@ public class SuperBouleSurfaceView extends Game {
 
         /*Si la partie est gagnée/terminée on affiche Un texte indicatif + les boutons "Rejouer" et "Quitter"*/
         if(finished){
-            canvas.drawText("Partie terminée !", screen_width/2, restart.getCordy()-(restart.getHeight()*1.5f), begin_textPaint);
+            canvas.drawText(getResources().getString(R.string.terminatedGameText), screen_width/2, restart.getCordy()-(restart.getHeight()*1.5f), begin_textPaint);
             restart.display(canvas);
             quit.display(canvas);
         }
@@ -275,7 +275,7 @@ public class SuperBouleSurfaceView extends Game {
 
         /*Si la partie n'est pas commencée, on affiche le texte indiquant à l'utilisateur qu'on attends son action pour commencer*/
         if(!started){
-            canvas.drawText("Touchez l'écran pour commencer", screen_width/2, screen_height/2, begin_textPaint);
+            canvas.drawText(getResources().getString(R.string.touchScreen), screen_width/2, screen_height/2, begin_textPaint);
         }
     }
 

@@ -129,5 +129,27 @@
     <string name="toastInvaders2">Achieve a score of 20 in Normal Mode</string>
     <string name="newhs">New high score : </string>
 
+    <!-- Super Boule Game -->
+    <string name="quitSuperBoule">Quit SuperBoule</string>
+    <string name="quitSuperBouleConf">Are you sure ?</string>
+    <string name="positiveAnswer">Yes !</string>
+    <string name="negativeAnswer">No !</string>
+    <string name="terminatedGameText">Game finished !</string>
+    <string name="touchScreen">Touch screen to start !</string>
+    <string name="lvl1">Level 1</string>
+    <string name="lvl2">Level 2</string>
+    <string name="lvl3">Level 3</string>
+    <string name="lvl4">Level 4</string>
+    <string name="unlockLvl">You must unlock previous level !</string>
+    <string name="inProgress">In Progress : </string>
+    <string name="finished">Finished : </string>
+    <string name="quest1">Unlock 4 levels</string>
+    <string name="quest2">Destroy 50 blocks</string>
+    <string name="quest3">Destroy 100 blocks</string>
+    <string name="quest4">Destroy 150 blocks</string>
+    <string name="quest5">Destroy 1000 blocks</string>
+
+
+
 
 </resources>

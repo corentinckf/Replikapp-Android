@@ -51,10 +51,10 @@ public class LevelSelection extends Fragment {
         /*On crée une liste d'objet dataModels, objet permettant de décrire un niveau*/
         dataModels = new ArrayList<DataModel>();
         /*On ajoute à la liste créée, les descriptions de niveau voulues*/
-        dataModels.add(new DataModel(R.drawable.lock_icon,"Niveau 1","Difficulté : Facile"));
-        dataModels.add(new DataModel(R.drawable.lock_icon,"Niveau 2","Difficulté : Facile"));
-        dataModels.add(new DataModel(R.drawable.lock_icon,"Niveau 3","Difficulté : Moyen"));
-        dataModels.add(new DataModel(R.drawable.lock_icon,"Niveau 4","Difficulté : Difficile"));
+        dataModels.add(new DataModel(R.drawable.lock_icon,getResources().getString(R.string.lvl1),getResources().getString(R.string.easy)));
+        dataModels.add(new DataModel(R.drawable.lock_icon,getResources().getString(R.string.lvl2),getResources().getString(R.string.easy)));
+        dataModels.add(new DataModel(R.drawable.lock_icon,getResources().getString(R.string.lvl3),getResources().getString(R.string.normal)));
+        dataModels.add(new DataModel(R.drawable.lock_icon,getResources().getString(R.string.lvl4),getResources().getString(R.string.hard)));
 
         /*Pour chaque description de niveau*/
         for (DataModel dm : dataModels){
@@ -87,7 +87,7 @@ public class LevelSelection extends Fragment {
                     ((Activity) getActivity()).finish();
                 }else{
                     /*Si le niveau est bloqué, on affiche un petit Toast informatif*/
-                    Toast.makeText(getContext(),"Vous devez terminer le niveau précédent !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),getResources().getString(R.string.unlockLvl), Toast.LENGTH_SHORT).show();
                 }
             }
         });

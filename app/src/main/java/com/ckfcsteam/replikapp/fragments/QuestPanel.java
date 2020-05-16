@@ -49,17 +49,17 @@ public class QuestPanel extends Fragment {
         dataModels = new ArrayList<DataModel>();
 
         /*On crée les descriptions des quêtes en fonction de s'ils elle sont finies ou pas*/
-        String quest0 = maxLvl_unlocked < 4 ? "En cours : "+maxLvl_unlocked+" sur 4" : "Terminé : 4 sur 4";
-        String quest1 = block_number < 50 ? "En cours : "+block_number+" sur 50" : "Terminé : 50 sur 50";
-        String quest2 = block_number < 100 ? "En cours : "+block_number+" sur 100" : "Terminé : 100 sur 100";
-        String quest3 = block_number < 150 ? "En cours : "+block_number+" sur 150" : "Terminé : 150 sur 150";
-        String quest4 = (block_number < 1000 ) ? "En cours : "+block_number+" sur 1000" : "Terminé : 1000 sur 1000";
+        String quest0 = maxLvl_unlocked < 4 ? getResources().getString(R.string.inProgress)+ " " + maxLvl_unlocked+" / 4" : (getResources().getString(R.string.finished) + "4 / 4");
+        String quest1 = block_number < 50 ? getResources().getString(R.string.inProgress)+  " " + block_number+" / 50" : (getResources().getString(R.string.finished) + "50 / 50");
+        String quest2 = block_number < 100 ? getResources().getString(R.string.inProgress)+  " " + block_number+" / 100" : (getResources().getString(R.string.finished) + "100 / 100");
+        String quest3 = block_number < 150 ? getResources().getString(R.string.inProgress)+  " " + block_number+" / 150" : (getResources().getString(R.string.finished) + "150 / 150");
+        String quest4 = (block_number < 1000 ) ? getResources().getString(R.string.inProgress)+  " " + block_number+" / 1000" : (getResources().getString(R.string.finished) + "1000 / 1000");
         /*Et on ajoute chaque quête dans la liste créée*/
-        dataModels.add(new DataModel(R.drawable.quest_icon,"Débloquer les 4 niveaux",quest0));
-        dataModels.add(new DataModel(R.drawable.quest_icon,"Détruire 50 blocks",quest1));
-        dataModels.add(new DataModel(R.drawable.quest_icon,"Détruire 100 blocks",quest2));
-        dataModels.add(new DataModel(R.drawable.quest_icon,"Détruire 150 blocks",quest3));
-        dataModels.add(new DataModel(R.drawable.quest_icon,"Détruire 1000 blocks",quest4));
+        dataModels.add(new DataModel(R.drawable.quest_icon,getResources().getString(R.string.quest1),quest0));
+        dataModels.add(new DataModel(R.drawable.quest_icon,getResources().getString(R.string.quest2),quest1));
+        dataModels.add(new DataModel(R.drawable.quest_icon,getResources().getString(R.string.quest3),quest2));
+        dataModels.add(new DataModel(R.drawable.quest_icon,getResources().getString(R.string.quest4),quest3));
+        dataModels.add(new DataModel(R.drawable.quest_icon,getResources().getString(R.string.quest5),quest4));
 
         /*On récupère notre Adaptateur Custom*/
         adapter = new CustomAdaptater(dataModels,getContext());

@@ -135,4 +135,24 @@
     <string name="toastInvaders1">Atteindre un score de 10 sur le mode Facile</string>
     <string name="toastInvaders2">Atteindre un score de 20 sur le mode Normal</string>
     <string name="newhs">Noveau meilleur score : </string>
+
+    <!-- Super Boule Game -->
+    <string name="quitSuperBoule">Quitter SuperBoule</string>
+    <string name="quitSuperBouleConf">Confirmer l\'opération ?</string>
+    <string name="positiveAnswer">Oui !</string>
+    <string name="negativeAnswer">Non !</string>
+    <string name="terminatedGameText">Partie terminée !</string>
+    <string name="touchScreen">Touchez l\'écran pour commencer !</string>
+    <string name="lvl1">Niveau 1</string>
+    <string name="lvl2">Niveau 2</string>
+    <string name="lvl3">Niveau 3</string>
+    <string name="lvl4">Niveau 4</string>
+    <string name="unlockLvl">Vous devez terminer le niveau précédent ! !</string>
+    <string name="inProgress">En Cours : </string>
+    <string name="finished">Terminé : </string>
+    <string name="quest1">Débloquer les 4 niveaux</string>
+    <string name="quest2">Détruire 50 briques</string>
+    <string name="quest3">Détruire 100 briques</string>
+    <string name="quest4">Détruire 150 briques</string>
+    <string name="quest5">Détruire 1000 briques</string>
 </resources>

@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity{
     public String vip;
 
 
-
     private LinearLayout bottomBar_item1,bottomBar_item2,bottomBar_item3;
     private TextView bottomBar_text1, bottomBar_text2, bottomBar_text3;
 
@@ -101,8 +100,6 @@ public class MainActivity extends AppCompatActivity{
         mainLayout = findViewById(R.id.page);
         topMaterialTB = findViewById(R.id.hub_topBar);
         testNM = false;
-
-
 
 
 
@@ -268,6 +265,12 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     * Méthode permettant de mettre en place le night mode de la bottom bar
+     * @param item1_selected 'bouton' Fragment 1
+     * @param item2_selected 'bouton' Fragment 2
+     * @param item3_selected 'bouton' Fragment 3
+     */
     public void updateBottomBarItemsUINM(Boolean item1_selected, Boolean item2_selected, Boolean item3_selected){
         if(item1_selected){
             bottomBar_item1.setBackgroundColor(Color.LTGRAY);
@@ -326,6 +329,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    /**
+     * méthode permettant de faire la décrémentation des pièces joueur
+     * @param add valeur à décrémenter
+     */
     public void decCoinAmount(int add){
 
         coin_amount -= add;
@@ -356,6 +363,10 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * Méthode permettant de modifier la valeur du statut de VIP dans la base de données
+     * @param value valeur à insérer dans la base de données
+     */
     public void updateVIPBD(String value) {
 
         HashMap<String, Object> result = new HashMap<>();
@@ -401,6 +412,9 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * Methode permettant d'obtenir la valeur du statut VIP depuis la base de données
+     */
     public void getVIPValue(){
 
         Query query = databaseReference.orderByChild("uid").equalTo(user.getUid());
@@ -461,6 +475,9 @@ public class MainActivity extends AppCompatActivity{
         finish();
     }
 
+    /**
+     * Méhtode lorsque l'on souhaite activer le nightmode
+     */
     public void nightModeOn(){
 
 
@@ -470,10 +487,11 @@ public class MainActivity extends AppCompatActivity{
         pseudoText.setTextColor(Color.rgb(255,255,255));
         topMaterialTB.setBackgroundColor(Color.rgb(108,108,108));
 
-
-
     }
 
+    /**
+     * Méhtode lorsque l'on souhaite desactiver le nightmode
+     */
     public void nightModeOff(){
         mainLayout.setBackgroundColor(Color.rgb(255,255,255));
         coind_amount_ind.setTextColor(Color.rgb(0,0,0));

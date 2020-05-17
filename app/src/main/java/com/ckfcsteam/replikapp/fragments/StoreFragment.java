@@ -65,16 +65,21 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
 
         vipCV = rootView.findViewById(R.id.buy_item);
 
+        //ecouteur du bouton vip
         vipCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //dialog qui s'affiche pour la confirmation de l'achat vip
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(getString(R.string.titleDialogvip)).setMessage(R.string.messageDialogvip).setPositiveButton(R.string.logOutADYes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        //Si le vip est egale à faux
                         if(mainActivity.vip.compareTo("false")== 0){
+                            // si le nombre de pièce est supérieure à 100
                             if(mainActivity.coin_amount >= 100){
+                                // on réduit le nombre de pièces du joueur et on upgrade le vip
                                 mainActivity.decCoinAmount(100);
                                 mainActivity.updateVIPBD("true");
                                 Toast.makeText(mainActivity, getString(R.string.success), Toast.LENGTH_SHORT).show();
@@ -119,6 +124,7 @@ public class StoreFragment extends Fragment implements RewardedVideoAdListener{
     }
 
 
+    // Récompense de du visionnage de pub
     @Override
     public void onRewarded(RewardItem rewardItem) {
         mainActivity.incCoinAmount(150);

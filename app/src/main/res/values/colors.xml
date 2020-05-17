@@ -13,6 +13,6 @@
     <!-- Night Mode -->
     <color name="greyNM">#645F5F</color>
     <color name="blackNM">#312C2C</color>
-    <color name="lightGreyNM">#938E8E</color>
+    <color name="lightGreyNM">#7A7A7A</color>
 
 </resources>

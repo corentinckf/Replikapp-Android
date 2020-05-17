@@ -13,7 +13,8 @@
             - Deux toolbars (une en haut et une en bas)
             - Un FragmentLayout.
 
-        Le premier toolbar contient les informations principales de l'utilisateur(argent de jeu, pseudo)
+        Le premier toolbar contient les informations principales de l'utilisateur
+        (argent de jeu, pseudo, nightmode et deconnexion)
         la seconde toolbar contient les différentes parties/onglets de notre hub
         qui changera l'affichage contenu dans le fragmentLayout
 

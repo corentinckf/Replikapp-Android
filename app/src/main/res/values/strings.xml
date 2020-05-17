@@ -130,8 +130,8 @@
     <string name="newhs">New high score : </string>
 
     <!-- Super Boule Game -->
-    <string name="quitSuperBoule">Quit SuperBoule</string>
-    <string name="quitSuperBouleConf">Are you sure ?</string>
+    <string name="quitGame">Quit</string>
+    <string name="quitGameConf">Are you sure ?</string>
     <string name="positiveAnswer">Yes !</string>
     <string name="negativeAnswer">No !</string>
     <string name="terminatedGameText">Game finished !</string>

@@ -63,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
         majScoreThread.start();
 
         // Gestion du son
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.song_ii);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.tetristheme);
         mediaPlayer.setLooping(true);
 
         mediaPlayer.start();

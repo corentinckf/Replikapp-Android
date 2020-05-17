@@ -254,6 +254,10 @@ public class ProfilFragment extends Fragment {
     *  Edition de l'image de couverture
     *  Edition du nom
     *  Edition du numéro de téléphone */
+
+    /**
+     * Méthode qui affiche un dialog android pour l'édition de profil
+     */
     private void showEditProfileDialog() {
 
         String editProfilePic = getString(R.string.editProfilPic);
@@ -278,20 +282,24 @@ public class ProfilFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                // Si on clique sur le premier 'item' du dialog
                 if(which == 0){
                     //Edit Profil picture
                     pd.setMessage(updateProfilPic);
                     profileOrCoverImg = "image";   // Choix de l'image de profil
                     showImagePicDialog();
+                    // Si on clique sur le second 'item' du dialog
                 }else if(which == 1){
                     //Edit Cover picture
                     pd.setMessage(updateCover);
                     profileOrCoverImg = "cover";     // Choix de l'image de couverture
                     showImagePicDialog();
+                    // Si on clique sur le troisième 'item' du dialog
                 }else if(which == 2){
                     //Edit Name
                     pd.setMessage(updateName);
                     showNamePhoneUpdateDialog("name");        // Méthode permettant la modification des données de la BD sur le nom (paramètre name)
+                    // Si on clique sur le quatrième 'item' du dialog
                 }else if(which == 3){
                     //Edit Phone number
                     pd.setMessage(updatePhone);
@@ -383,6 +391,9 @@ public class ProfilFragment extends Fragment {
         builder.create().show();
     }
 
+    /**
+     * Methode permettant l'affichage d'un dialog pour le choix de l'image : caméra ou gestionnaire de fichiers. On vérifie l'état des permissions pour cet accès.
+     */
     private void showImagePicDialog() {
 
         String camera = getString(R.string.camera);
@@ -601,17 +612,6 @@ public class ProfilFragment extends Fragment {
         getActivity().finish();
     }
 
-    public void switchColorNMOn(){
-        mailProfil.setTextColor(Color.rgb(255,255,255));
-        phoneProfil.setTextColor(Color.rgb(255,255,255));
-
-    }
-
-    public void switchColorNMOff(){
-        mailProfil.setTextColor(Color.rgb(0,0,0));
-        phoneProfil.setTextColor(Color.rgb(0,0,0));
-
-    }
 
 
 }

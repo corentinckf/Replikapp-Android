@@ -8,18 +8,22 @@
     <!-- Composée d'un ScrollView pour permettre le scroll vertical, et contenant:
             - constraintLayout pour permettre la gestion des placements d'objets
             - des LinearLayout permettant la description de la cardView du dessous
+            - des cardview permettant l'obtention de coin et l'achat du grade VIP
 
     -->
 
+    <!-- Scrollview permettant le scroll vertical -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Gestion des placement graphique -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/store_constraintL"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- LinearLayout principal -->
             <LinearLayout
                 android:id="@+id/store_main_linearL"
                 android:layout_width="match_parent"
@@ -32,6 +36,7 @@
                 app:layout_constraintTop_toTopOf="@id/store_constraintL"
                 app:layout_constraintVertical_bias="0.0">
 
+                <!-- LinearLayout permettant l'affichage de la partie obtention des pièces'-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,6 +61,7 @@
 
                 </LinearLayout>
 
+                <!-- Cardview Coin -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/freeCoin"
                     android:layout_width="150dp"
@@ -91,6 +97,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
+                <!-- LinearLayout permettant l'achat de grade VIP -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -121,6 +128,7 @@
                     android:orientation="horizontal">
 
 
+                    <!-- Cardview VIP -->
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/buy_item"
                         android:layout_width="150dp"

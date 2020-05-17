@@ -137,8 +137,8 @@
     <string name="newhs">Noveau meilleur score : </string>
 
     <!-- Super Boule Game -->
-    <string name="quitSuperBoule">Quitter SuperBoule</string>
-    <string name="quitSuperBouleConf">Confirmer l\'opération ?</string>
+    <string name="quitGame">Quitter</string>
+    <string name="quitGameConf">Confirmer l\'opération ?</string>
     <string name="positiveAnswer">Oui !</string>
     <string name="negativeAnswer">Non !</string>
     <string name="terminatedGameText">Partie terminée !</string>

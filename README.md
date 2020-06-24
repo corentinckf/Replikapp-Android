@@ -15,7 +15,7 @@ Pour charger ce projet sur Android Studio grâce à VCS, dans la barre menu sup�
 Pour lancer l'application toujours dans Android Studio, faire Maj+10. Si vous n'avez ni émulateur ni smartphone connecté en mode développeur, suivez les instructions d'Android Studio pour créer un nouvel émulateur.
 
 ## Point important
-Si vous voulez testez la connexion par google, veuillez transmettre la signature SHA-1 associée à votre projet Android Studio à l'un des auteurs, afin que nous puissions l'ajouter à Firebase. Nous traiterons les demandes au cas par cas.
+Si vous voulez tester la connexion par google, veuillez transmettre la signature SHA-1 associée à votre projet Android Studio à l'un des auteurs, afin que nous puissions l'ajouter à Firebase. Nous traiterons les demandes au cas par cas.
 
 ## Auteurs
   - Brandon CHIEN-KAN-FOON
